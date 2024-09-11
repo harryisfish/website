@@ -35,7 +35,7 @@ export default function BlogListPage({
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalItems, setTotalItems] = useState(0);
+  const [, setTotalItems] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const page = parseInt(searchParams.page || '1');
   const pageSize = parseInt(searchParams.pageSize || '10');

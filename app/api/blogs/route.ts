@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { Blog } from '@/types/blog';
 
 const prisma = new PrismaClient();
-
+export const dynamic = "force-dynamic"
 interface BlogResponse {
   blogs: Blog[];
   currentPage: number;
@@ -39,6 +39,12 @@ export async function GET(request: Request): Promise<NextResponse<BlogResponse>>
     return NextResponse.json(response);
   } catch (error) {
     console.error('获取博客失败:', error);
-    return NextResponse.json({ error: '获取博客失败' } as any, { status: 500 });
+    return NextResponse.json({ 
+      blogs: [],
+      currentPage: 0,
+      totalPages: 0,
+      totalItems: 0,
+      error: '获取博客失败' 
+    }, { status: 500 });
   }
 }
