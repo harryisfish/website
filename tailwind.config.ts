@@ -80,6 +80,8 @@ const config = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar'),
     require("tailwindcss-animate"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
