@@ -1,17 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
 import { Blog } from '@/types/blog';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import remarkEmoji from 'remark-emoji';
-import remarkToc from 'remark-toc';
-import remarkGFM from 'remark-gfm';
-import mdxCustomComponents from '@/components/MdxComponents';
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm';
+
 function getBlog(urlname: string) {
   return fetch(`/api/blog?urlname=${urlname}`);
 }
@@ -22,7 +17,6 @@ interface BlogPageProps {
 
 export default function BlogPage({ params }: BlogPageProps) {
   const [blog, setBlog] = useState<Blog | null>(null);
-  const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,44 +26,6 @@ export default function BlogPage({ params }: BlogPageProps) {
       .then(res => res.json())
       .then(async (data: Blog) => {
         setBlog(data);
-        const mdxSource = await serialize(
-          data.content,
-          {
-            mdxOptions: {
-              remarkPlugins: [
-                remarkGFM,
-                [
-                  remarkToc,
-                  {
-                    ordered: true,
-                    tight: true,
-                    heading: "TOC",
-                    maxDepth: 3,
-                  },
-                ],
-                remarkEmoji,
-              ],
-              rehypePlugins: [
-                rehypeSlug,
-                // this code is a bug for kv about md(x) page
-                [
-                  rehypePrettyCode,
-                  {
-                    theme: "one-dark-pro",
-                    // theme: {
-                    // 	dark: 'one-dark-pro',
-                    // 	light: 'one-dark-pro'
-                    // },
-                    keepBackground: false,
-                  },
-                ],
-              ],
-              format: "mdx",
-            },
-            parseFrontmatter: true,
-          },
-        );
-        setMdxSource(mdxSource);
         setIsLoading(false);
       })
       .catch(err => {
@@ -88,7 +44,7 @@ export default function BlogPage({ params }: BlogPageProps) {
     return <div className="flex justify-center items-center h-screen text-red-500">错误：{error}</div>;
   }
 
-  if (!blog || !mdxSource) {
+  if (!blog) {
     return notFound();
   }
 
@@ -100,9 +56,10 @@ export default function BlogPage({ params }: BlogPageProps) {
           {format(new Date(blog.created_at), 'yyyy年MM月dd日', { locale: zhCN })}
         </time>
       </div>
-      <div className=''>
-        <MDXRemote {...mdxSource} components={mdxCustomComponents} />
-      </div>
+      <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[]}>
+        {blog.content}
+      </Markdown>
     </article>
   );
 }
+
