@@ -7,8 +7,7 @@ import { zhCN } from "date-fns/locale";
 import CodeBlock from "@/components/Markdown/CodeBlock";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ReactNode } from 'react';
-
+import { BallTriangle } from "react-loader-spinner";
 function getBlog(urlname: string) {
   return fetch(`/api/blog?urlname=${urlname}`);
 }
@@ -25,7 +24,13 @@ export default function BlogPage({ params }: BlogPageProps) {
   useEffect(() => {
     setIsLoading(true);
     getBlog(params.urlname)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 404) {
+          setError("未找到博客");
+        } else {
+          return res.json();
+        }
+      })
       .then(async (data: Blog) => {
         setBlog(data);
         setIsLoading(false);
@@ -39,20 +44,25 @@ export default function BlogPage({ params }: BlogPageProps) {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen text-red-500">
-        错误：{error}
+        <BallTriangle
+          height={100}
+          width={100}
+          radius={5}
+          color="#fff"
+          ariaLabel="ball-triangle-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
       </div>
     );
   }
 
   if (!blog) {
+    return notFound();
+  }
+
+  if (error) {
     return notFound();
   }
 
@@ -81,8 +91,10 @@ export default function BlogPage({ params }: BlogPageProps) {
           components={{
             // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
             code({ node, inline, className, children, ...props }: any) {
-              return <CodeBlock className={className}>{String(children)}</CodeBlock>;
-            }
+              return (
+                <CodeBlock className={className}>{String(children)}</CodeBlock>
+              );
+            },
           }}
         >
           {blog.content}

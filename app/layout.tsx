@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import * as React from "react";
+import {NextUIProvider} from "@nextui-org/react";
 
 export const metadata: Metadata = {
   title: "I am CUNOE, welcome！",
@@ -27,19 +17,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css"
+        />
+      </head>
+      <body style={{ fontFamily: "LXGW Bright", fontWeight: "400" }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <Header />
-          
-          <main>
-            {children}
-          </main>
+          <NextUIProvider>
+            <Header />
+            <main>{children}</main>
+          </NextUIProvider>
         </ThemeProvider>
       </body>
     </html>
