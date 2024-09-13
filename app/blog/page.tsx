@@ -1,22 +1,24 @@
-"use client";
-import { Blog } from "@/types/blog";
-import { useEffect, useState } from "react";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import { BallTriangle } from "react-loader-spinner";
-import { motion } from "framer-motion";
-import { BlogItem } from "@/components/Blogs/BlogItem";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
 
-function getBlogs(page = 1, pageSize = 10) {
-  return fetch(`/api/blogs?page=${page}&pageSize=${pageSize}`);
+export default function BlogListPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const page = parseInt(searchParams.page || "1");
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <BlogList page={page} />
+    </Suspense>
+  );
 }
+import { Blog } from "@/types/blog";
+import { MotionUl } from "@/components/ui/motion";
+import { BlogItem } from "@/components/Blogs/BlogItem";
+import { BlogPagination } from "@/components/Blogs/Pagination";
+import { PrismaClient } from "@prisma/client";
 
 const containerAnimation = {
   hidden: { opacity: 0 },
@@ -28,52 +30,30 @@ const containerAnimation = {
   },
 };
 
-export default function BlogListPage({
-  searchParams,
+async function BlogList({
+  page,
 }: {
-  searchParams: { page?: string; pageSize?: string };
+  page: number;
 }) {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [, setTotalItems] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const page = parseInt(searchParams.page || "1");
-  const pageSize = parseInt(searchParams.pageSize || "10");
+  const PAGE_SIZE = 10;
+  const skip = (page - 1) * PAGE_SIZE;
 
-  useEffect(() => {
-    setIsLoading(true);
-    getBlogs(page, pageSize)
-      .then((res) => res.json())
-      .then((data) => {
-        setBlogs(data.blogs);
-        setCurrentPage(data.currentPage);
-        setTotalPages(data.totalPages);
-        setTotalItems(data.totalItems);
-        setIsLoading(false);
-      });
-  }, [page, pageSize]);
+  const prisma = new PrismaClient();
+  const [blogs, total] = await Promise.all([
+    prisma.blogs.findMany({
+      where: { hide: false },
+      skip,
+      take: PAGE_SIZE,
+      orderBy: { created_at: "desc" },
+    }),
+    prisma.blogs.count({ where: { hide: false } }),
+  ]);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#fff"
-          ariaLabel="ball-triangle-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    );
-  }
+  const totalPages = Math.ceil(total / PAGE_SIZE);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <motion.ul
+      <MotionUl
         className="space-y-8"
         variants={containerAnimation}
         initial="hidden"
@@ -82,52 +62,13 @@ export default function BlogListPage({
         {blogs.map((blog: Blog) => (
           <BlogItem key={blog.id} blog={blog} />
         ))}
-      </motion.ul>
-      <Pagination className="mt-8">
-        <PaginationContent>
-          {currentPage > 1 && (
-            <PaginationItem>
-              <PaginationPrevious
-                href={`/blog?page=${currentPage - 1}&pageSize=${pageSize}`}
-              />
-            </PaginationItem>
-          )}
-
-          {[...Array(totalPages)].map((_, index) => {
-            const pageNumber = index + 1;
-            if (
-              pageNumber === 1 ||
-              pageNumber === totalPages ||
-              (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)
-            ) {
-              return (
-                <PaginationItem key={pageNumber}>
-                  <PaginationLink
-                    href={`/blog?page=${pageNumber}&pageSize=${pageSize}`}
-                    isActive={pageNumber === currentPage}
-                  >
-                    {pageNumber}
-                  </PaginationLink>
-                </PaginationItem>
-              );
-            } else if (
-              pageNumber === currentPage - 2 ||
-              pageNumber === currentPage + 2
-            ) {
-              return <PaginationEllipsis key={pageNumber} />;
-            }
-            return null;
-          })}
-
-          {currentPage < totalPages && (
-            <PaginationItem>
-              <PaginationNext
-                href={`/blog?page=${currentPage + 1}&pageSize=${pageSize}`}
-              />
-            </PaginationItem>
-          )}
-        </PaginationContent>
-      </Pagination>
+      </MotionUl>
+      <BlogPagination
+        currentPage={page}
+        totalPages={totalPages}
+        pageSize={PAGE_SIZE}
+      />
     </div>
   );
 }
+

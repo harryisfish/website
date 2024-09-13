@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -31,14 +32,14 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
   };
 
   return (
-    <div
+    <section
       className="relative"
       onMouseEnter={() => setShowCopyButton(true)}
       onMouseLeave={() => setShowCopyButton(false)}
     >
       <AnimatePresence>
         {showCopyButton && (
-          <motion.div
+          <motion.section
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -53,7 +54,7 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {isCopied ? (
-                    <motion.div
+                    <motion.span
                       key="check"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -61,9 +62,9 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
                       transition={{ duration: 0.2 }}
                     >
                       <Check className="h-4 w-4" />
-                    </motion.div>
+                    </motion.span>
                   ) : (
-                    <motion.div
+                    <motion.span
                       key="copy"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -71,23 +72,23 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
                       transition={{ duration: 0.2 }}
                     >
                       <Copy className="h-4 w-4" />
-                    </motion.div>
+                    </motion.span>
                   )}
                 </AnimatePresence>
               </Button>
             </CopyToClipboard>
-          </motion.div>
+          </motion.section>
         )}
       </AnimatePresence>
 
       <SyntaxHighlighter
         style={vscDarkPlus}
         language={language}
-        PreTag="div"
+        PreTag="section"
         className="rounded-lg scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800"
       >
         {String(children).replace(/\n$/, "")}
       </SyntaxHighlighter>
-    </div>
+    </section>
   );
 }

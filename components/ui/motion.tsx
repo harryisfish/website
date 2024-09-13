@@ -9,3 +9,4 @@ export const MotionH3 = motion.h3;
 export const MotionH4 = motion.h4;
 export const MotionH5 = motion.h5;
 export const MotionH6 = motion.h6;
+export const MotionUl = motion.ul;
