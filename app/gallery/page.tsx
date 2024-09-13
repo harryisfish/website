@@ -28,18 +28,18 @@ export default function GalleryPage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-screen ">
+    <div className="container mx-auto px-4 py-8 min-h-screen">
       <MotionDiv 
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="h-[20rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md "
+        className="h-[20rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md"
       >
         <MotionH1 
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="md:text-6xl text-3xl lg:text-7xl font-bold text-center text-white relative z-20 mb-10"
+          className="md:text-6xl text-3xl lg:text-7xl font-bold text-center text-black dark:text-white relative z-20 mb-10"
         >
           图片画廊
         </MotionH1>

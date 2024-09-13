@@ -3,18 +3,23 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Github, Menu } from "lucide-react";
+import { Mail, Github, Menu, Sun, Moon } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { theme, setTheme } = useTheme();
   const closePopover = () => setIsOpen(false);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <>
@@ -89,6 +94,12 @@ const Header: React.FC = () => {
               >
                 <Github size={24} />
               </Link>
+              <button
+                onClick={toggleTheme}
+                className="hover:text-white transition-colors duration-200"
+              >
+                {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+              </button>
               <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild>
                   <Menu size={24} className="md:hidden cursor-pointer" />
