@@ -4,13 +4,32 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function getBlogs(): Promise<MetadataRoute.Sitemap> {
-  const blogs = await prisma.blogs.findMany();
-  return blogs.map((blog) => ({
-    url: `https://cunoe.com/blog/${blog.urlname}`,
-    lastModified: blog.updated_at,
-    changeFrequency: "yearly",
-    priority: 0.5,
-  }));
+  let allBlogs: MetadataRoute.Sitemap = [];
+  let skip = 0;
+  const take = 100;
+  
+  while (true) {
+    const blogs = await prisma.blogs.findMany({
+      skip: skip,
+      take: take,
+    });
+    
+    if (blogs.length === 0) {
+      break;
+    }
+    
+    const mappedBlogs = blogs.map((blog) => ({
+      url: `https://cunoe.com/blog/${blog.urlname}`,
+      lastModified: blog.updated_at,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    })) as MetadataRoute.Sitemap;
+    
+    allBlogs = [...allBlogs, ...mappedBlogs];
+    skip += take;
+  }
+  
+  return allBlogs;
 }
 
 async function getPages(): Promise<MetadataRoute.Sitemap> {
