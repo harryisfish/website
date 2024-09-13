@@ -1,5 +1,5 @@
 import { FocusCards } from "@/components/ui/focus-cards";
-import { MotionDiv, MotionH1 } from "@/components/ui/motion";
+import { MotionDiv, MotionH1, MotionSpan } from "@/components/ui/motion";
 
 export default function GalleryPage() {
   const cards = [
@@ -33,7 +33,7 @@ export default function GalleryPage() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="h-[20rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md mb-8"
+        className="h-[20rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md "
       >
         <MotionH1 
           initial={{ opacity: 0, y: -50 }}
@@ -51,8 +51,15 @@ export default function GalleryPage() {
           <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
           <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
         </div>
+        <MotionSpan
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="block text-center mt-8 text-gray-600 dark:text-gray-400"
+      >
+        图片较大！流量预警，请谨慎访问
+      </MotionSpan>
       </MotionDiv>
-
       <MotionDiv
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

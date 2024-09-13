@@ -1,7 +1,7 @@
 "use client";
 import { GalleryImageItem } from "@/types/gallery";
 import { Masonry } from "react-masonry-component2";
-import { Image } from '@nextui-org/react';
+import ImageBlock from './Markdown/ImageBlock';
 
 export interface ImagesProps {
   images: GalleryImageItem[];
@@ -17,13 +17,11 @@ export const Images = (props: ImagesProps) => {
       }}
     >
       {props.images.map((image) => (
-        <div key={image.image} className="mb-8 px-2"> {/* 添加了 margin-bottom 和 padding-x */}
-          <Image
+        <div key={image.image} className="mb-8 px-2">
+          <ImageBlock
             src={image.image}
             alt={image.title ?? ""}
-            width="100%"
-            height="auto"
-            className="w-full"
+            title={image.title ?? ""}
           />
         </div>
       ))}

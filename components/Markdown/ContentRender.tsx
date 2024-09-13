@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import CodeBlock from './CodeBlock';
+import ImageBlock from './ImageBlock';
 
 interface ContentRenderProps {
   content: string;
@@ -20,11 +23,13 @@ const ContentRender: React.FC<ContentRenderProps> = ({ content }) => {
         <Markdown
           remarkPlugins={[remarkGfm]}
           components={{
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
             code({ node, inline, className, children, ...props }: any) {
               return (
                 <CodeBlock className={className}>{String(children)}</CodeBlock>
               );
+            },
+            img({ src, alt, title, ...props }: any) {
+              return <ImageBlock src={src} alt={alt} title={title} />;
             },
           }}
         >
