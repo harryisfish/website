@@ -66,7 +66,6 @@ async function BlogList({
       <BlogPagination
         currentPage={page}
         totalPages={totalPages}
-        pageSize={PAGE_SIZE}
       />
     </div>
   );

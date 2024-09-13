@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { zhCN } from "date-fns/locale";
 import ContentRender from "@/components/Markdown/ContentRender";
 import { PrismaClient } from "@prisma/client";
 import { MotionDiv, MotionH1 } from "@/components/ui/motion";
@@ -48,9 +47,7 @@ async function BlogContent({ urlname }: { urlname: string }) {
       </MotionH1>
       <div className="text-center text-gray-600 mb-8">
         <time dateTime={new Date(blog.created_at).toISOString()}>
-          {format(new Date(blog.created_at), "yyyy年MM月dd日", {
-            locale: zhCN,
-          })}
+          {format(new Date(blog.created_at), "MMM d, yyyy")}
         </time>
       </div>
       <ContentRender content={blog.content} />
