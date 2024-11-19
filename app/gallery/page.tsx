@@ -1,5 +1,11 @@
 import { FocusCards } from "@/components/ui/focus-cards";
 import { MotionDiv, MotionH1, MotionSpan } from "@/components/ui/motion";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "图片画廊 | Cunoe",
+  description: "探索精选图片集，包含背景画廊、城市印象等摄影作品展示。",
+};
 
 export default function GalleryPage() {
   const cards = [

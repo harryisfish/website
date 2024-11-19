@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import { MotionDiv, MotionH1 } from "@/components/ui/motion";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
+import { Metadata } from 'next'
 
 interface BlogPageProps {
   params: { urlname: string };
@@ -53,4 +54,23 @@ async function BlogContent({ urlname }: { urlname: string }) {
       <ContentRender content={blog.content} />
     </MotionDiv>
   );
+}
+
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+  const prisma = new PrismaClient()
+  const blog = await prisma.blogs.findUnique({
+    where: {
+      urlname: params.urlname,
+    },
+  })
+  
+  if (!blog) {
+    return {
+      title: 'Blog Not Found'
+    }
+  }
+
+  return {
+    title: blog.title,
+  }
 }

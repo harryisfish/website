@@ -1,5 +1,11 @@
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "博客列表 | My Blog",
+  description: "查看所有博客文章",
+};
 
 export default function BlogListPage({
   searchParams,
