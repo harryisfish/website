@@ -1,0 +1,22 @@
+# robots.txt for cunoe.com
+
+User-agent: *
+Allow: /
+
+# 允许访问所有静态资源
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.ico$
+
+# 主要页面
+Allow: /blog
+Allow: /gallery
+Allow: /links
+Allow: /code
+
+# Sitemap
+Sitemap: https://cunoe.com/sitemap.xml
