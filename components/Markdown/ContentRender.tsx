@@ -24,6 +24,9 @@ const ContentRender: React.FC<ContentRenderProps> = ({ content }) => {
           remarkPlugins={[remarkGfm]}
           components={{
             code({ node, inline, className, children, ...props }: any) {
+              if (inline || !className) {
+                return <code className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5">{children}</code>;
+              }
               return (
                 <CodeBlock className={className}>{String(children)}</CodeBlock>
               );
