@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Config } from "tailwindcss"
-const {nextui} = require("@nextui-org/react");
+const {heroui} = require("@heroui/react");
 const svgToDataUri = require("mini-svg-data-uri");
 const {
   default: flattenColorPalette,
@@ -13,7 +13,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
 	],
   prefix: "",
   theme: {
@@ -82,7 +82,7 @@ const config = {
     },
   },
   plugins: [
-    nextui(),
+    heroui(),
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar'),
     require("tailwindcss-animate"),

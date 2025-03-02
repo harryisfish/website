@@ -3,7 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
 import * as React from "react";
-import {NextUIProvider} from "@nextui-org/react";
+import {HeroUIProvider} from "@heroui/react";
 
 export const metadata: Metadata = {
   title: "I am CUNOE, welcome！",
@@ -29,10 +29,10 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <NextUIProvider>
+          <HeroUIProvider>
             <Header />
             <main>{children}</main>
-          </NextUIProvider>
+          </HeroUIProvider>
         </ThemeProvider>
       </body>
     </html>
