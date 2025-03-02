@@ -12,10 +12,11 @@
     "prisma:migrate": "dotenv -e .env.local -- prisma migrate deploy"
   },
   "dependencies": {
+    "@heroui/react": "2.7.4",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.9",
-    "@heroui/react": "2.7.4",
+    "@next/third-parties": "^15.2.0",
     "@prisma/client": "^5.19.1",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-select": "^2.1.1",

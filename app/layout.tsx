@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
 import * as React from "react";
 import {HeroUIProvider} from "@heroui/react";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: "I am CUNOE, welcome！",
@@ -34,6 +35,7 @@ export default function RootLayout({
             <main>{children}</main>
           </HeroUIProvider>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-TXG3G5FQ2N" />
       </body>
     </html>
   );
