@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "dev": "next dev --hostname 0.0.0.0",
     "build": "next build && npm run algolia:index",
     "start": "next start",
     "lint": "next lint",
@@ -14,6 +14,7 @@
     "build:with-index": "next build && npm run algolia:index"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@heroui/react": "2.7.4",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -42,6 +43,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
+    "react-instantsearch": "^7.15.5",
     "react-intersection-observer": "^9.16.0",
     "react-loader-spinner": "^6.1.6",
     "react-markdown": "^9.0.1",
