@@ -8,7 +8,7 @@ import Loading from "@/components/Loading";
 import { Metadata } from 'next'
 
 interface BlogPageProps {
-  params: { urlname: string };
+  params: Promise<{ urlname: string }>;
 }
 
 export const revalidate = 3600; // 每小时重新验证一次
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage(props: BlogPageProps) {
+  const params = await props.params;
   return (
     <Suspense fallback={<Loading />}>
       <BlogContent urlname={params.urlname} />
@@ -70,14 +71,15 @@ async function BlogContent({ urlname }: { urlname: string }) {
   );
 }
 
-export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+export async function generateMetadata(props: BlogPageProps): Promise<Metadata> {
+  const params = await props.params;
   const prisma = new PrismaClient()
   const blog = await prisma.blogs.findUnique({
     where: {
       urlname: params.urlname,
     },
   })
-  
+
   if (!blog) {
     return {
       title: 'Blog Not Found'
