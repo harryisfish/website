@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3000",
-    "build": "next build",
+    "build": "next build && npm run algolia:index",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "prisma generate && next build",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev --name ",
-    "prisma:migrate": "dotenv -e .env.local -- prisma migrate deploy"
+    "prisma:migrate": "dotenv -e .env.local -- prisma migrate deploy",
+    "algolia:index": "dotenv -e .env.local -- ts-node scripts/algolia-index.ts",
+    "build:with-index": "next build && npm run algolia:index"
   },
   "dependencies": {
     "@heroui/react": "2.7.4",
@@ -26,6 +28,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
     "@types/mdx": "^2.0.13",
+    "algoliasearch": "^5.23.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -67,6 +70,7 @@
     "postcss": "^8",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
