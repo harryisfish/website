@@ -1,11 +1,39 @@
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { Metadata } from "next";
+import { Blog } from "@/types/blog";
+import { MotionUl } from "@/components/ui/motion";
+import { BlogItem } from "@/components/Blogs/BlogItem";
+import { BlogPagination } from "@/components/Blogs/Pagination";
+import { PrismaClient } from "@prisma/client";
 
 export const metadata: Metadata = {
   title: "博客列表 | My Blog",
   description: "查看所有博客文章",
 };
+
+export const revalidate = 3600; // 每小时重新验证一次
+
+const containerAnimation = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+export async function generateStaticParams() {
+  const prisma = new PrismaClient();
+  const total = await prisma.blogs.count({ where: { hide: false } });
+  const PAGE_SIZE = 10;
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+  
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }));
+}
 
 export default function BlogListPage({
   searchParams,
@@ -20,21 +48,6 @@ export default function BlogListPage({
     </Suspense>
   );
 }
-import { Blog } from "@/types/blog";
-import { MotionUl } from "@/components/ui/motion";
-import { BlogItem } from "@/components/Blogs/BlogItem";
-import { BlogPagination } from "@/components/Blogs/Pagination";
-import { PrismaClient } from "@prisma/client";
-
-const containerAnimation = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 async function BlogList({
   page,

@@ -11,6 +11,20 @@ interface BlogPageProps {
   params: { urlname: string };
 }
 
+export const revalidate = 3600; // 每小时重新验证一次
+
+export async function generateStaticParams() {
+  const prisma = new PrismaClient();
+  const blogs = await prisma.blogs.findMany({
+    where: { hide: false },
+    select: { urlname: true },
+  });
+  
+  return blogs.map((blog) => ({
+    urlname: blog.urlname,
+  }));
+}
+
 export default function BlogPage({ params }: BlogPageProps) {
   return (
     <Suspense fallback={<Loading />}>
