@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
+import { MotionSection, MotionSpan } from "../ui/motion";
 
 interface CodeBlockProps {
   className?: string;
@@ -39,7 +40,7 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
     >
       <AnimatePresence>
         {showCopyButton && (
-          <motion.section
+          <MotionSection
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -54,7 +55,7 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {isCopied ? (
-                    <motion.span
+                    <MotionSpan
                       key="check"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -62,9 +63,9 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
                       transition={{ duration: 0.2 }}
                     >
                       <Check className="h-4 w-4" />
-                    </motion.span>
+                    </MotionSpan>
                   ) : (
-                    <motion.span
+                    <MotionSpan
                       key="copy"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -72,12 +73,12 @@ export default function CodeBlock({ className, children }: CodeBlockProps) {
                       transition={{ duration: 0.2 }}
                     >
                       <Copy className="h-4 w-4" />
-                    </motion.span>
+                    </MotionSpan>
                   )}
                 </AnimatePresence>
               </Button>
             </CopyToClipboard>
-          </motion.section>
+          </MotionSection>
         )}
       </AnimatePresence>
 

@@ -10,3 +10,7 @@ export const MotionH4 = motion.h4;
 export const MotionH5 = motion.h5;
 export const MotionH6 = motion.h6;
 export const MotionUl = motion.ul;
+export const MotionLi = motion.li;
+export const MotionP = motion.p;
+export const MotionA = motion.a;
+export const MotionSection = motion.section;

@@ -2,8 +2,9 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence, Variants } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { MotionA, MotionDiv, MotionH1, MotionH3, MotionP, MotionUl } from "@/components/ui/motion";
 
 interface Link {
   name: string;
@@ -39,14 +40,14 @@ const LinkCard: React.FC<Link & { onClick: () => void }> = ({
   descr,
   onClick,
 }) => (
-  <motion.div
+  <MotionDiv
     layoutId={`card-${name}`}
     onClick={onClick}
     className="p-3 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors duration-200"
     variants={fadeInUp}
   >
     <div className="flex flex-col w-full">
-      <motion.div layoutId={`image-${name}`} className="mb-2">
+      <MotionDiv layoutId={`image-${name}`} className="mb-2">
         <Image
           src={avatar}
           alt={name}
@@ -54,23 +55,23 @@ const LinkCard: React.FC<Link & { onClick: () => void }> = ({
           height={64}
           className="w-16 h-16 rounded-full object-cover mx-auto"
         />
-      </motion.div>
+      </MotionDiv>
       <div className="text-center">
-        <motion.h3
+        <MotionH3
           layoutId={`title-${name}`}
           className="font-medium text-neutral-800 dark:text-neutral-200 text-sm"
         >
           {name}
-        </motion.h3>
-        <motion.p
+        </MotionH3>
+        <MotionP
           layoutId={`description-${descr}`}
           className="text-neutral-600 dark:text-neutral-400 text-xs mt-1 line-clamp-2"
         >
           {descr}
-        </motion.p>
+        </MotionP>
       </div>
     </div>
-  </motion.div>
+  </MotionDiv>
 );
 
 const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({
@@ -86,12 +87,12 @@ const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({
 
   return (
     <div className="fixed inset-0 grid place-items-center z-[100]">
-      <motion.div
+      <MotionDiv
         layoutId={`card-${name}`}
         ref={ref}
         className="w-full max-w-[400px] h-fit max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-lg"
       >
-        <motion.div
+        <MotionDiv
           layoutId={`image-${name}`}
           className="p-4 flex justify-center"
         >
@@ -103,40 +104,40 @@ const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({
             alt={name}
             className="w-24 h-24 rounded-full object-cover"
           />
-        </motion.div>
+        </MotionDiv>
         <div className="px-4 pb-4">
-          <motion.h3
+          <MotionH3
             layoutId={`title-${name}`}
             className="font-medium text-neutral-700 dark:text-neutral-200 text-lg text-center"
           >
             {name}
-          </motion.h3>
-          <motion.p
+          </MotionH3>
+          <MotionP
             layoutId={`description-${descr}`}
             className="text-neutral-600 dark:text-neutral-400 text-sm text-center mt-1"
           >
             {descr}
-          </motion.p>
-          <motion.a
+          </MotionP>
+          <MotionA
             layout
             href={link}
             target="_blank"
             className="mt-4 block w-full px-4 py-2 text-sm rounded-full font-bold bg-blue-500 text-white text-center"
           >
             访问
-          </motion.a>
+          </MotionA>
         </div>
         {content && (
           <div className="px-4 pb-4">
-            <motion.div
+            <MotionDiv
               layout
               className="text-neutral-600 dark:text-neutral-400 text-sm max-h-40 overflow-y-auto"
             >
               {content}
-            </motion.div>
+            </MotionDiv>
           </div>
         )}
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 };
@@ -153,21 +154,21 @@ const LinksPage: React.FC = () => {
   }, [active]);
 
   return (
-    <motion.div
+    <MotionDiv
       className="max-w-6xl mx-auto p-4 min-h-screen"
       initial="initial"
       animate="animate"
       variants={stagger}
     >
-      <motion.h1
+      <MotionH1
         className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4"
         variants={fadeInUp}
       >
         友情链接
-      </motion.h1>
+      </MotionH1>
       <AnimatePresence>
         {active && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -178,22 +179,22 @@ const LinksPage: React.FC = () => {
       <AnimatePresence>
         {active && <ExpandedCard {...active} onClose={() => setActive(null)} />}
       </AnimatePresence>
-      <motion.div className="space-y-6" variants={stagger}>
+      <MotionDiv className="space-y-6" variants={stagger}>
         {friendLinks.map((category, index) => (
-          <motion.section key={index} className="mb-6" variants={fadeInUp}>
-            <motion.h3
+          <MotionDiv key={index} className="mb-6" variants={fadeInUp}>
+            <MotionH3
               className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
               variants={fadeInUp}
             >
               {category.class_name}
-            </motion.h3>
-            <motion.p
+            </MotionH3>
+            <MotionP
               className="text-sm text-gray-500 dark:text-gray-400 mb-3"
               variants={fadeInUp}
             >
               {category.class_desc}
-            </motion.p>
-            <motion.ul
+            </MotionP>
+            <MotionUl
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
               variants={stagger}
             >
@@ -204,11 +205,11 @@ const LinksPage: React.FC = () => {
                   onClick={() => setActive(link)}
                 />
               ))}
-            </motion.ul>
-          </motion.section>
+            </MotionUl>
+          </MotionDiv>
         ))}
-      </motion.div>
-    </motion.div>
+      </MotionDiv>
+    </MotionDiv>
   );
 };
 

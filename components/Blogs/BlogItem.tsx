@@ -3,8 +3,8 @@ import { Blog } from "@/types/blog";
 import Link from "next/link";
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import { MotionLi } from "../ui/motion";
 
 const itemAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -22,15 +22,14 @@ function getContentPreview(content: string, maxLength: number = 100) {
 }
 
 export function BlogItem({ blog }: { blog: Blog }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <motion.li
+    <MotionLi
       ref={ref}
       variants={itemAnimation}
       initial="hidden"
-      animate={isInView ? "show" : "hidden"}
+      animate={inView ? "show" : "hidden"}
       transition={{ duration: 0.5 }}
       className="pb-3"
     >
@@ -56,6 +55,6 @@ export function BlogItem({ blog }: { blog: Blog }) {
         {getContentPreview(blog.content)}
       </div>
       <Separator className="mt-12" />
-    </motion.li>
+    </MotionLi>
   );
 }

@@ -1,8 +1,9 @@
 /* eslint-disable prefer-const */
 "use client";
 import { cn } from "@/lib/utils";
-import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
+import { useMotionValue, useMotionTemplate } from "motion/react";
 import React from "react";
+import { MotionDiv } from "./motion";
 
 export const LightPoints = ({
   className,
@@ -33,7 +34,7 @@ export const LightPoints = ({
       onMouseMove={handleMouseMove}
     >
       <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800 pointer-events-none" />
-      <motion.div
+      <MotionDiv
         className="pointer-events-none bg-dot-thick-indigo-500 dark:bg-dot-thick-indigo-500 absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           WebkitMaskImage: useMotionTemplate`

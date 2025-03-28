@@ -9,9 +9,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import { useTheme } from "next-themes";
 import SearchDialog from "./search-dialog";
+import { MotionDiv } from "./ui/motion";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,13 +64,6 @@ const Header: React.FC = () => {
               >
                 Links
               </Link>
-              <Link
-                href="https://cloud.cunoe.com"
-                target="_blank"
-                className="btn btn-ghost text-base dark:text-gray-400 text-gray-600 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-              >
-                Cloud
-              </Link>
             </div>
           </div>
           {/* 右侧联系信息部分 */}
@@ -101,7 +95,7 @@ const Header: React.FC = () => {
               <AnimatePresence>
                 {isOpen && (
                   <PopoverContent className="dark:bg-black/90 bg-white/90 dark:border-gray-700 border-gray-200 p-0">
-                    <motion.div
+                    <MotionDiv
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -110,7 +104,7 @@ const Header: React.FC = () => {
                     >
                       {["Blog", "Code", "Gallery", "Links", "Cloud"].map(
                         (item, index) => (
-                          <motion.div
+                          <MotionDiv
                             key={item}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -128,10 +122,10 @@ const Header: React.FC = () => {
                             >
                               {item}
                             </Link>
-                          </motion.div>
+                          </MotionDiv>
                         )
                       )}
-                    </motion.div>
+                    </MotionDiv>
                   </PopoverContent>
                 )}
               </AnimatePresence>
