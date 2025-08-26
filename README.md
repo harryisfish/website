@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cunoe Blog - Next.js + Notion
 
-## Getting Started
+一个基于 Next.js 15 和 Notion API 的现代化博客系统。
 
-First, run the development server:
+## 特性
+
+- ⚡ **Next.js 15** - 最新的 React 框架
+- 📝 **Notion 集成** - 使用 Notion 作为内容管理系统
+- 🎨 **Tailwind CSS** - 现代化的样式系统
+- 🌙 **深色模式** - 支持主题切换
+- 📱 **响应式设计** - 移动端友好
+
+- 📊 **MDX 支持** - 支持 Markdown 和 React 组件
+- 🚀 **静态生成** - 支持 SSG 和 ISR
+
+## 技术栈
+
+- **前端**: Next.js 15, React 19, TypeScript
+- **样式**: Tailwind CSS, Framer Motion
+- **内容管理**: Notion API
+
+- **部署**: Vercel (推荐)
+
+## 快速开始
+
+### 1. 克隆项目
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd cunoe-blog-next
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 安装依赖
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. 配置环境变量
 
-## Learn More
+复制 `.env.local.example` 到 `.env.local` 并填写：
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Notion API 配置
+NOTION_TOKEN=your_notion_integration_token_here
+NOTION_DATABASE_ID=your_notion_database_id_here
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+### 4. 设置 Notion
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+详细设置说明请参考 [Notion 设置指南](./docs/notion-setup.md)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. 运行开发服务器
+
+```bash
+pnpm dev
+```
+
+访问 [http://localhost:3000](http://localhost:3000) 查看效果。
+
+## 项目结构
+
+```
+├── app/                    # Next.js 13+ App Router
+│   ├── api/               # API 路由
+│   ├── blog/              # 博客页面
+│   ├── gallery/           # 画廊页面
+│   └── globals.css        # 全局样式
+├── components/             # React 组件
+│   ├── Blogs/             # 博客相关组件
+│   ├── Header/            # 头部组件
+│   └── ui/                # UI 组件库
+├── lib/                    # 工具函数
+│   └── notion.ts          # Notion API 客户端
+├── types/                  # TypeScript 类型定义
+└── docs/                   # 项目文档
+```
+
+## 部署
+
+### Vercel (推荐)
+
+1. 推送代码到 GitHub
+2. 在 Vercel 中导入项目
+3. 配置环境变量
+4. 部署完成
+
+### 其他平台
+
+项目支持部署到任何支持 Next.js 的平台。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 许可证
+
+MIT License

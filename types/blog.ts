@@ -1,11 +1,13 @@
 export interface Blog {
-  id: number;
-  created_at: Date;
-  updated_at: Date;
+  id: string;
+  created_at: string;
+  updated_at: string;
   title: string;
   content: string;
   urlname: string;
-  categories: string;
-  tags: string;
+  categories: string[];
+  tags: string[];
   hide: boolean;
+  digest?: string;
+  status?: string;
 }

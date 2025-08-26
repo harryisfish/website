@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/popover";
 import { AnimatePresence } from "motion/react";
 import { useTheme } from "next-themes";
-import SearchDialog from "./search-dialog";
 import { MotionDiv } from "./ui/motion";
 
 const Header: React.FC = () => {
@@ -68,7 +67,6 @@ const Header: React.FC = () => {
           </div>
           {/* 右侧联系信息部分 */}
           <div className="flex items-center space-x-6 dark:text-gray-400 text-gray-600">
-            <SearchDialog />
             <Link
               href="mailto:admin@cunoe.com"
               className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200"

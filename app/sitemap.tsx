@@ -1,35 +1,14 @@
 import type { MetadataRoute } from "next";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { getAllBlogs, type NotionBlog } from "@/lib/notion";
 
 async function getBlogs(): Promise<MetadataRoute.Sitemap> {
-  let allBlogs: MetadataRoute.Sitemap = [];
-  let skip = 0;
-  const take = 100;
-  
-  while (true) {
-    const blogs = await prisma.blogs.findMany({
-      skip: skip,
-      take: take,
-    });
-    
-    if (blogs.length === 0) {
-      break;
-    }
-    
-    const mappedBlogs = blogs.map((blog) => ({
-      url: `https://cunoe.com/blog/${blog.urlname}`,
-      lastModified: blog.updated_at,
-      changeFrequency: "yearly",
-      priority: 0.5,
-    })) as MetadataRoute.Sitemap;
-    
-    allBlogs = [...allBlogs, ...mappedBlogs];
-    skip += take;
-  }
-  
-  return allBlogs;
+  const blogs: NotionBlog[] = await getAllBlogs();
+  return blogs.map((blog: NotionBlog) => ({
+    url: `https://cunoe.com/blog/${blog.urlname}`,
+    lastModified: new Date(blog.updated_at),
+    changeFrequency: "yearly",
+    priority: 0.5,
+  })) as MetadataRoute.Sitemap;
 }
 
 async function getPages(): Promise<MetadataRoute.Sitemap> {
