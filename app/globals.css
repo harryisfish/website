@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* react-notion-x core styles */
+@import 'react-notion-x/src/styles.css';
+/* third-party styles (prism for code, katex for math) */
+@import 'prismjs/themes/prism.css';
+@import 'katex/dist/katex.min.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;

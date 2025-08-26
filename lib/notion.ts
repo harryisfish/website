@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from '@notionhq/client';
+import { NotionAPI } from 'notion-client';
 
 if (!process.env.NOTION_TOKEN) {
   throw new Error('Missing NOTION_TOKEN environment variable');
@@ -14,6 +15,8 @@ export const notion = new Client({
 });
 
 export const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
+
+const notionApi = new NotionAPI({ authToken: process.env.NOTION_TOKEN_V2 });
 
 // 博客文章类型定义
 export interface NotionBlog {
@@ -172,4 +175,10 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 
   // 合并空行，保证可读性
   return lines.join('\n\n');
+}
+
+// 使用 notion-client 获取完整的 recordMap，用于 react-notion-x 渲染
+export async function getPageRecordMap(pageId: string) {
+  const cleanId = pageId.replace(/-/g, '');
+  return notionApi.getPage(cleanId);
 }

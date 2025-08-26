@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import ContentRender from "@/components/Markdown/ContentRender";
-import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageMarkdown } from "@/lib/notion";
+import NotionContent from "@/components/Markdown/ContentRender";
+import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageRecordMap, getPageMarkdown } from "@/lib/notion";
 import { MotionDiv, MotionH1 } from "@/components/ui/motion";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
@@ -85,9 +85,7 @@ async function BlogContent({ urlname }: { urlname: string }) {
     }
 
     const blog = transformNotionPageToBlog(response.results[0]);
-
-    // 若 Digest 为空，则从 blocks 拉取正文并填充到 content
-    const content = await getPageMarkdown(blog.id);
+    const recordMap = await getPageRecordMap(blog.id);
 
     return (
       <MotionDiv
@@ -150,33 +148,8 @@ async function BlogContent({ urlname }: { urlname: string }) {
         )}
         
         {/* 主要内容 */}
-        <div className="prose prose-lg max-w-none">
-          <ContentRender content={content} />
-        </div>
-        
-        {/* 文章信息 */}
-        <div className="mt-12 p-6 bg-gray-50 rounded-xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-sm text-gray-600">
-            <div>
-              <span className="font-medium">状态:</span>
-              <span className={`ml-2 px-2 py-1 rounded text-xs ${
-                blog.status === '已发布' ? 'bg-green-100 text-green-800' :
-                blog.status === '草稿' ? 'bg-yellow-100 text-yellow-800' :
-                blog.status === '正在编辑' ? 'bg-orange-100 text-orange-800' :
-                'bg-gray-100 text-gray-800'
-              }`}>
-                {blog.status}
-              </span>
-            </div>
-            <div>
-              <span className="font-medium">创建时间:</span>
-              <span className="ml-2">{format(new Date(blog.created_at), "yyyy/MM/dd")}</span>
-            </div>
-            <div>
-              <span className="font-medium">更新时间:</span>
-              <span className="ml-2">{format(new Date(blog.updated_at), "yyyy/MM/dd")}</span>
-            </div>
-          </div>
+        <div className="max-w-none">
+          <NotionContent recordMap={recordMap} />
         </div>
       </MotionDiv>
     );
