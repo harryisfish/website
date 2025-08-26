@@ -225,10 +225,10 @@ const friendLinks: LinkCategory[] = [
         descr: "记录鸽子探索世界的旅程",
       },
       {
-        name: "Tymon42",
-        link: "https://tymon42.github.io/",
+        name: "Harry's Blog",
+        link: "https://harryisfish.github.io/",
         avatar: "https://avatars.githubusercontent.com/u/15265627",
-        descr: "Harry-Tymon42's Site",
+        descr: "Harry's Blog",
       },
     ],
   },
