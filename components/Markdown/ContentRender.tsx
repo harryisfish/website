@@ -12,6 +12,10 @@ const NotionRenderer = dynamic<any>(
   { ssr: false }
 );
 
+const Code = dynamic(() =>
+  import("react-notion-x/build/third-party/code").then((m) => m.Code)
+);
+
 interface NotionContentProps {
   recordMap: any;
 }
@@ -27,6 +31,7 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap }) => {
         components={{
           nextImage: Image,
           nextLink: Link,
+          Code,
         }}
         fullPage={true}
         darkMode={isDark}
