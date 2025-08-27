@@ -28,7 +28,7 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap }) => {
           nextImage: Image,
           nextLink: Link,
         }}
-        fullPage={false}
+        fullPage={true}
         darkMode={isDark}
         forceCustomImages
       />
