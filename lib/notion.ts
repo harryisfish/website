@@ -37,15 +37,20 @@ export interface NotionBlog {
 export function transformNotionPageToBlog(page: any): NotionBlog {
   const properties = page.properties;
   
+  // 处理分类 - Categories 是 select 类型，不是 multi_select
+  const categories = properties.Categories?.select?.name 
+    ? [properties.Categories.select.name] 
+    : [];
+  
   return {
     id: page.id,
     title: properties.Title?.title?.[0]?.plain_text || '',
     content: properties.Digest?.rich_text?.[0]?.plain_text || '', // 如果不在 Digest 中，稍后用 blocks 填充
     urlname: properties.URLName?.rich_text?.[0]?.plain_text || '',
-    categories: properties.Categories?.multi_select?.map((cat: any) => cat.name) || [],
+    categories: categories,
     tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) || [],
     hide: properties.Status?.status?.name !== '已发布',
-    created_at: properties.CreatedAt?.created_time || page.created_time,
+    created_at: properties.CreatedAt?.date?.start || page.created_time,
     updated_at: page.last_edited_time,
     digest: properties.Digest?.rich_text?.[0]?.plain_text || '',
     status: properties.Status?.status?.name || '构思中',

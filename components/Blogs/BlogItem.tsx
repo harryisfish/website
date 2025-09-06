@@ -44,12 +44,6 @@ export function BlogItem({ blog }: { blog: Blog }) {
       <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 flex gap-2">
         <span>by CUNOE</span>
         {format(new Date(blog.created_at), "MMM d, yyyy")}
-        {blog.updated_at && blog.updated_at !== blog.created_at && (
-          <span>
-            {" "}
-            (Updated: {format(new Date(blog.updated_at), "MMM d, yyyy")})
-          </span>
-        )}
       </div>
       <div className="text-sm text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert">
         {getContentPreview(blog.content)}

@@ -92,64 +92,16 @@ async function BlogContent({ urlname }: { urlname: string }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-8 max-w-4xl"
+        className="min-h-screen bg-gray-50 dark:bg-gray-900"
       >
-        {/* 博客标题 */}
-        <MotionH1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-4"
-        >
-          {blog.title}
-        </MotionH1>
-        
-        {/* 分类和标签 */}
-        {(blog.categories.length > 0 || blog.tags.length > 0) && (
-          <div className="text-center mb-6">
-            {blog.categories.length > 0 && (
-              <div className="inline-block mr-4 mb-2">
-                <span className="text-sm text-gray-500 font-medium">分类:</span>
-                {blog.categories.map((category, index) => (
-                  <span key={index} className="ml-2 px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
-                    {category}
-                  </span>
-                ))}
-              </div>
-            )}
-            {blog.tags.length > 0 && (
-              <div className="inline-block mb-2">
-                <span className="text-sm text-gray-500 font-medium">标签:</span>
-                {blog.tags.map((tag, index) => (
-                  <span key={index} className="ml-2 px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+        {/* 博客内容容器 */}
+        <div className="container mx-auto px-4 py-12 max-w-5xl">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+            <NotionContent 
+              recordMap={recordMap} 
+              blog={blog}
+            />
           </div>
-        )}
-        
-        {/* 发布时间 */}
-        <div className="text-center text-gray-600 mb-8">
-          <time dateTime={blog.created_at} className="text-lg">
-            📅 {format(new Date(blog.created_at), "yyyy年MM月dd日")}
-          </time>
-        </div>
-        
-        {/* 摘要内容 */}
-        {/* {blog.digest && (
-          <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
-            <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
-              📝 摘要
-            </h3>
-            <p className="text-gray-700 leading-relaxed text-lg">{blog.digest}</p>
-          </div>
-        )} */}
-        
-        {/* 主要内容 */}
-        <div className="max-w-none">
-          <NotionContent recordMap={recordMap} />
         </div>
       </MotionDiv>
     );

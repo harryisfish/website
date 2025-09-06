@@ -27,7 +27,7 @@ export default function RootLayout({
       <body style={{ fontFamily: "LXGW Bright", fontWeight: "400" }}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <HeroUIProvider>
