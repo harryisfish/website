@@ -84,7 +84,7 @@ const config = {
   plugins: [
     heroui(),
     require('@tailwindcss/typography'),
-    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar')({ nocompatible: true }),
     require("tailwindcss-animate"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {

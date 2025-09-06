@@ -13,14 +13,12 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs, ArrowLeft } from 'lucide-react';
+import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const router = useRouter();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');

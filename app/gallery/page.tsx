@@ -1,5 +1,5 @@
 import { FocusCards } from '@/components/ui/focus-cards';
-import { MotionDiv, MotionH1, MotionP, MotionSpan } from '@/components/ui/motion';
+import { MotionDiv, MotionH1, MotionP } from '@/components/ui/motion';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
