@@ -17,8 +17,6 @@ import {
   BookOpen,
   ImageIcon,
   Link as LinkIcon,
-  Code,
-  Cloud,
   Mail,
   Github,
   Sun,

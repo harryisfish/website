@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-import { format } from "date-fns";
 import NotionContent from "@/components/Markdown/ContentRender";
 import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageRecordMap, getPageMarkdown } from "@/lib/notion";
-import { MotionDiv, MotionH1 } from "@/components/ui/motion";
+import { MotionDiv } from "@/components/ui/motion";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { Metadata } from 'next'
