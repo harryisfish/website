@@ -114,7 +114,7 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap, blog }) => {
   };
 
   return (
-    <div className="notion max-w-none container mx-auto px-4 py-12 max-w-5xl">
+    <div className="notion container mx-auto px-4 py-12 max-w-5xl">
       <NotionRenderer
         pageTitle={<CustomPageTitle />}
         disableHeader={true}
