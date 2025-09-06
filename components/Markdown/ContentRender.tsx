@@ -115,6 +115,44 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap, blog }) => {
 
   return (
     <div className="notion container mx-auto px-4 py-12 max-w-5xl">
+      <style jsx global>{`
+        .notion {
+          background: transparent !important;
+        }
+        .notion-page {
+          background: transparent !important;
+        }
+        .notion-page-content {
+          background: transparent !important;
+        }
+        .notion-text {
+          background: transparent !important;
+        }
+        .notion-h1, .notion-h2, .notion-h3, .notion-h4, .notion-h5, .notion-h6 {
+          background: transparent !important;
+        }
+        .notion-p {
+          background: transparent !important;
+        }
+        .notion-list {
+          background: transparent !important;
+        }
+        .notion-quote {
+          background: transparent !important;
+        }
+        .notion-callout {
+          background: transparent !important;
+        }
+        .notion-table {
+          background: transparent !important;
+        }
+        .notion-code {
+          background: transparent !important;
+        }
+        .notion-block {
+          background: transparent !important;
+        }
+      `}</style>
       <NotionRenderer
         pageTitle={<CustomPageTitle />}
         disableHeader={true}
