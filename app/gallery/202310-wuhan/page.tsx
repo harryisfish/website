@@ -7,12 +7,6 @@ export default function GalleryPage() {
       <h1 className="md:text-6xl text-3xl lg:text-7xl font-bold text-center mb-8 text-black dark:text-white relative z-20">
         武汉印象
       </h1>
-      <div className="w-full relative mb-12">
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-      </div>
       <div className="backdrop-blur-lg p-6">
         <Images images={images} />
       </div>

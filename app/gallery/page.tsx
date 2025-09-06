@@ -46,20 +46,6 @@ export default function GalleryPage() {
           className="md:text-6xl text-3xl lg:text-7xl font-bold text-center text-black dark:text-white relative z-20 mb-10">
           图片画廊
         </MotionH1>
-        <div className="w-full relative">
-          {/* 渐变效果 */}
-          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-          <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-          <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-          <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-        </div>
-        <MotionSpan
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="block text-center mt-8 text-gray-600 dark:text-gray-400">
-          图片较大！流量预警，请谨慎访问
-        </MotionSpan>
       </MotionDiv>
       <MotionDiv
         initial={{ opacity: 0 }}
