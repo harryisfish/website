@@ -2,7 +2,6 @@
 import { Blog } from '@/types/blog';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { Separator } from '@/components/ui/separator';
 import { useInView } from 'react-intersection-observer';
 import { MotionLi } from '../ui/motion';
 
@@ -42,7 +41,6 @@ export function BlogItem({ blog }: { blog: Blog }) {
       <div className="text-sm text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert">
         {getContentPreview(blog.content)}
       </div>
-      <Separator className="mt-12" />
     </MotionLi>
   );
 }

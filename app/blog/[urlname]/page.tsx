@@ -89,17 +89,12 @@ async function BlogContent({ urlname }: { urlname: string }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="min-h-screen bg-gray-50 dark:bg-gray-900"
+        className="min-h-screen"
       >
-        {/* 博客内容容器 */}
-        <div className="container mx-auto px-4 py-12 max-w-5xl">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-            <NotionContent
-              recordMap={recordMap}
-              blog={blog}
-            />
-          </div>
-        </div>
+        <NotionContent
+          recordMap={recordMap}
+          blog={blog}
+        />
       </MotionDiv>
     );
   } catch (error) {
