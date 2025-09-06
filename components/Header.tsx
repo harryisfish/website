@@ -13,7 +13,7 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { BookOpen, ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon } from 'lucide-react';
+import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
@@ -58,10 +58,10 @@ export default function Header() {
         justify="center">
         <NavbarItem>
           <Link
-            href="/blog"
+            href="/changelog"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <BookOpen className="size-4" />
-            博客
+            <Logs className="size-4" />
+            Changelog
           </Link>
         </NavbarItem>
 
@@ -70,7 +70,7 @@ export default function Header() {
             href="/gallery"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <ImageIcon className="size-4" />
-            相册
+            Gallery
           </Link>
         </NavbarItem>
 
@@ -79,7 +79,7 @@ export default function Header() {
             href="/links"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <LinkIcon className="size-4" />
-            友链
+            Links
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -110,10 +110,10 @@ export default function Header() {
           <HeroLink
             className="w-full"
             color="foreground"
-            href="/blog"
+            href="/changelog"
             size="lg">
-            <BookOpen className="mr-2 size-4" />
-            博客
+            <Logs className="mr-2 size-4" />
+            Changelog
           </HeroLink>
         </NavbarMenuItem>
 
@@ -124,7 +124,7 @@ export default function Header() {
             href="/gallery"
             size="lg">
             <ImageIcon className="mr-2 size-4" />
-            相册
+            Gallery
           </HeroLink>
         </NavbarMenuItem>
 
@@ -135,7 +135,7 @@ export default function Header() {
             href="/links"
             size="lg">
             <LinkIcon className="mr-2 size-4" />
-            友链
+            Links
           </HeroLink>
         </NavbarMenuItem>
 

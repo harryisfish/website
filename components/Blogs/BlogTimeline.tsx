@@ -42,7 +42,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
             {yearBlogs.map((blog) => (
               <Link
                 key={blog.id}
-                href={`/blog/${blog.urlname}`}
+                href={`/changelog/${blog.urlname}`}
                 className="group block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <div>

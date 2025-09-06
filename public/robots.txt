@@ -13,7 +13,7 @@ Allow: /*.svg$
 Allow: /*.ico$
 
 # 主要页面
-Allow: /blog
+Allow: /changelog
 Allow: /gallery
 Allow: /links
 Allow: /code

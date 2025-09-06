@@ -5,8 +5,8 @@ import { BlogTimeline } from '@/components/Blogs/BlogTimeline';
 import { getAllBlogs } from '@/lib/notion';
 
 export const metadata: Metadata = {
-  title: '博客列表 | My Blog',
-  description: '查看所有博客文章',
+  title: 'Changelog | Cunoe',
+  description: '查看所有更新记录',
 };
 
 export const revalidate = 3600; // 每小时重新验证一次

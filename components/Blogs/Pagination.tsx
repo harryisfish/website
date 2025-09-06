@@ -20,7 +20,7 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationItem>
-            <PaginationPrevious href={`/blog?page=${currentPage - 1}`} />
+            <PaginationPrevious href={`/changelog?page=${currentPage - 1}`} />
           </PaginationItem>
         )}
 
@@ -34,7 +34,7 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
             return (
               <PaginationItem key={pageNumber}>
                 <PaginationLink
-                  href={`/blog?page=${pageNumber}`}
+                  href={`/changelog?page=${pageNumber}`}
                   isActive={pageNumber === currentPage}>
                   {pageNumber}
                 </PaginationLink>
@@ -48,7 +48,7 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
 
         {currentPage < totalPages && (
           <PaginationItem>
-            <PaginationNext href={`/blog?page=${currentPage + 1}`} />
+            <PaginationNext href={`/changelog?page=${currentPage + 1}`} />
           </PaginationItem>
         )}
       </PaginationContent>
