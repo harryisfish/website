@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production builds
+.next/
+out/
+dist/
+build/
+
+# Generated files
+*.tsbuildinfo
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
