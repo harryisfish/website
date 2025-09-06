@@ -13,12 +13,14 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs, ArrowLeft } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -30,11 +32,8 @@ export default function Header() {
       onMenuOpenChange={setIsMenuOpen}
       className="fixed inset-x-0 top-0 z-50">
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? '关闭菜单' : '打开菜单'}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
+        {/* 桌面端Brand */}
+        <NavbarBrand className="sm:flex">
           <HeroLink
             href="/"
             className="flex items-center gap-2">
@@ -103,12 +102,18 @@ export default function Header() {
             {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
         </NavbarItem>
+
+        {/* 移动端菜单按钮 */}
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? '关闭菜单' : '打开菜单'}
+          className="sm:hidden"
+        />
       </NavbarContent>
 
-      <NavbarMenu className="z-50">
-        <NavbarMenuItem>
+      <NavbarMenu className="z-50 items-end">
+        <NavbarMenuItem className="flex justify-end">
           <HeroLink
-            className="w-full"
+            className="w-auto"
             color="foreground"
             href="/changelog"
             size="lg">
@@ -117,9 +122,9 @@ export default function Header() {
           </HeroLink>
         </NavbarMenuItem>
 
-        <NavbarMenuItem>
+        <NavbarMenuItem className="flex justify-end">
           <HeroLink
-            className="w-full"
+            className="w-auto"
             color="foreground"
             href="/gallery"
             size="lg">
@@ -128,9 +133,9 @@ export default function Header() {
           </HeroLink>
         </NavbarMenuItem>
 
-        <NavbarMenuItem>
+        <NavbarMenuItem className="flex justify-end">
           <HeroLink
-            className="w-full"
+            className="w-auto"
             color="foreground"
             href="/links"
             size="lg">
@@ -139,8 +144,8 @@ export default function Header() {
           </HeroLink>
         </NavbarMenuItem>
 
-        <NavbarMenuItem>
-          <div className="flex items-center gap-2 w-full">
+        <NavbarMenuItem className="flex justify-end">
+          <div className="flex items-center gap-2 w-auto">
             <Link
               href="mailto:admin@cunoe.com"
               className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
