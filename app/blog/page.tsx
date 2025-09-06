@@ -1,9 +1,7 @@
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
 import { Metadata } from 'next';
-import { Blog } from '@/types/blog';
-import { MotionUl } from '@/components/ui/motion';
-import { BlogItem } from '@/components/Blogs/BlogItem';
+import { BlogTimeline } from '@/components/Blogs/BlogTimeline';
 import { getAllBlogs } from '@/lib/notion';
 
 export const metadata: Metadata = {
@@ -12,17 +10,6 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600; // 每小时重新验证一次
-
-const containerAnimation = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 
 export default async function BlogListPage() {
   return (
@@ -36,23 +23,7 @@ async function BlogList() {
   try {
     // 获取所有博客
     const allBlogs = await getAllBlogs();
-
-    return (
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <MotionUl
-          className="space-y-8"
-          variants={containerAnimation}
-          initial="hidden"
-          animate="show">
-          {allBlogs.map((blog: Blog) => (
-            <BlogItem
-              key={blog.id}
-              blog={blog}
-            />
-          ))}
-        </MotionUl>
-      </div>
-    );
+    return <BlogTimeline blogs={allBlogs} />;
   } catch (error) {
     console.error('Error fetching blogs:', error);
     return (
