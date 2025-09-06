@@ -33,21 +33,23 @@ export default function GalleryPage() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <div className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10">
+    <div className="min-h-screen" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
+      <div className="w-full bg-white dark:bg-neutral-950 md:px-10" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
         <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
           <MotionH1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
+            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             Visual Stories
           </MotionH1>
           <MotionP
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
+            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             A curated collection of visual stories, capturing moments of beauty and urban poetry.
           </MotionP>
         </div>

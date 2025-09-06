@@ -23,6 +23,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css"
         />
+        <link
+          rel="stylesheet"
+          href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.css"
+        />
       </head>
       <body style={{ fontFamily: 'LXGW Bright', fontWeight: '400' }}>
         <ThemeProvider

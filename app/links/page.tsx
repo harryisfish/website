@@ -55,7 +55,8 @@ const LinkCard: React.FC<Link & { onClick: () => void }> = ({ name, avatar, desc
       <div className="text-center">
         <MotionH3
           layoutId={`title-${name}`}
-          className="font-medium text-neutral-800 dark:text-neutral-200 text-sm">
+            className="font-medium text-neutral-800 dark:text-neutral-200 text-sm"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
           {name}
         </MotionH3>
         <MotionP
@@ -93,7 +94,8 @@ const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({ name, link, av
         <div className="px-4 pb-4">
           <MotionH3
             layoutId={`title-${name}`}
-            className="font-medium text-neutral-700 dark:text-neutral-200 text-lg text-center">
+            className="font-medium text-neutral-700 dark:text-neutral-200 text-lg text-center"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             {name}
           </MotionH3>
           <MotionP
@@ -105,7 +107,8 @@ const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({ name, link, av
             layout
             href={link}
             target="_blank"
-            className="mt-4 block w-full px-4 py-2 text-sm rounded-full font-bold bg-blue-500 text-white text-center">
+            className="mt-4 block w-full px-4 py-2 text-sm rounded-full font-bold bg-blue-500 text-white text-center"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             访问
           </MotionA>
         </div>
@@ -135,21 +138,23 @@ const LinksPage: React.FC = () => {
   }, [active]);
 
   return (
-    <div className="min-h-screen">
-      <div className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10">
+    <div className="min-h-screen" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
+      <div className="w-full bg-white dark:bg-neutral-950 md:px-10" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
         <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
           <MotionH1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
+            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             Digital Connections
           </MotionH1>
           <MotionP
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
+            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold"
+            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
             A constellation of kindred spirits and digital sanctuaries worth exploring.
           </MotionP>
         </div>
@@ -187,6 +192,7 @@ const LinksPage: React.FC = () => {
               variants={fadeInUp}>
               <MotionH3
                 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}
                 variants={fadeInUp}>
                 {category.class_name}
               </MotionH3>
