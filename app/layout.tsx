@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <HeroUIProvider>
             <Header />
-            <main>{children}</main>
+            <main className="pt-16">{children}</main>
           </HeroUIProvider>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-TXG3G5FQ2N" />
