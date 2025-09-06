@@ -135,80 +135,95 @@ const LinksPage: React.FC = () => {
   }, [active]);
 
   return (
-    <MotionDiv
-      className="max-w-6xl mx-auto p-4 min-h-screen"
-      initial="initial"
-      animate="animate"
-      variants={stagger}>
-      <MotionH1
-        className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4"
-        variants={fadeInUp}>
-        友情链接
-      </MotionH1>
-      <AnimatePresence>
-        {active && (
-          <MotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 h-full w-full z-10"
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {active && (
-          <ExpandedCard
-            {...active}
-            onClose={() => setActive(null)}
-          />
-        )}
-      </AnimatePresence>
+    <div className="min-h-screen">
+      <div className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10">
+        <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+          <MotionH1
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
+            Digital Connections
+          </MotionH1>
+          <MotionP
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
+            A constellation of kindred spirits and digital sanctuaries worth exploring.
+          </MotionP>
+        </div>
+      </div>
       <MotionDiv
-        className="space-y-6"
+        className="max-w-6xl mx-auto p-4"
+        initial="initial"
+        animate="animate"
         variants={stagger}>
-        {friendLinks.map((category, index) => (
-          <MotionDiv
-            key={index}
-            className="mb-6"
-            variants={fadeInUp}>
-            <MotionH3
-              className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
+        <AnimatePresence>
+          {active && (
+            <MotionDiv
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/20 h-full w-full z-10"
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {active && (
+            <ExpandedCard
+              {...active}
+              onClose={() => setActive(null)}
+            />
+          )}
+        </AnimatePresence>
+        <MotionDiv
+          className="space-y-6"
+          variants={stagger}>
+          {friendLinks.map((category, index) => (
+            <MotionDiv
+              key={index}
+              className="mb-6"
               variants={fadeInUp}>
-              {category.class_name}
-            </MotionH3>
-            <MotionP
-              className="text-sm text-gray-500 dark:text-gray-400 mb-3"
-              variants={fadeInUp}>
-              {category.class_desc}
-            </MotionP>
-            <MotionUl
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
-              variants={stagger}>
-              {category.link_list.map((link, linkIndex) => (
-                <LinkCard
-                  key={linkIndex}
-                  {...link}
-                  onClick={() => setActive(link)}
-                />
-              ))}
-            </MotionUl>
-          </MotionDiv>
-        ))}
+              <MotionH3
+                className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
+                variants={fadeInUp}>
+                {category.class_name}
+              </MotionH3>
+              <MotionP
+                className="text-sm text-gray-500 dark:text-gray-400 mb-3"
+                variants={fadeInUp}>
+                {category.class_desc}
+              </MotionP>
+              <MotionUl
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
+                variants={stagger}>
+                {category.link_list.map((link, linkIndex) => (
+                  <LinkCard
+                    key={linkIndex}
+                    {...link}
+                    onClick={() => setActive(link)}
+                  />
+                ))}
+              </MotionUl>
+            </MotionDiv>
+          ))}
+        </MotionDiv>
       </MotionDiv>
-    </MotionDiv>
+    </div>
   );
 };
 
 const friendLinks: LinkCategory[] = [
   {
-    class_name: '友情链接',
-    class_desc: '那些人，那些事',
+    class_name: 'Friend Links',
+    class_desc: 'People and stories',
     link_list: [
       {
         name: 'CUNOE',
         link: 'https://www.cunoe.com/',
         avatar: 'https://s3.cunoe.com/files/web-icon.png',
-        descr: '记录鸽子探索世界的旅程',
+        descr: 'Journey of a pigeon exploring the world',
       },
       {
         name: "Harry's Blog",
@@ -219,74 +234,50 @@ const friendLinks: LinkCategory[] = [
     ],
   },
   {
-    class_name: '网站',
-    class_desc: '值得一看的网站',
+    class_name: 'Websites',
+    class_desc: 'Sites worth a look',
     link_list: [
       {
-        name: 'KissSub',
-        link: 'https://www.kisssub.org/',
-        avatar: 'https://www.kisssub.org/images/favicon/kisssub.ico',
-        descr: '爱恋动漫BT下载站',
-      },
-      {
-        name: '碧蓝航线工具箱',
+        name: 'AzurLane Toolbox',
         link: 'https://al.pelom.cn/home',
         avatar: 'https://al.pelom.cn/assets/favicon.e584446d.png',
-        descr: 'AzurLane涩涩~',
-      },
-      {
-        name: 'Civitai',
-        link: 'https://civitai.com/',
-        avatar: 'https://civitai.com/favicon.ico',
-        descr: 'AI绘图才是生产力~',
-      },
-      {
-        name: 'PLANET NYAACAT',
-        link: 'https://planet.nyaa.cat/',
-        avatar: 'https://nyaa.cat/images/logo-color.png',
-        descr: 'NyaaCat 社区星球',
+        descr: 'AzurLane tools~',
       },
       {
         name: 'USTC Open Source Software Mirror',
         link: 'https://mirrors.ustc.edu.cn/',
         avatar: 'https://mirrors.ustc.edu.cn/static/img/favicon.png',
-        descr: '好用的开源镜像站',
-      },
-      {
-        name: 'Azure',
-        link: 'https://azure.microsoft.com/',
-        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg',
-        descr: '好好好~',
+        descr: 'Useful open source mirror site',
       },
       {
         name: 'vcb-studio',
         link: 'https://vcb-s.com/',
         avatar: 'https://vcb-s.com/wp-content/customRes/favicon@32.png',
-        descr: '看番的资源网站',
+        descr: 'Blu-ray anime resources',
       },
     ],
   },
   {
-    class_name: '其它链接',
-    class_desc: '起飞~起飞~',
+    class_name: 'Other Links',
+    class_desc: 'Take off~',
     link_list: [
-      {
-        name: 'Cunoeの魔法空间',
-        link: 'https://cloud.cunoe.com/',
-        avatar: 'https://s3.cunoe.com/files/web-icon.png',
-        descr: '我自己的云盘',
-      },
       {
         name: 'CUNOE GitHub',
         link: 'https://github.com/CUNOE/',
         avatar: 'https://avatars.githubusercontent.com/u/90205430',
-        descr: '我的GitHub',
+        descr: 'My GitHub',
       },
       {
-        name: '泡泡树洞',
-        link: 'https://2some.one/',
-        avatar: 'https://2some.one/favicon.ico',
-        descr: '针对直播优化的棉花糖工具',
+        name: '2SOMEren',
+        link: 'https://2some.ren/',
+        avatar: 'https://2some.ren/favicon.ico',
+        descr: 'Marshmallow tool optimized for streaming',
+      },
+      {
+        name: 'MultiPost',
+        link: 'https://multipost.app/',
+        avatar: 'https://multipost.app/icon.png',
+        descr: 'Simplify your social media workflow',
       },
     ],
   },

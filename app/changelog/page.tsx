@@ -6,7 +6,7 @@ import { getAllBlogs } from '@/lib/notion';
 
 export const metadata: Metadata = {
   title: 'Changelog | Cunoe',
-  description: '查看所有更新记录',
+  description: 'A journey through time, documenting the evolution of thoughts, projects, and digital adventures.',
 };
 
 export const revalidate = 3600; // 每小时重新验证一次

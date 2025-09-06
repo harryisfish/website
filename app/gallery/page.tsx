@@ -1,10 +1,10 @@
 import { FocusCards } from '@/components/ui/focus-cards';
-import { MotionDiv, MotionH1, MotionSpan } from '@/components/ui/motion';
+import { MotionDiv, MotionH1, MotionP, MotionSpan } from '@/components/ui/motion';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '图片画廊 | Cunoe',
-  description: '探索精选图片集，包含背景画廊、城市印象等摄影作品展示。',
+  title: 'Gallery | Cunoe',
+  description: 'A curated collection of visual stories, capturing moments of beauty and urban poetry.',
 };
 
 export default function GalleryPage() {
@@ -33,26 +33,33 @@ export default function GalleryPage() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-screen">
-      <MotionDiv
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="h-[20rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
-        <MotionH1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="md:text-6xl text-3xl lg:text-7xl font-bold text-center text-black dark:text-white relative z-20 mb-10">
-          图片画廊
-        </MotionH1>
-      </MotionDiv>
-      <MotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}>
-        <FocusCards cards={cards} />
-      </MotionDiv>
+    <div className="min-h-screen">
+      <div className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10">
+        <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+          <MotionH1
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
+            Visual Stories
+          </MotionH1>
+          <MotionP
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
+            A curated collection of visual stories, capturing moments of beauty and urban poetry.
+          </MotionP>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 py-8">
+        <MotionDiv
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.8 }}>
+          <FocusCards cards={cards} />
+        </MotionDiv>
+      </div>
     </div>
   );
 }
