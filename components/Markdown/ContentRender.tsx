@@ -6,11 +6,8 @@ import dynamic from "next/dynamic";
 import { Image } from "@heroui/react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-
-const NotionRenderer = dynamic<any>(
-  () => import("react-notion-x").then((m) => m.NotionRenderer),
-  { ssr: false }
-);
+import { NotionRenderer } from "react-notion-x";
+import ImageWithZoom from "../ui/image-with-zoom";
 
 const Code = dynamic(() =>
   import("react-notion-x/build/third-party/code").then((m) => m.Code)
@@ -27,9 +24,10 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap }) => {
   return (
     <div className="notion max-w-none">
       <NotionRenderer
+        disableHeader={true}
         recordMap={recordMap}
         components={{
-          nextImage: Image,
+          nextImage: ImageWithZoom,
           nextLink: Link,
           Code,
         }}

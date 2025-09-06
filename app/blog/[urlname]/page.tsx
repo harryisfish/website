@@ -138,14 +138,14 @@ async function BlogContent({ urlname }: { urlname: string }) {
         </div>
         
         {/* 摘要内容 */}
-        {blog.digest && (
+        {/* {blog.digest && (
           <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
             <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
               📝 摘要
             </h3>
             <p className="text-gray-700 leading-relaxed text-lg">{blog.digest}</p>
           </div>
-        )}
+        )} */}
         
         {/* 主要内容 */}
         <div className="max-w-none">
