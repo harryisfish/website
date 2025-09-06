@@ -1,24 +1,24 @@
-import { NextResponse } from "next/server";
-import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog } from "@/lib/notion";
+import { NextResponse } from 'next/server';
+import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog } from '@/lib/notion';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const cursor = searchParams.get("cursor");
-  const limit = parseInt(searchParams.get("limit") || "10");
+  const cursor = searchParams.get('cursor');
+  const limit = parseInt(searchParams.get('limit') || '10');
 
   try {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: "Status",
+        property: 'Status',
         select: {
-          equals: "已发布", // 只显示已发布状态的文章
+          equals: '已发布', // 只显示已发布状态的文章
         },
       },
       sorts: [
         {
-          property: "CreatedAt",
-          direction: "descending",
+          property: 'CreatedAt',
+          direction: 'descending',
         },
       ],
       page_size: limit,
@@ -33,10 +33,7 @@ export async function GET(request: Request) {
       nextCursor,
     });
   } catch (error) {
-    console.error("Error fetching blogs from Notion:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch blogs" },
-      { status: 500 }
-    );
+    console.error('Error fetching blogs from Notion:', error);
+    return NextResponse.json({ error: 'Failed to fetch blogs' }, { status: 500 });
   }
-} 
+}

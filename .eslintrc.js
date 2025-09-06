@@ -12,11 +12,12 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-explicit-any': 'warn',
     'tailwindcss/no-custom-classname': 'off',
-    'tailwindcss/classnames-order': 'warn',
-    'tailwindcss/enforces-shorthand': 'warn',
-    'tailwindcss/no-unnecessary-arbitrary-value': 'warn',
+    'tailwindcss/classnames-order': 'off',
+    'tailwindcss/enforces-shorthand': 'off',
+    'tailwindcss/no-unnecessary-arbitrary-value': 'off',
     'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-    'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
+    'react/jsx-closing-bracket-location': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   settings: {
     tailwindcss: {

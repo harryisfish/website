@@ -1,10 +1,10 @@
-import { notFound } from "next/navigation";
-import NotionContent from "@/components/Markdown/ContentRender";
-import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageRecordMap, getPageMarkdown } from "@/lib/notion";
-import { MotionDiv } from "@/components/ui/motion";
-import { Suspense } from "react";
-import Loading from "@/components/Loading";
-import { Metadata } from 'next'
+import { notFound } from 'next/navigation';
+import NotionContent from '@/components/Markdown/ContentRender';
+import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageRecordMap, getPageMarkdown } from '@/lib/notion';
+import { MotionDiv } from '@/components/ui/motion';
+import { Suspense } from 'react';
+import Loading from '@/components/Loading';
+import { Metadata } from 'next';
 
 interface BlogPageProps {
   params: Promise<{ urlname: string }>;
@@ -29,20 +29,18 @@ export async function generateStaticParams() {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: "Status",
+        property: 'Status',
         // Status 是 Notion 的“状态”类型
         status: {
-          equals: "已发布",
+          equals: '已发布',
         },
       },
       page_size: 100,
     });
-    
-    return response.results
-      .map((page) => ({ urlname: extractURLName(page) }))
-      .filter((item) => item.urlname);
+
+    return response.results.map((page) => ({ urlname: extractURLName(page) })).filter((item) => item.urlname);
   } catch (error) {
-    console.error("Error generating static params:", error);
+    console.error('Error generating static params:', error);
     return [];
   }
 }
@@ -63,15 +61,15 @@ async function BlogContent({ urlname }: { urlname: string }) {
       filter: {
         and: [
           {
-            property: "URLName",
+            property: 'URLName',
             rich_text: {
               equals: urlname,
             },
           },
           {
-            property: "Status",
+            property: 'Status',
             status: {
-              equals: "已发布",
+              equals: '已发布',
             },
           },
         ],
@@ -96,8 +94,8 @@ async function BlogContent({ urlname }: { urlname: string }) {
         {/* 博客内容容器 */}
         <div className="container mx-auto px-4 py-12 max-w-5xl">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-            <NotionContent 
-              recordMap={recordMap} 
+            <NotionContent
+              recordMap={recordMap}
               blog={blog}
             />
           </div>
@@ -105,29 +103,29 @@ async function BlogContent({ urlname }: { urlname: string }) {
       </MotionDiv>
     );
   } catch (error) {
-    console.error("Error fetching blog:", error);
+    console.error('Error fetching blog:', error);
     return notFound();
   }
 }
 
 export async function generateMetadata(props: BlogPageProps): Promise<Metadata> {
   const params = await props.params;
-  
+
   try {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
         and: [
           {
-            property: "URLName",
+            property: 'URLName',
             rich_text: {
               equals: params.urlname,
             },
           },
           {
-            property: "Status",
+            property: 'Status',
             status: {
-              equals: "已发布",
+              equals: '已发布',
             },
           },
         ],
@@ -137,16 +135,17 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
 
     if (!response.results.length) {
       return {
-        title: 'Blog Not Found'
+        title: 'Blog Not Found',
       };
     }
 
     const blog = transformNotionPageToBlog(response.results[0]);
 
     // 提取前 160 个字符作为描述（若没有 digest）
-    const fallback = blog.content && blog.content.length > 0
-      ? blog.content.substring(0, 160)
-      : (await getPageMarkdown(blog.id)).substring(0, 160);
+    const fallback =
+      blog.content && blog.content.length > 0
+        ? blog.content.substring(0, 160)
+        : (await getPageMarkdown(blog.id)).substring(0, 160);
 
     return {
       title: `${blog.title} | Cunoe Blog`,
@@ -161,9 +160,9 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
       },
     };
   } catch (error) {
-    console.error("Error generating metadata:", error);
+    console.error('Error generating metadata:', error);
     return {
-      title: 'Blog Not Found'
+      title: 'Blog Not Found',
     };
   }
 }

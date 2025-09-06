@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import Header from "@/components/Header";
-import * as React from "react";
-import {HeroUIProvider} from "@heroui/react";
+import type { Metadata } from 'next';
+import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import Header from '@/components/Header';
+import * as React from 'react';
+import { HeroUIProvider } from '@heroui/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
-  title: "I am CUNOE, welcome！",
-  description: "这是有关CUNOE的一切",
+  title: 'I am CUNOE, welcome！',
+  description: '这是有关CUNOE的一切',
 };
 
 export default function RootLayout({
@@ -24,12 +24,11 @@ export default function RootLayout({
           href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css"
         />
       </head>
-      <body style={{ fontFamily: "LXGW Bright", fontWeight: "400" }}>
+      <body style={{ fontFamily: 'LXGW Bright', fontWeight: '400' }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          disableTransitionOnChange
-        >
+          disableTransitionOnChange>
           <HeroUIProvider>
             <Header />
             <main className="pt-16">{children}</main>

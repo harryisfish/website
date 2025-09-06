@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Navbar,
   NavbarBrand,
@@ -11,40 +11,33 @@ import {
   NavbarMenuItem,
   Link as HeroLink,
   Image,
-} from "@heroui/react";
-import Link from "next/link";
-import {
-  BookOpen,
-  ImageIcon,
-  Link as LinkIcon,
-  Mail,
-  Github,
-  Sun,
-  Moon,
-} from "lucide-react";
-import { useTheme } from "next-themes";
+} from '@heroui/react';
+import Link from 'next/link';
+import { BookOpen, ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
     <Navbar
       maxWidth="full"
       onMenuOpenChange={setIsMenuOpen}
-      className="fixed inset-x-0 top-0 z-50"
-    >
+      className="fixed inset-x-0 top-0 z-50">
       <NavbarContent>
         <NavbarMenuToggle
-          aria-label={isMenuOpen ? "关闭菜单" : "打开菜单"}
+          aria-label={isMenuOpen ? '关闭菜单' : '打开菜单'}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <HeroLink href="/" className="flex items-center gap-2">
+          <HeroLink
+            href="/"
+            className="flex items-center gap-2">
             <Image
               src="/favicon.ico"
               alt="CUNOE Logo"
@@ -60,12 +53,13 @@ export default function Header() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+      <NavbarContent
+        className="hidden gap-4 sm:flex"
+        justify="center">
         <NavbarItem>
           <Link
             href="/blog"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
+            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <BookOpen className="size-4" />
             博客
           </Link>
@@ -74,8 +68,7 @@ export default function Header() {
         <NavbarItem>
           <Link
             href="/gallery"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
+            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <ImageIcon className="size-4" />
             相册
           </Link>
@@ -84,8 +77,7 @@ export default function Header() {
         <NavbarItem>
           <Link
             href="/links"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
+            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <LinkIcon className="size-4" />
             友链
           </Link>
@@ -96,26 +88,19 @@ export default function Header() {
         <NavbarItem className="hidden sm:flex items-center gap-2">
           <Link
             href="mailto:admin@cunoe.com"
-            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-          >
+            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
             <Mail className="h-5 w-5" />
           </Link>
           <Link
             href="https://github.com/cunoe"
             target="_blank"
-            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-          >
+            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
             <Github className="h-5 w-5" />
           </Link>
           <button
             onClick={toggleTheme}
-            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
+            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
         </NavbarItem>
       </NavbarContent>
@@ -126,8 +111,7 @@ export default function Header() {
             className="w-full"
             color="foreground"
             href="/blog"
-            size="lg"
-          >
+            size="lg">
             <BookOpen className="mr-2 size-4" />
             博客
           </HeroLink>
@@ -138,8 +122,7 @@ export default function Header() {
             className="w-full"
             color="foreground"
             href="/gallery"
-            size="lg"
-          >
+            size="lg">
             <ImageIcon className="mr-2 size-4" />
             相册
           </HeroLink>
@@ -150,8 +133,7 @@ export default function Header() {
             className="w-full"
             color="foreground"
             href="/links"
-            size="lg"
-          >
+            size="lg">
             <LinkIcon className="mr-2 size-4" />
             友链
           </HeroLink>
@@ -161,26 +143,19 @@ export default function Header() {
           <div className="flex items-center gap-2 w-full">
             <Link
               href="mailto:admin@cunoe.com"
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-            >
+              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
               <Mail className="h-5 w-5" />
             </Link>
             <Link
               href="https://github.com/cunoe"
               target="_blank"
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-            >
+              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
               <Github className="h-5 w-5" />
             </Link>
             <button
               onClick={toggleTheme}
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
           </div>
         </NavbarMenuItem>

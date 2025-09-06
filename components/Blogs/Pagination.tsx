@@ -6,7 +6,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from '@/components/ui/pagination';
 
 interface BlogPaginationProps {
   currentPage: number;
@@ -20,9 +20,7 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationItem>
-            <PaginationPrevious
-              href={`/blog?page=${currentPage - 1}`}
-            />
+            <PaginationPrevious href={`/blog?page=${currentPage - 1}`} />
           </PaginationItem>
         )}
 
@@ -37,16 +35,12 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
               <PaginationItem key={pageNumber}>
                 <PaginationLink
                   href={`/blog?page=${pageNumber}`}
-                  isActive={pageNumber === currentPage}
-                >
+                  isActive={pageNumber === currentPage}>
                   {pageNumber}
                 </PaginationLink>
               </PaginationItem>
             );
-          } else if (
-            pageNumber === currentPage - 2 ||
-            pageNumber === currentPage + 2
-          ) {
+          } else if (pageNumber === currentPage - 2 || pageNumber === currentPage + 2) {
             return <PaginationEllipsis key={pageNumber} />;
           }
           return null;
@@ -54,9 +48,7 @@ export function BlogPagination({ currentPage, totalPages }: BlogPaginationProps)
 
         {currentPage < totalPages && (
           <PaginationItem>
-            <PaginationNext
-              href={`/blog?page=${currentPage + 1}`}
-            />
+            <PaginationNext href={`/blog?page=${currentPage + 1}`} />
           </PaginationItem>
         )}
       </PaginationContent>

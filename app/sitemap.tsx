@@ -1,12 +1,12 @@
-import type { MetadataRoute } from "next";
-import { getAllBlogs, type NotionBlog } from "@/lib/notion";
+import type { MetadataRoute } from 'next';
+import { getAllBlogs, type NotionBlog } from '@/lib/notion';
 
 async function getBlogs(): Promise<MetadataRoute.Sitemap> {
   const blogs: NotionBlog[] = await getAllBlogs();
   return blogs.map((blog: NotionBlog) => ({
     url: `https://cunoe.com/blog/${blog.urlname}`,
     lastModified: new Date(blog.updated_at),
-    changeFrequency: "yearly",
+    changeFrequency: 'yearly',
     priority: 0.5,
   })) as MetadataRoute.Sitemap;
 }
@@ -14,21 +14,21 @@ async function getBlogs(): Promise<MetadataRoute.Sitemap> {
 async function getPages(): Promise<MetadataRoute.Sitemap> {
   return [
     {
-      url: "https://cunoe.com",
+      url: 'https://cunoe.com',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: "https://cunoe.com/about",
+      url: 'https://cunoe.com/about',
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: "https://cunoe.com/blog",
+      url: 'https://cunoe.com/blog',
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: 'weekly',
       priority: 0.5,
     },
   ];

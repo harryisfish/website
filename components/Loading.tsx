@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { BallTriangle } from 'react-loader-spinner';
 import { useTheme } from 'next-themes';
@@ -22,11 +22,7 @@ const Loading: React.FC<LoadingProps> = ({ msg }) => {
         wrapperClass=""
         visible={true}
       />
-      {msg && (
-        <p className="mt-4 text-lg font-medium text-gray-600 dark:text-gray-300">
-          {msg}
-        </p>
-      )}
+      {msg && <p className="mt-4 text-lg font-medium text-gray-600 dark:text-gray-300">{msg}</p>}
     </div>
   );
 };
