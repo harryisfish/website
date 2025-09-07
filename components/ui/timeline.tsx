@@ -41,10 +41,22 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         <h2 className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
           Changelog from my journey
         </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
-          a timeline of my journey.
-        </p>
+        {(() => {
+          const startYear = 2003;
+          const currentYear = new Date().getFullYear();
+          const years = currentYear - startYear;
+          return (
+            <p
+              className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold"
+              style={{
+                fontFamily:
+                  "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+              }}
+            >
+              My changelog began {years} years ago, and every step since has been a line in this unfolding journey.
+            </p>
+          );
+        })()}
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
