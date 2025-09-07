@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'A journey through time, documenting the evolution of thoughts, projects, and digital adventures.',
 };
 
-export const revalidate = 3600; // 每小时重新验证一次
+export const revalidate = 300; // 每5分钟重新验证一次缓存
 
 export default async function BlogListPage() {
   return (
