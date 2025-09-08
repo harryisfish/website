@@ -3,6 +3,7 @@ import Loading from '@/components/Loading';
 import { Metadata } from 'next';
 import { BlogTimeline } from '@/components/Blogs/BlogTimeline';
 import { getAllBlogs } from '@/lib/notion';
+import { MotionDiv } from '@/components/ui/motion';
 
 export const metadata: Metadata = {
   title: 'Changelog | Cunoe',
@@ -13,9 +14,16 @@ export const revalidate = 300; // 每5分钟重新验证一次缓存
 
 export default async function BlogListPage() {
   return (
-    <Suspense fallback={<Loading />}>
-      <BlogList />
-    </Suspense>
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen"
+    >
+      <Suspense fallback={<Loading />}>
+        <BlogList />
+      </Suspense>
+    </MotionDiv>
   );
 }
 
