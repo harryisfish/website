@@ -4,7 +4,6 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import * as React from 'react';
 import { HeroUIProvider } from '@heroui/react';
-import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
@@ -27,13 +26,6 @@ export default function RootLayout({
         <link
           rel="stylesheet"
           href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.css"
-        />
-        <Script
-          id="adsense"
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9162035501550069"
-          crossOrigin="anonymous"
         />
       </head>
       <body style={{ fontFamily: 'LXGW Bright', fontWeight: '400' }}>
