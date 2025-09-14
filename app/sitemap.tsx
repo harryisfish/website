@@ -6,7 +6,7 @@ async function getBlogs(): Promise<MetadataRoute.Sitemap> {
   return blogs.map((blog: NotionBlog) => ({
     url: `https://cunoe.com/changelog/${blog.urlname}`,
     lastModified: new Date(blog.updated_at),
-    changeFrequency: 'yearly',
+    changeFrequency: 'weekly',
     priority: 0.5,
   })) as MetadataRoute.Sitemap;
 }
@@ -20,7 +20,13 @@ async function getPages(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: 'https://cunoe.com/about',
+      url: 'https://cunoe.com/gallery',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://cunoe.com/links',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
