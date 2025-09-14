@@ -17,6 +17,7 @@ WORKDIR /app
 FROM base AS builder
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 RUN --mount=type=cache,id=pnpm-cunoe-blog-next,target=/pnpm/store pnpm install --frozen-lockfile
+RUN cp '.env.local.example' '.env.local'
 RUN pnpm run build
 
 FROM node:20.18.1-alpine3.20 AS final
