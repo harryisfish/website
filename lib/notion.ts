@@ -16,7 +16,7 @@ export const notion = new Client({
 
 export const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
-const notionApi = new NotionAPI({ authToken: process.env.NOTION_TOKEN_V2 });
+const notionApi = new NotionAPI();
 
 // 博客文章类型定义
 export interface NotionBlog {
@@ -35,6 +35,8 @@ export interface NotionBlog {
 
 // 从 Notion 页面对象转换为博客对象
 export function transformNotionPageToBlog(page: any): NotionBlog {
+  console.log(`[NotionTransform] 开始转换页面: ${page.id}`);
+  
   const properties = page.properties;
   
   // 处理分类 - Categories 是 select 类型，不是 multi_select
@@ -42,7 +44,7 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     ? [properties.Categories.select.name] 
     : [];
   
-  return {
+  const blog = {
     id: page.id,
     title: properties.Title?.title?.[0]?.plain_text || '',
     content: properties.Digest?.rich_text?.[0]?.plain_text || '', // 如果不在 Digest 中，稍后用 blocks 填充
@@ -55,6 +57,10 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     digest: properties.Digest?.rich_text?.[0]?.plain_text || '',
     status: properties.Status?.status?.name || '构思中',
   };
+  
+  console.log(`[NotionTransform] 转换完成: ${blog.title} (${blog.status})`);
+  
+  return blog;
 }
 
 // 分页结果类型
@@ -69,54 +75,87 @@ export async function getPaginatedBlogs(
   pageSize: number = 10,
   startCursor?: string
 ): Promise<PaginatedResult<NotionBlog>> {
-  const response = await notion.databases.query({
-    database_id: NOTION_DATABASE_ID,
-    filter: {
-      property: "Status",
-      status: {
-        equals: "已发布",
-      },
-    },
-    sorts: [
-      {
-        property: "CreatedAt",
-        direction: "descending",
-      },
-    ],
-    page_size: pageSize,
-    start_cursor: startCursor,
-  });
-
-  const blogs = response.results.map(transformNotionPageToBlog);
+  console.log(`[NotionQuery] 开始分页查询，页面大小: ${pageSize}, 起始游标: ${startCursor || '无'}`);
+  const startTime = Date.now();
   
-  return {
-    data: blogs,
-    nextCursor: response.next_cursor,
-    hasMore: response.has_more,
-  };
+  try {
+    const response = await notion.databases.query({
+      database_id: NOTION_DATABASE_ID,
+      filter: {
+        property: "Status",
+        status: {
+          equals: "已发布",
+        },
+      },
+      sorts: [
+        {
+          property: "CreatedAt",
+          direction: "descending",
+        },
+      ],
+      page_size: pageSize,
+      start_cursor: startCursor,
+    });
+
+    const duration = Date.now() - startTime;
+    console.log(`[NotionQuery] 数据库查询完成，耗时: ${duration}ms, 结果数量: ${response.results.length}`);
+
+    const blogs = response.results.map(transformNotionPageToBlog);
+    
+    console.log(`[NotionQuery] 分页结果: 当前页 ${blogs.length} 篇，还有更多: ${response.has_more}`);
+    
+    return {
+      data: blogs,
+      nextCursor: response.next_cursor,
+      hasMore: response.has_more,
+    };
+  } catch (error) {
+    const duration = Date.now() - startTime;
+    console.error(`[NotionQuery] 分页查询失败，耗时: ${duration}ms`, {
+      error: error instanceof Error ? error.message : String(error),
+      pageSize,
+      startCursor,
+      databaseId: NOTION_DATABASE_ID
+    });
+    throw error;
+  }
 }
 
 // 获取所有博客（用于计算总数和静态生成）
 export async function getAllBlogs(): Promise<NotionBlog[]> {
+  console.log('[NotionGetAll] 开始获取所有博客');
+  const startTime = Date.now();
   const allBlogs: NotionBlog[] = [];
   let hasMore = true;
   let startCursor: string | undefined;
+  let pageCount = 0;
 
   while (hasMore) {
+    pageCount++;
+    console.log(`[NotionGetAll] 获取第 ${pageCount} 页博客`);
+    
     const result = await getPaginatedBlogs(100, startCursor);
     allBlogs.push(...result.data);
     hasMore = result.hasMore;
     startCursor = result.nextCursor || undefined;
+    
+    console.log(`[NotionGetAll] 第 ${pageCount} 页完成，当前总数: ${allBlogs.length}`);
   }
+
+  const duration = Date.now() - startTime;
+  console.log(`[NotionGetAll] 获取所有博客完成，总计: ${allBlogs.length} 篇，分 ${pageCount} 页，耗时: ${duration}ms`);
 
   return allBlogs;
 }
 
 // 读取页面 blocks 并转成简单 Markdown（覆盖常见块：heading/paragraph/bulleted/numbered/quote/code/divider）
 export async function getPageMarkdown(pageId: string): Promise<string> {
+  console.log(`[NotionMarkdown] 开始获取页面 Markdown: ${pageId}`);
+  const startTime = Date.now();
   const lines: string[] = [];
   let startCursor: string | undefined;
   let hasMore = true;
+  let blockCount = 0;
 
   while (hasMore) {
     const res = await notion.blocks.children.list({
@@ -125,7 +164,10 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
       page_size: 100,
     });
 
+    console.log(`[NotionMarkdown] 获取到 ${res.results.length} 个 blocks`);
+
     for (const block of res.results as any[]) {
+      blockCount++;
       const type = block.type as string;
       const b: any = block[type];
       const textArray = b?.rich_text as any[] | undefined;
@@ -178,12 +220,35 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
     startCursor = (res.next_cursor as string | null) || undefined;
   }
 
-  // 合并空行，保证可读性
-  return lines.join('\n\n');
+  const duration = Date.now() - startTime;
+  const markdown = lines.join('\n\n');
+  console.log(`[NotionMarkdown] Markdown 转换完成，处理了 ${blockCount} 个 blocks，生成 ${markdown.length} 字符，耗时: ${duration}ms`);
+
+  return markdown;
 }
 
 // 使用 notion-client 获取完整的 recordMap，用于 react-notion-x 渲染
 export async function getPageRecordMap(pageId: string) {
-  const cleanId = pageId.replace(/-/g, '');
-  return notionApi.getPage(cleanId);
+  console.log(`[NotionRecordMap] 开始获取页面 RecordMap: ${pageId}`);
+  const startTime = Date.now();
+  
+  try {
+    const cleanId = pageId.replace(/-/g, '');
+    console.log(`[NotionRecordMap] 清理后的页面ID: ${cleanId}`);
+    
+    const recordMap = await notionApi.getPage(cleanId);
+    
+    const duration = Date.now() - startTime;
+    console.log(`[NotionRecordMap] RecordMap 获取完成，耗时: ${duration}ms`);
+    
+    return recordMap;
+  } catch (error) {
+    const duration = Date.now() - startTime;
+    console.error(`[NotionRecordMap] RecordMap 获取失败，耗时: ${duration}ms`, {
+      error: error instanceof Error ? error.message : String(error),
+      pageId,
+      cleanId: pageId.replace(/-/g, '')
+    });
+    throw error;
+  }
 }
