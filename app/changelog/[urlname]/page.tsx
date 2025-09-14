@@ -10,52 +10,6 @@ interface BlogPageProps {
   params: Promise<{ urlname: string }>;
 }
 
-export const revalidate = 300; // 每5分钟重新验证一次缓存
-export const dynamicParams = true; // 允许动态参数
-
-// 安全提取 URLName 文本
-function extractURLName(page: unknown): string {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const p: any = page;
-  const prop = p?.properties?.URLName;
-  const rt = prop?.rich_text;
-  if (Array.isArray(rt) && rt.length > 0 && typeof rt[0]?.plain_text === 'string') {
-    return rt[0].plain_text as string;
-  }
-  return '';
-}
-
-export async function generateStaticParams() {
-  try {
-    const response = await notion.databases.query({
-      database_id: NOTION_DATABASE_ID,
-      filter: {
-        property: 'Status',
-        // Status 是 Notion 的"状态"类型
-        status: {
-          equals: '已发布',
-        },
-      },
-      page_size: 100,
-    });
-
-    const params = response.results.map((page) => ({ urlname: extractURLName(page) })).filter((item) => item.urlname);
-    console.log(`Generated ${params.length} static params for changelog pages`);
-    
-    // 如果生成失败或没有参数，返回一个默认参数避免构建错误
-    if (params.length === 0) {
-      console.warn('No static params generated, returning empty array');
-      return [];
-    }
-    
-    return params;
-  } catch (error) {
-    console.error('Error generating static params:', error);
-    // 返回空数组，让页面在运行时动态生成
-    return [];
-  }
-}
-
 export default async function BlogPage(props: BlogPageProps) {
   const params = await props.params;
   return (
@@ -67,12 +21,7 @@ export default async function BlogPage(props: BlogPageProps) {
 
 async function BlogContent({ urlname }: { urlname: string }) {
   try {
-    // 添加超时控制
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Request timeout')), 10000); // 10秒超时
-    });
-
-    const queryPromise = notion.databases.query({
+    const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
         and: [
@@ -92,8 +41,6 @@ async function BlogContent({ urlname }: { urlname: string }) {
       },
       page_size: 1,
     });
-
-    const response = await Promise.race([queryPromise, timeoutPromise]) as any;
 
     if (!response.results.length) {
       console.log(`No blog found for urlname: ${urlname}`);
