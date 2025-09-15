@@ -37,13 +37,13 @@ export default function Header() {
             className="flex items-center gap-2">
             <Image
               src="/favicon.ico"
-              alt="CUNOE Logo"
+              alt="Harry Logo"
               width={32}
               height={32}
               className="rounded-full"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-bold">CUNOE</span>
+              <span className="text-xl font-bold">Harry</span>
               <span className="text-xs italic text-gray-500">is meeee~</span>
             </div>
           </HeroLink>

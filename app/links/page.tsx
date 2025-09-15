@@ -226,7 +226,7 @@ const friendLinks: LinkCategory[] = [
     class_desc: 'People and stories',
     link_list: [
       {
-        name: 'CUNOE',
+        name: 'Harry',
         link: 'https://www.cunoe.com/',
         avatar: 'https://s3.cunoe.com/files/web-icon.png',
         descr: 'Journey of a pigeon exploring the world',
@@ -262,8 +262,8 @@ const friendLinks: LinkCategory[] = [
     class_desc: 'Take off~',
     link_list: [
       {
-        name: 'CUNOE GitHub',
-        link: 'https://github.com/CUNOE/',
+        name: 'Harry GitHub',
+        link: 'https://github.com/Harry/',
         avatar: 'https://avatars.githubusercontent.com/u/90205430',
         descr: 'My GitHub',
       },

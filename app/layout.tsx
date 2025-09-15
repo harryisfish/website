@@ -7,8 +7,8 @@ import { HeroUIProvider } from '@heroui/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
-  title: 'I am CUNOE, welcome！',
-  description: '这是有关CUNOE的一切',
+  title: 'I am Harry, welcome！',
+  description: '这是有关Harry的一切',
 };
 
 export default function RootLayout({

@@ -35,7 +35,7 @@ export function BlogItem({ blog }: { blog: Blog }) {
         <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">{blog.title}</h2>
       </Link>
       <div className="text-sm text-gray-500 dark:text-gray-400 mb-2 flex gap-2">
-        <span>by CUNOE</span>
+        <span>by Harry</span>
         {format(new Date(blog.created_at), 'MMM d, yyyy')}
       </div>
       <div className="text-sm text-gray-500 dark:text-gray-400 prose prose-sm dark:prose-invert">
