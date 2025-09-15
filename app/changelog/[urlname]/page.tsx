@@ -10,7 +10,7 @@ interface BlogPageProps {
   params: Promise<{ urlname: string }>;
 }
 
-export const revalidate = 300; // 每5分钟重新验证一次缓存
+export const revalidate = 86400; // 每24小时重新验证一次缓存
 export const dynamicParams = true; // 允许动态参数
 
 // 安全提取 URLName 文本
