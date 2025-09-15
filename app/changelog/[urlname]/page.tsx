@@ -107,9 +107,24 @@ async function BlogContent({ urlname }: { urlname: string }) {
 
     console.log(`[BlogDetail] 开始获取 RecordMap`);
     const recordMapStartTime = Date.now();
-    const recordMap = await getPageRecordMap(blog.id);
-    const recordMapDuration = Date.now() - recordMapStartTime;
-    console.log(`[BlogDetail] RecordMap 获取完成，耗时: ${recordMapDuration}ms`);
+    let recordMap;
+    try {
+      recordMap = await getPageRecordMap(blog.id);
+      const recordMapDuration = Date.now() - recordMapStartTime;
+      console.log(`[BlogDetail] RecordMap 获取完成，耗时: ${recordMapDuration}ms`);
+    } catch (error) {
+      const recordMapDuration = Date.now() - recordMapStartTime;
+      console.warn(`[BlogDetail] RecordMap 获取失败，耗时: ${recordMapDuration}ms，使用降级方案, error: ${error}`);
+      // 使用空的recordMap作为降级方案
+      recordMap = {
+        block: {},
+        collection: {},
+        collection_view: {},
+        notion_user: {},
+        signed_urls: {},
+        preview_images: {},
+      };
+    }
 
     const totalDuration = Date.now() - startTime;
     console.log(`[BlogDetail] 博客详情页面准备完成，总耗时: ${totalDuration}ms`);
@@ -189,10 +204,16 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
     } else {
       console.log(`[BlogMetadata] 博客内容为空，获取 Markdown 内容作为描述`);
       const markdownStartTime = Date.now();
-      const markdown = await getPageMarkdown(blog.id);
-      fallback = markdown.substring(0, 160);
-      const markdownDuration = Date.now() - markdownStartTime;
-      console.log(`[BlogMetadata] Markdown 获取完成，耗时: ${markdownDuration}ms，描述长度: ${fallback.length}`);
+      try {
+        const markdown = await getPageMarkdown(blog.id);
+        fallback = markdown.substring(0, 160);
+        const markdownDuration = Date.now() - markdownStartTime;
+        console.log(`[BlogMetadata] Markdown 获取完成，耗时: ${markdownDuration}ms，描述长度: ${fallback.length}`);
+      } catch (error) {
+        const markdownDuration = Date.now() - markdownStartTime;
+        console.warn(`[BlogMetadata] Markdown 获取失败，耗时: ${markdownDuration}ms，使用默认描述, error: ${error}`);
+        fallback = '暂无描述';
+      }
     }
 
     const metadata = {
