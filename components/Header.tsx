@@ -43,8 +43,8 @@ export default function Header() {
               className="rounded-full"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-bold">Harry</span>
-              <span className="text-xs italic text-gray-500">is meeee~</span>
+              <span className="text-xl font-bold">海鱼Harry</span>
+              <span className="text-xs italic text-gray-500">@harryisfish</span>
             </div>
           </HeroLink>
         </NavbarBrand>

@@ -7,7 +7,7 @@ import { HeroUIProvider } from '@heroui/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
-  title: 'I am Harry, welcome！',
+  title: '海鱼Harry@harryisfish',
   description: '这是有关Harry的一切',
 };
 
