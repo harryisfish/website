@@ -16,7 +16,10 @@ export const notion = new Client({
 
 export const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
-const notionApi = new NotionAPI();
+const notionApi = new NotionAPI({
+  activeUser: process.env.NOTION_ACTIVE_USER,
+  authToken: process.env.NOTION_TOKEN_V2,
+});
 
 // 博客文章类型定义
 export interface NotionBlog {
@@ -36,14 +39,12 @@ export interface NotionBlog {
 // 从 Notion 页面对象转换为博客对象
 export function transformNotionPageToBlog(page: any): NotionBlog {
   console.log(`[NotionTransform] 开始转换页面: ${page.id}`);
-  
+
   const properties = page.properties;
-  
+
   // 处理分类 - Categories 是 select 类型，不是 multi_select
-  const categories = properties.Categories?.select?.name 
-    ? [properties.Categories.select.name] 
-    : [];
-  
+  const categories = properties.Categories?.select?.name ? [properties.Categories.select.name] : [];
+
   const blog = {
     id: page.id,
     title: properties.Title?.title?.[0]?.plain_text || '',
@@ -57,9 +58,9 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     digest: properties.Digest?.rich_text?.[0]?.plain_text || '',
     status: properties.Status?.status?.name || '构思中',
   };
-  
+
   console.log(`[NotionTransform] 转换完成: ${blog.title} (${blog.status})`);
-  
+
   return blog;
 }
 
@@ -73,24 +74,24 @@ export interface PaginatedResult<T> {
 // 获取分页博客列表
 export async function getPaginatedBlogs(
   pageSize: number = 10,
-  startCursor?: string
+  startCursor?: string,
 ): Promise<PaginatedResult<NotionBlog>> {
   console.log(`[NotionQuery] 开始分页查询，页面大小: ${pageSize}, 起始游标: ${startCursor || '无'}`);
   const startTime = Date.now();
-  
+
   try {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: "Status",
+        property: 'Status',
         status: {
-          equals: "已发布",
+          equals: '已发布',
         },
       },
       sorts: [
         {
-          property: "CreatedAt",
-          direction: "descending",
+          property: 'CreatedAt',
+          direction: 'descending',
         },
       ],
       page_size: pageSize,
@@ -101,9 +102,9 @@ export async function getPaginatedBlogs(
     console.log(`[NotionQuery] 数据库查询完成，耗时: ${duration}ms, 结果数量: ${response.results.length}`);
 
     const blogs = response.results.map(transformNotionPageToBlog);
-    
+
     console.log(`[NotionQuery] 分页结果: 当前页 ${blogs.length} 篇，还有更多: ${response.has_more}`);
-    
+
     return {
       data: blogs,
       nextCursor: response.next_cursor,
@@ -115,7 +116,7 @@ export async function getPaginatedBlogs(
       error: error instanceof Error ? error.message : String(error),
       pageSize,
       startCursor,
-      databaseId: NOTION_DATABASE_ID
+      databaseId: NOTION_DATABASE_ID,
     });
     throw error;
   }
@@ -133,12 +134,12 @@ export async function getAllBlogs(): Promise<NotionBlog[]> {
   while (hasMore) {
     pageCount++;
     console.log(`[NotionGetAll] 获取第 ${pageCount} 页博客`);
-    
+
     const result = await getPaginatedBlogs(100, startCursor);
     allBlogs.push(...result.data);
     hasMore = result.hasMore;
     startCursor = result.nextCursor || undefined;
-    
+
     console.log(`[NotionGetAll] 第 ${pageCount} 页完成，当前总数: ${allBlogs.length}`);
   }
 
@@ -171,9 +172,7 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
       const type = block.type as string;
       const b: any = block[type];
       const textArray = b?.rich_text as any[] | undefined;
-      const plain = Array.isArray(textArray)
-        ? textArray.map((t) => t?.plain_text ?? '').join('')
-        : '';
+      const plain = Array.isArray(textArray) ? textArray.map((t) => t?.plain_text ?? '').join('') : '';
 
       switch (type) {
         case 'heading_1':
@@ -199,9 +198,7 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
           break;
         case 'code': {
           const lang = b?.language || '';
-          const codeText = Array.isArray(textArray)
-            ? textArray.map((t) => t?.plain_text ?? '').join('')
-            : '';
+          const codeText = Array.isArray(textArray) ? textArray.map((t) => t?.plain_text ?? '').join('') : '';
           lines.push('```' + lang);
           lines.push(codeText);
           lines.push('```');
@@ -222,7 +219,9 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 
   const duration = Date.now() - startTime;
   const markdown = lines.join('\n\n');
-  console.log(`[NotionMarkdown] Markdown 转换完成，处理了 ${blockCount} 个 blocks，生成 ${markdown.length} 字符，耗时: ${duration}ms`);
+  console.log(
+    `[NotionMarkdown] Markdown 转换完成，处理了 ${blockCount} 个 blocks，生成 ${markdown.length} 字符，耗时: ${duration}ms`,
+  );
 
   return markdown;
 }
@@ -231,23 +230,23 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 export async function getPageRecordMap(pageId: string) {
   console.log(`[NotionRecordMap] 开始获取页面 RecordMap: ${pageId}`);
   const startTime = Date.now();
-  
+
   try {
     const cleanId = pageId.replace(/-/g, '');
     console.log(`[NotionRecordMap] 清理后的页面ID: ${cleanId}`);
-    
+
     const recordMap = await notionApi.getPage(cleanId);
-    
+
     const duration = Date.now() - startTime;
     console.log(`[NotionRecordMap] RecordMap 获取完成，耗时: ${duration}ms`);
-    
+
     return recordMap;
   } catch (error) {
     const duration = Date.now() - startTime;
     console.error(`[NotionRecordMap] RecordMap 获取失败，耗时: ${duration}ms`, {
       error: error instanceof Error ? error.message : String(error),
       pageId,
-      cleanId: pageId.replace(/-/g, '')
+      cleanId: pageId.replace(/-/g, ''),
     });
     throw error;
   }
