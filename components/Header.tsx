@@ -76,7 +76,7 @@ export default function Header() {
       <NavbarContent justify="end">
         <NavbarItem className="hidden sm:flex items-center gap-2">
           <Link
-            href="mailto:admin@cunoe.com"
+            href="mailto:harry@leaper.one"
             className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
             <Mail className="h-5 w-5" />
           </Link>
@@ -127,7 +127,7 @@ export default function Header() {
         <NavbarMenuItem className="flex justify-end">
           <div className="flex items-center gap-2 w-auto">
             <Link
-              href="mailto:admin@cunoe.com"
+              href="mailto:harry@leaper.one"
               className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
               <Mail className="h-5 w-5" />
             </Link>

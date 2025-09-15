@@ -93,7 +93,7 @@ export default function Home() {
                   <span className="text-xl mr-2">📧</span>
                   Email:{' '}
                   <a
-                    href="mailto:admin@cunoe.com"
+                    href="mailto:harry@leaper.one"
                     className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 ml-1">
                     harry@leaper.one
                   </a>

@@ -18,4 +18,4 @@ Allow: /links
 Allow: /code
 
 # Sitemap
-Sitemap: https://cunoe.com/sitemap.xml
+Sitemap: https://harryis.fish/sitemap.xml
