@@ -233,7 +233,7 @@ const friendLinks: LinkCategory[] = [
       },
       {
         name: "Harry's Blog",
-        link: 'https://harryisfish.github.io/',
+        link: 'https://harryis.fish/',
         avatar: 'https://avatars.githubusercontent.com/u/15265627',
         descr: "Harry's Blog",
       },
@@ -243,12 +243,6 @@ const friendLinks: LinkCategory[] = [
     class_name: 'Websites',
     class_desc: 'Sites worth a look',
     link_list: [
-      {
-        name: 'AzurLane Toolbox',
-        link: 'https://al.pelom.cn/home',
-        avatar: 'https://al.pelom.cn/assets/favicon.e584446d.png',
-        descr: 'AzurLane tools~',
-      },
       {
         name: 'USTC Open Source Software Mirror',
         link: 'https://mirrors.ustc.edu.cn/',
