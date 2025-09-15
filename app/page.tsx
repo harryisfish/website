@@ -9,7 +9,18 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}>
       <div className="relative min-h-screen">
-        <LightPoints className="absolute inset-0 bg-white dark:bg-black" />
+        <div className="absolute inset-0 bg-white dark:bg-black">
+          <div 
+            className="absolute inset-0 opacity-20 dark:opacity-10"
+            style={{
+              backgroundImage: 'url(/background.svg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        </div>
+        <LightPoints className="absolute inset-0 bg-transparent" />
         <MotionDiv
           className="relative z-10 flex justify-center items-center h-full"
           initial={{ opacity: 0, y: 20 }}

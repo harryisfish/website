@@ -49,7 +49,7 @@ export default function AboutPage() {
               transition={{ delay: 0.7, duration: 0.8 }}>
               <div className="relative">
                 <Image
-                  src="/favicon.ico"
+                  src="/harry.png"
                   alt="Harry"
                   width={200}
                   height={200}
