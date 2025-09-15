@@ -61,7 +61,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold" 
           style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}
         >
-          Changelog from my journey
+          Blog from my journey
         </MotionH2>
         {(() => {
           const startYear = 2003;
@@ -78,7 +78,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
               }}
             >
-              My changelog began {years} years ago, and every step since has been a line in this unfolding journey.
+              My blog began {years} years ago, and every step since has been a line in this unfolding journey.
             </MotionP>
           );
         })()}

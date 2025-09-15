@@ -1,4 +1,4 @@
-# robots.txt for cunoe.com
+# robots.txt for harryis.fish
 
 User-agent: *
 Allow: /
@@ -13,7 +13,7 @@ Allow: /*.svg$
 Allow: /*.ico$
 
 # 主要页面
-Allow: /changelog
+Allow: /blog
 Allow: /links
 Allow: /code
 

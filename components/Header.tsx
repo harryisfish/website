@@ -55,10 +55,10 @@ export default function Header() {
         justify="center">
         <NavbarItem>
           <Link
-            href="/changelog"
+            href="/blog"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <Logs className="size-4" />
-            Changelog
+            Blog
           </Link>
         </NavbarItem>
 
@@ -105,10 +105,10 @@ export default function Header() {
           <HeroLink
             className="w-auto"
             color="foreground"
-            href="/changelog"
+            href="/blog"
             size="lg">
             <Logs className="mr-2 size-4" />
-            Changelog
+            Blog
           </HeroLink>
         </NavbarMenuItem>
 

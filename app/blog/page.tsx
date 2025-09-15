@@ -6,7 +6,7 @@ import { getAllBlogs } from '@/lib/notion';
 import { MotionDiv } from '@/components/ui/motion';
 
 export const metadata: Metadata = {
-  title: 'Changelog | Cunoe',
+  title: 'Blog | Cunoe',
   description: 'A journey through time, documenting the evolution of thoughts, projects, and digital adventures.',
 };
 
@@ -32,7 +32,7 @@ async function BlogList() {
     const allBlogs = await getAllBlogs();
     return <BlogTimeline blogs={allBlogs} />;
   } catch (error) {
-    console.error(`[ChangelogPage] 获取博客失败`, {
+    console.error(`[BlogPage] 获取博客失败`, {
       error: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined,
       timestamp: new Date().toISOString()

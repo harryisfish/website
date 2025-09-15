@@ -4,7 +4,7 @@ import { getAllBlogs, type NotionBlog } from '@/lib/notion';
 async function getBlogs(): Promise<MetadataRoute.Sitemap> {
   const blogs: NotionBlog[] = await getAllBlogs();
   return blogs.map((blog: NotionBlog) => ({
-    url: `https://cunoe.com/changelog/${blog.urlname}`,
+    url: `https://cunoe.com/blog/${blog.urlname}`,
     lastModified: new Date(blog.updated_at),
     changeFrequency: 'weekly',
     priority: 0.5,
@@ -26,7 +26,7 @@ async function getPages(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: 'https://cunoe.com/changelog',
+      url: 'https://cunoe.com/blog',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.5,

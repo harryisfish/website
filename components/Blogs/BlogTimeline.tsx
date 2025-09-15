@@ -68,7 +68,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
             {yearBlogs.map((blog) => (
               <MotionA
                 key={blog.id}
-                href={`/changelog/${blog.urlname}`}
+                href={`/blog/${blog.urlname}`}
                 className="group block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}

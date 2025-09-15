@@ -155,7 +155,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
 
     if (!response.results.length) {
       return {
-        title: 'Changelog Not Found',
+        title: 'Blog Not Found',
       };
     }
 
@@ -176,7 +176,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
     }
 
     const metadata = {
-      title: `${blog.title} | Cunoe Changelog`,
+      title: `${blog.title} | Cunoe Blog`,
       description: blog.digest || fallback,
       keywords: [...blog.categories, ...blog.tags].join(', '),
       openGraph: {
@@ -197,7 +197,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
       timestamp: new Date().toISOString()
     });
     return {
-      title: 'Changelog Not Found',
+      title: 'Blog Not Found',
     };
   }
 }

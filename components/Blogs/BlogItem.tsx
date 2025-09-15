@@ -30,7 +30,7 @@ export function BlogItem({ blog }: { blog: Blog }) {
       transition={{ duration: 0.5 }}
       className="pb-3">
       <Link
-        href={`/changelog/${blog.urlname}`}
+        href={`/blog/${blog.urlname}`}
         className="block hover:text-blue-600 dark:hover:text-blue-400 transition duration-300">
         <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">{blog.title}</h2>
       </Link>

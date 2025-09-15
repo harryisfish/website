@@ -4,14 +4,14 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 重定向 /blog 到 /changelog
-  if (pathname === '/blog') {
-    return NextResponse.redirect(new URL('/changelog', request.url));
+  // 重定向 /changelog 到 /blog
+  if (pathname === '/changelog') {
+    return NextResponse.redirect(new URL('/blog', request.url));
   }
 
-  // 重定向 /blog/xxx 到 /changelog/xxx
-  if (pathname.startsWith('/blog/')) {
-    const newPath = pathname.replace('/blog/', '/changelog/');
+  // 重定向 /changelog/xxx 到 /blog/xxx
+  if (pathname.startsWith('/changelog/')) {
+    const newPath = pathname.replace('/changelog/', '/blog/');
     return NextResponse.redirect(new URL(newPath, request.url));
   }
 
@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/blog',
-    '/blog/:path*',
+    '/changelog',
+    '/changelog/:path*',
   ],
 };
