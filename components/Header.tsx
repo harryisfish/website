@@ -13,7 +13,7 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { ImageIcon, Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
+import { Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
@@ -62,14 +62,6 @@ export default function Header() {
           </Link>
         </NavbarItem>
 
-        <NavbarItem>
-          <Link
-            href="/gallery"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <ImageIcon className="size-4" />
-            Gallery
-          </Link>
-        </NavbarItem>
 
         <NavbarItem>
           <Link
@@ -120,16 +112,6 @@ export default function Header() {
           </HeroLink>
         </NavbarMenuItem>
 
-        <NavbarMenuItem className="flex justify-end">
-          <HeroLink
-            className="w-auto"
-            color="foreground"
-            href="/gallery"
-            size="lg">
-            <ImageIcon className="mr-2 size-4" />
-            Gallery
-          </HeroLink>
-        </NavbarMenuItem>
 
         <NavbarMenuItem className="flex justify-end">
           <HeroLink

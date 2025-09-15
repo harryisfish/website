@@ -20,12 +20,6 @@ async function getPages(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: 'https://cunoe.com/gallery',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: 'https://cunoe.com/links',
       lastModified: new Date(),
       changeFrequency: 'monthly',

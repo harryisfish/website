@@ -66,7 +66,6 @@ pnpm dev
 ├── app/                    # Next.js 13+ App Router
 │   ├── api/               # API 路由
 │   ├── blog/              # 博客页面
-│   ├── gallery/           # 画廊页面
 │   └── globals.css        # 全局样式
 ├── components/             # React 组件
 │   ├── Blogs/             # 博客相关组件

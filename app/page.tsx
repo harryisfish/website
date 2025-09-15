@@ -16,45 +16,63 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}>
           <div className="max-w-3xl mx-auto p-6 text-black dark:text-white">
-            <h1 className="text-4xl font-bold text-center mb-6">Hi,I&apos;m Cunoe</h1>
+            <h1 className="text-4xl font-bold text-center mb-6">Hi, I&apos;m Harry</h1>
 
             <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-400 mb-8">
-              <p>记录我探索世界的旅程</p>
+              <p>A full stack engineer. Interested in AI and Web3. Learning to create new things and SaaS.</p>
             </blockquote>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-4">
-                当前状态
+                Current Status
               </h2>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <span className="text-xl mr-2">🎓</span> 学生
+                  <span className="text-xl mr-2">🚀</span> Currently working on MultiPost
                 </li>
                 <li className="flex items-center">
-                  <span className="text-xl mr-2">📷</span> 摄影爱好者
+                  <span className="text-xl mr-2">🧠</span> Learning NextJS
                 </li>
                 <li className="flex items-center">
-                  <span className="text-xl mr-2">🎮</span> 游戏爱好者
+                  <span className="text-xl mr-2">🤝</span> Open to collaborating on SaaS
+                </li>
+                <li className="flex items-center">
+                  <span className="text-xl mr-2">💻</span> Full Stack Engineer
                 </li>
               </ul>
             </section>
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-4">
-                技能树
+                Skills
               </h2>
               <ul className="grid grid-cols-2 gap-2">
                 {[
+                  '⚛️ React',
+                  '🚀 NextJS',
+                  '💚 Vue',
+                  '🔥 Nuxtjs',
+                  '⚡ Vite',
+                  '🎨 TailwindCSS',
+                  '🟢 NodeJS',
+                  '🐘 PostgreSQL',
                   '🐍 Python',
-                  '🚀 Golang',
-                  '🔧 Go-Zero',
-                  '🖥️ Nuxt',
+                  '☕ Java',
+                  '🔷 TypeScript',
+                  '🟦 JavaScript',
+                  '🐹 Go',
+                  '🍎 Swift',
                   '🐳 Docker',
-                  '☸️ Kubernetes',
-                  '🌐 Nginx',
-                  '🗃️ PostgreSQL',
-                  '⚛️ Next.js',
-                  '🖥️ Tauri',
+                  '🐧 Linux',
+                  '🍎 MacOS',
+                  '🔧 VS Code',
+                  '📝 Vim',
+                  '🍎 XCode',
+                  '🌐 Uniswap',
+          '🦊 MetaMask',
+                  '⛓️ Ethereum',
+                  '📝 WordPress',
+                  '🔧 Arduino',
                 ].map((item, index) => (
                   <li
                     key={index}
@@ -68,36 +86,27 @@ export default function Home() {
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 border-b-2 border-blue-500 pb-2 mb-4">
-                联系方式
+                Contact
               </h2>
               <ul className="space-y-2">
                 <li className="flex items-center">
                   <span className="text-xl mr-2">📧</span>
-                  主要邮箱:{' '}
+                  Email:{' '}
                   <a
                     href="mailto:admin@cunoe.com"
                     className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 ml-1">
-                    admin@cunoe.com
-                  </a>
-                </li>
-                <li className="flex items-center">
-                  <span className="text-xl mr-2">📩</span>
-                  备用邮箱:{' '}
-                  <a
-                    href="mailto:gave-trudge.0w@icloud.com"
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 ml-1">
-                    gave-trudge.0w@icloud.com
+                    harry@leaper.one
                   </a>
                 </li>
                 <li className="flex items-center">
                   <span className="text-xl mr-2">🐙</span>
                   GitHub:{' '}
                   <a
-                    href="https://github.com/cunoe"
+                    href="https://github.com/harryisfish"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 ml-1">
-                    https://github.com/cunoe
+                    https://github.com/harryisfish
                   </a>
                 </li>
               </ul>
