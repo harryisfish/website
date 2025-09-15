@@ -14,6 +14,7 @@ Allow: /*.ico$
 
 # 主要页面
 Allow: /blog
+Allow: /about
 Allow: /links
 Allow: /code
 
