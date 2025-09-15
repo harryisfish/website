@@ -28,7 +28,6 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5分钟缓存
 function getCachedData<T>(key: string): T | null {
   const cached = cache.get(key);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-    console.log(`[Cache] 命中缓存: ${key}`);
     return cached.data;
   }
   return null;
@@ -36,7 +35,6 @@ function getCachedData<T>(key: string): T | null {
 
 function setCachedData<T>(key: string, data: T): void {
   cache.set(key, { data, timestamp: Date.now() });
-  console.log(`[Cache] 设置缓存: ${key}`);
 }
 
 // 博客文章类型定义
@@ -56,8 +54,6 @@ export interface NotionBlog {
 
 // 从 Notion 页面对象转换为博客对象
 export function transformNotionPageToBlog(page: any): NotionBlog {
-  console.log(`[NotionTransform] 开始转换页面: ${page.id}`);
-
   const properties = page.properties;
 
   // 处理分类 - Categories 是 select 类型，不是 multi_select
@@ -77,8 +73,6 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     status: properties.Status?.status?.name || '构思中',
   };
 
-  console.log(`[NotionTransform] 转换完成: ${blog.title} (${blog.status})`);
-
   return blog;
 }
 
@@ -94,9 +88,6 @@ export async function getPaginatedBlogs(
   pageSize: number = 10,
   startCursor?: string,
 ): Promise<PaginatedResult<NotionBlog>> {
-  console.log(`[NotionQuery] 开始分页查询，页面大小: ${pageSize}, 起始游标: ${startCursor || '无'}`);
-  const startTime = Date.now();
-
   try {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
@@ -116,12 +107,7 @@ export async function getPaginatedBlogs(
       start_cursor: startCursor,
     });
 
-    const duration = Date.now() - startTime;
-    console.log(`[NotionQuery] 数据库查询完成，耗时: ${duration}ms, 结果数量: ${response.results.length}`);
-
     const blogs = response.results.map(transformNotionPageToBlog);
-
-    console.log(`[NotionQuery] 分页结果: 当前页 ${blogs.length} 篇，还有更多: ${response.has_more}`);
 
     return {
       data: blogs,
@@ -129,8 +115,7 @@ export async function getPaginatedBlogs(
       hasMore: response.has_more,
     };
   } catch (error) {
-    const duration = Date.now() - startTime;
-    console.error(`[NotionQuery] 分页查询失败，耗时: ${duration}ms`, {
+    console.error(`[NotionQuery] 分页查询失败`, {
       error: error instanceof Error ? error.message : String(error),
       pageSize,
       startCursor,
@@ -142,49 +127,32 @@ export async function getPaginatedBlogs(
 
 // 获取所有博客（用于计算总数和静态生成）
 export async function getAllBlogs(): Promise<NotionBlog[]> {
-  console.log('[NotionGetAll] 开始获取所有博客');
-  const startTime = Date.now();
   const allBlogs: NotionBlog[] = [];
   let hasMore = true;
   let startCursor: string | undefined;
-  let pageCount = 0;
 
   while (hasMore) {
-    pageCount++;
-    console.log(`[NotionGetAll] 获取第 ${pageCount} 页博客`);
-
     const result = await getPaginatedBlogs(100, startCursor);
     allBlogs.push(...result.data);
     hasMore = result.hasMore;
     startCursor = result.nextCursor || undefined;
-
-    console.log(`[NotionGetAll] 第 ${pageCount} 页完成，当前总数: ${allBlogs.length}`);
   }
-
-  const duration = Date.now() - startTime;
-  console.log(`[NotionGetAll] 获取所有博客完成，总计: ${allBlogs.length} 篇，分 ${pageCount} 页，耗时: ${duration}ms`);
 
   return allBlogs;
 }
 
 // 读取页面 blocks 并转成简单 Markdown（覆盖常见块：heading/paragraph/bulleted/numbered/quote/code/divider）
 export async function getPageMarkdown(pageId: string): Promise<string> {
-  console.log(`[NotionMarkdown] 开始获取页面 Markdown: ${pageId}`);
-  const startTime = Date.now();
-
   // 检查缓存
   const cacheKey = `markdown:${pageId}`;
   const cachedData = getCachedData<string>(cacheKey);
   if (cachedData) {
-    const duration = Date.now() - startTime;
-    console.log(`[NotionMarkdown] Markdown 从缓存获取完成，耗时: ${duration}ms`);
     return cachedData;
   }
 
   const lines: string[] = [];
   let startCursor: string | undefined;
   let hasMore = true;
-  let blockCount = 0;
 
   try {
     while (hasMore) {
@@ -201,10 +169,7 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 
       const res = await Promise.race([blocksPromise, timeoutPromise]) as any;
 
-      console.log(`[NotionMarkdown] 获取到 ${res.results.length} 个 blocks`);
-
       for (const block of res.results as any[]) {
-        blockCount++;
         const type = block.type as string;
         const b: any = block[type];
         const textArray = b?.rich_text as any[] | undefined;
@@ -253,27 +218,20 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
       startCursor = (res.next_cursor as string | null) || undefined;
     }
 
-    const duration = Date.now() - startTime;
     const markdown = lines.join('\n\n');
     
     // 缓存结果
     setCachedData(cacheKey, markdown);
-    
-    console.log(
-      `[NotionMarkdown] Markdown 转换完成，处理了 ${blockCount} 个 blocks，生成 ${markdown.length} 字符，耗时: ${duration}ms`,
-    );
 
     return markdown;
   } catch (error) {
-    const duration = Date.now() - startTime;
-    console.error(`[NotionMarkdown] Markdown 获取失败，耗时: ${duration}ms`, {
+    console.error(`[NotionMarkdown] Markdown 获取失败`, {
       error: error instanceof Error ? error.message : String(error),
       pageId,
     });
     
     // 如果是超时错误，返回已获取的部分内容
     if (error instanceof Error && error.message.includes('超时')) {
-      console.warn(`[NotionMarkdown] 超时降级，返回已获取的 ${lines.length} 行内容`);
       return lines.join('\n\n');
     }
     
@@ -283,19 +241,13 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 
 // 使用 notion-client 获取完整的 recordMap，用于 react-notion-x 渲染
 export async function getPageRecordMap(pageId: string) {
-  console.log(`[NotionRecordMap] 开始获取页面 RecordMap: ${pageId}`);
-  const startTime = Date.now();
-
   try {
     const cleanId = pageId.replace(/-/g, '');
-    console.log(`[NotionRecordMap] 清理后的页面ID: ${cleanId}`);
 
     // 检查缓存
     const cacheKey = `recordmap:${cleanId}`;
     const cachedData = getCachedData(cacheKey);
     if (cachedData) {
-      const duration = Date.now() - startTime;
-      console.log(`[NotionRecordMap] RecordMap 从缓存获取完成，耗时: ${duration}ms`);
       return cachedData;
     }
 
@@ -311,13 +263,9 @@ export async function getPageRecordMap(pageId: string) {
     // 缓存结果
     setCachedData(cacheKey, recordMap);
 
-    const duration = Date.now() - startTime;
-    console.log(`[NotionRecordMap] RecordMap 获取完成，耗时: ${duration}ms`);
-
     return recordMap;
   } catch (error) {
-    const duration = Date.now() - startTime;
-    console.error(`[NotionRecordMap] RecordMap 获取失败，耗时: ${duration}ms`, {
+    console.error(`[NotionRecordMap] RecordMap 获取失败`, {
       error: error instanceof Error ? error.message : String(error),
       pageId,
       cleanId: pageId.replace(/-/g, ''),
@@ -325,7 +273,6 @@ export async function getPageRecordMap(pageId: string) {
     
     // 如果是超时错误，返回一个空的recordMap而不是抛出错误
     if (error instanceof Error && error.message.includes('超时')) {
-      console.warn(`[NotionRecordMap] 超时降级，返回空RecordMap`);
       return {
         block: {},
         collection: {},

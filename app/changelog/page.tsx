@@ -28,44 +28,11 @@ export default async function BlogListPage() {
 }
 
 async function BlogList() {
-  console.log('[ChangelogPage] 开始获取博客列表');
-  const startTime = Date.now();
-  
   try {
-    // 获取所有博客
-    console.log('[ChangelogPage] 调用 getAllBlogs() 获取所有博客');
     const allBlogs = await getAllBlogs();
-    
-    const duration = Date.now() - startTime;
-    console.log(`[ChangelogPage] 成功获取 ${allBlogs.length} 篇博客，耗时: ${duration}ms`);
-    
-    // 记录博客基本信息用于调试
-    if (allBlogs.length > 0) {
-      console.log('[ChangelogPage] 博客列表预览:', {
-        total: allBlogs.length,
-        firstBlog: {
-          id: allBlogs[0].id,
-          title: allBlogs[0].title,
-          urlname: allBlogs[0].urlname,
-          status: allBlogs[0].status,
-          created_at: allBlogs[0].created_at
-        },
-        lastBlog: {
-          id: allBlogs[allBlogs.length - 1].id,
-          title: allBlogs[allBlogs.length - 1].title,
-          urlname: allBlogs[allBlogs.length - 1].urlname,
-          status: allBlogs[allBlogs.length - 1].status,
-          created_at: allBlogs[allBlogs.length - 1].created_at
-        }
-      });
-    } else {
-      console.log('[ChangelogPage] 警告: 没有获取到任何博客');
-    }
-    
     return <BlogTimeline blogs={allBlogs} />;
   } catch (error) {
-    const duration = Date.now() - startTime;
-    console.error(`[ChangelogPage] 获取博客失败，耗时: ${duration}ms`, {
+    console.error(`[ChangelogPage] 获取博客失败`, {
       error: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined,
       timestamp: new Date().toISOString()
