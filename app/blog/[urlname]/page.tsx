@@ -30,10 +30,9 @@ export async function generateStaticParams() {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: 'Status',
-        // Status 是 Notion 的"状态"类型
-        status: {
-          equals: '已发布',
+        property: 'draft',
+        checkbox: {
+          equals: false,
         },
       },
       page_size: 100,
@@ -72,9 +71,9 @@ async function BlogContent({ urlname }: { urlname: string }) {
             },
           },
           {
-            property: 'Status',
-            status: {
-              equals: '已发布',
+            property: 'draft',
+            checkbox: {
+              equals: false,
             },
           },
         ],
@@ -143,9 +142,9 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
             },
           },
           {
-            property: 'Status',
-            status: {
-              equals: '已发布',
+            property: 'draft',
+            checkbox: {
+              equals: false,
             },
           },
         ],

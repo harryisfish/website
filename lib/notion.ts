@@ -66,11 +66,11 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     urlname: properties.URLName?.rich_text?.[0]?.plain_text || '',
     categories: categories,
     tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) || [],
-    hide: properties.Status?.status?.name !== '已发布',
+    hide: properties.draft?.checkbox === true,
     created_at: properties.CreatedAt?.date?.start || page.created_time,
     updated_at: page.last_edited_time,
     digest: properties.Digest?.rich_text?.[0]?.plain_text || '',
-    status: properties.Status?.status?.name || '构思中',
+    status: properties.draft?.checkbox === true ? '草稿' : '已发布',
   };
 
   return blog;
@@ -92,9 +92,9 @@ export async function getPaginatedBlogs(
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: 'Status',
-        status: {
-          equals: '已发布',
+        property: 'draft',
+        checkbox: {
+          equals: false,
         },
       },
       sorts: [

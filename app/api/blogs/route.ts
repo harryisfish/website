@@ -10,9 +10,9 @@ export async function GET(request: Request) {
     const response = await notion.databases.query({
       database_id: NOTION_DATABASE_ID,
       filter: {
-        property: 'Status',
-        select: {
-          equals: '已发布', // 只显示已发布状态的文章
+        property: 'draft',
+        checkbox: {
+          equals: false, // 只显示非草稿状态的文章
         },
       },
       sorts: [
