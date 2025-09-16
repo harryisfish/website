@@ -20,7 +20,7 @@ interface Blog {
   created_at: string;
   updated_at: string;
   digest?: string;
-  status?: string;
+  draft: boolean;
 }
 
 interface NotionContentProps {

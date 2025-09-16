@@ -9,5 +9,5 @@ export interface Blog {
   tags: string[];
   hide: boolean;
   digest?: string;
-  status?: string;
+  draft: boolean;
 }

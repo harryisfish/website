@@ -49,7 +49,7 @@ export interface NotionBlog {
   created_at: string;
   updated_at: string;
   digest?: string;
-  status?: string;
+  draft: boolean;
 }
 
 // 从 Notion 页面对象转换为博客对象
@@ -70,7 +70,7 @@ export function transformNotionPageToBlog(page: any): NotionBlog {
     created_at: properties.CreatedAt?.date?.start || page.created_time,
     updated_at: page.last_edited_time,
     digest: properties.Digest?.rich_text?.[0]?.plain_text || '',
-    status: properties.draft?.checkbox === true ? '草稿' : '已发布',
+    draft: properties.draft?.checkbox === true,
   };
 
   return blog;
