@@ -13,7 +13,7 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { Link as LinkIcon, Mail, Github, Sun, Moon, Logs } from 'lucide-react';
+import { Link as LinkIcon, Mail, Github, Sun, Moon, Logs, Twitter } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
@@ -87,6 +87,12 @@ export default function Header() {
             className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
             <Github className="h-5 w-5" />
           </Link>
+          <Link
+            href="https://twitter.com/harry_is_fish"
+            target="_blank"
+            className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
+            <Twitter className="h-5 w-5" />
+          </Link>
           <button
             onClick={toggleTheme}
             className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
@@ -137,6 +143,12 @@ export default function Header() {
               target="_blank"
               className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
               <Github className="h-5 w-5" />
+            </Link>
+            <Link
+              href="https://twitter.com/harry_is_fish"
+              target="_blank"
+              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
+              <Twitter className="h-5 w-5" />
             </Link>
             <button
               onClick={toggleTheme}
