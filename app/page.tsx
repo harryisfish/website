@@ -4,6 +4,7 @@ import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -60,17 +61,21 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
                     className="flex flex-col sm:flex-row gap-4">
-            <Button 
-              size="lg" 
-                      className="text-lg px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-              View My Work
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-                      className="text-lg px-8 py-3 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 shadow-lg hover:shadow-xl transition-all duration-300">
-              Get In Touch
-            </Button>
+            <Link href="/blog">
+              <Button 
+                size="lg" 
+                        className="text-lg px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+                Blog
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                        className="text-lg px-8 py-3 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 shadow-lg hover:shadow-xl transition-all duration-300">
+                About
+              </Button>
+            </Link>
                   </MotionDiv>
                 </div>
           </MotionDiv>
