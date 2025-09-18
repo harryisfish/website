@@ -1,5 +1,5 @@
 {
-    "name": "dev-harry-website",
+    "name": "website",
     "build": {
       "dockerfile": "Dockerfile"
     },
