@@ -13,7 +13,7 @@ import {
   Image,
 } from '@heroui/react';
 import Link from 'next/link';
-import { Link as LinkIcon, Mail, Github, Sun, Moon, Logs, Twitter } from 'lucide-react';
+import { Link as LinkIcon, Mail, Github, Sun, Moon, Twitter, Home, User } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
@@ -55,13 +55,21 @@ export default function Header() {
         justify="center">
         <NavbarItem>
           <Link
-            href="/blog"
+            href="/"
             className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <Logs className="size-4" />
-            Blog
+            <Home className="size-4" />
+            Home
           </Link>
         </NavbarItem>
 
+        <NavbarItem>
+          <Link
+            href="/about"
+            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <User className="size-4" />
+            About
+          </Link>
+        </NavbarItem>
 
         <NavbarItem>
           <Link
@@ -112,13 +120,23 @@ export default function Header() {
           <HeroLink
             className="w-auto"
             color="foreground"
-            href="/blog"
+            href="/"
             size="lg">
-            <Logs className="mr-2 size-4" />
-            Blog
+            <Home className="mr-2 size-4" />
+            Home
           </HeroLink>
         </NavbarMenuItem>
 
+        <NavbarMenuItem className="flex justify-end">
+          <HeroLink
+            className="w-auto"
+            color="foreground"
+            href="/about"
+            size="lg">
+            <User className="mr-2 size-4" />
+            About
+          </HeroLink>
+        </NavbarMenuItem>
 
         <NavbarMenuItem className="flex justify-end">
           <HeroLink
