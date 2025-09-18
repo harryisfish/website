@@ -222,14 +222,26 @@ const LinksPage: React.FC = () => {
 
 const friendLinks: LinkCategory[] = [
   {
-    class_name: 'Friend Links',
-    class_desc: 'People and stories',
+    class_name: 'MY MATE',
+    class_desc: 'Close friends and companions',
     link_list: [
       {
         name: 'Cunky',
         link: 'https://www.cunoe.com/',
         avatar: 'https://s3.cunoe.com/files/web-icon.png',
         descr: 'Journey of a pigeon exploring the world',
+      },
+    ],
+  },
+  {
+    class_name: 'Friend Links',
+    class_desc: 'People and stories',
+    link_list: [
+      {
+        name: '夜游船',
+        link: 'https://www.yeyouchuan.me/',
+        avatar: 'https://www.yeyouchuan.me/favicon.ico',
+        descr: 'ACG and music enthusiast, sci-fi reader, and creative soul',
       },
     ],
   },
@@ -255,12 +267,6 @@ const friendLinks: LinkCategory[] = [
     class_name: 'Other Links',
     class_desc: 'Take off~',
     link_list: [
-      {
-        name: 'Harry GitHub',
-        link: 'https://github.com/harryisfish/',
-        avatar: 'https://avatars.githubusercontent.com/u/90205430',
-        descr: 'My GitHub',
-      },
       {
         name: '2SOMEren',
         link: 'https://2some.ren/',
