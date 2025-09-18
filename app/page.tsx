@@ -22,7 +22,7 @@ export default function Home() {
       transition={{ duration: 1 }}>
       <div className="relative min-h-screen">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-black dark:to-gray-800">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-background dark:via-background dark:to-background">
           <div 
             className="absolute inset-0 opacity-30 dark:opacity-20"
             style={{
@@ -52,7 +52,7 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="sticky top-8">
-                <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                <div className="bg-white/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
                   {/* Profile Image */}
                   <div className="flex justify-center mb-6">
                     <div className="relative">
@@ -62,7 +62,7 @@ export default function Home() {
                         alt="Harry"
                         width={120}
                         height={120}
-                        className="relative rounded-full border-4 border-white dark:border-gray-800 shadow-xl"
+                        className="relative rounded-full border-4 border-white dark:border-background shadow-xl"
                       />
                     </div>
                   </div>

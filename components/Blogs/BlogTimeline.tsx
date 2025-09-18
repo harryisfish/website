@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { format } from 'date-fns';
 import { Blog } from '@/types/blog';
-import { MotionDiv, MotionH2, MotionH3, MotionP, MotionA } from '@/components/ui/motion';
+import { MotionDiv, MotionH3, MotionP, MotionA } from '@/components/ui/motion';
 import { Variants, useScroll, useTransform, motion } from 'motion/react';
 
 interface BlogTimelineProps {
@@ -61,42 +61,12 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
 
   return (
     <div className="w-full" style={{ fontFamily: "'LXGW Bright', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
-      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+      <div className="bg-white/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
         <div
           className="w-full md:px-10"
           style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
           ref={containerRef}
         >
-          <div className="max-w-7xl mx-auto py-10 px-4 md:px-8 lg:px-10">
-            <MotionH2 
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-2xl md:text-5xl text-black dark:text-white max-w-4xl font-bold" 
-              style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-            >
-              Blog from my journey
-            </MotionH2>
-            {(() => {
-              const startYear = 2017;
-              const currentYear = new Date().getFullYear();
-              const years = currentYear - startYear;
-              return (
-                <MotionP
-                  initial={{ opacity: 0, y: -50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold"
-                  style={{
-                    fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-                  }}
-                >
-                  My blog began {years} years ago, and every step since has been a line in this unfolding journey.
-                </MotionP>
-              );
-            })()}
-          </div>
-
           <MotionDiv 
             ref={ref} 
             className="relative max-w-7xl mx-auto pb-20"
@@ -114,7 +84,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                   variants={fadeInUp}
                 >
                   <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start w-24 md:w-32">
-                    <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
+                    <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-background flex items-center justify-center">
                       <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
                     </div>
                     <MotionH3 
