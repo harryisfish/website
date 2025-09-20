@@ -240,7 +240,7 @@ const friendLinks: LinkCategory[] = [
       {
         name: '夜游船',
         link: 'https://www.yeyouchuan.me/',
-        avatar: 'https://www.yeyouchuan.me/favicon.ico',
+        avatar: 'https://tc-new.z.wiki/autoupload/f/coF0XJNJZ7Q6uYCWoMduOpmesdO83n0jJRcmVXjsIsc/20250919/5xz8/1185X1026/21EDDBB7C852D4C1904F5ADE07130D96.jpg/webp',
         descr: 'ACG and music enthusiast, sci-fi reader, and creative soul',
       },
     ],
