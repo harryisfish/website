@@ -6,7 +6,7 @@ import { getAllBlogs } from '@/lib/notion';
 import { MotionDiv } from '@/components/ui/motion';
 
 export const metadata: Metadata = {
-  title: 'Blog | Cunoe',
+  title: 'Blog | Harry',
   description: 'A journey through time, documenting the evolution of thoughts, projects, and digital adventures.',
 };
 

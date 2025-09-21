@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { AnimatePresence, Variants } from 'motion/react';
-import { useOutsideClick } from '@/hooks/use-outside-click';
+import { Variants } from 'motion/react';
 import { MotionA, MotionDiv, MotionH1, MotionH3, MotionP, MotionUl } from '@/components/ui/motion';
 
 interface Link {
@@ -34,10 +33,11 @@ const stagger: Variants = {
   },
 };
 
-const LinkCard: React.FC<Link & { onClick: () => void }> = ({ name, avatar, descr, onClick }) => (
-  <MotionDiv
-    layoutId={`card-${name}`}
-    onClick={onClick}
+const LinkCard: React.FC<Link> = ({ name, link, avatar, descr }) => (
+  <MotionA
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
     className="p-3 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors duration-200"
     variants={fadeInUp}>
     <div className="flex flex-col w-full">
@@ -66,76 +66,11 @@ const LinkCard: React.FC<Link & { onClick: () => void }> = ({ name, avatar, desc
         </MotionP>
       </div>
     </div>
-  </MotionDiv>
+  </MotionA>
 );
 
-const ExpandedCard: React.FC<Link & { onClose: () => void }> = ({ name, link, avatar, descr, content, onClose }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useOutsideClick(ref, onClose);
-
-  return (
-    <div className="fixed inset-0 grid place-items-center z-[100]">
-      <MotionDiv
-        layoutId={`card-${name}`}
-        ref={ref}
-        className="w-full max-w-[400px] h-fit max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-lg">
-        <MotionDiv
-          layoutId={`image-${name}`}
-          className="p-4 flex justify-center">
-          <Image
-            priority
-            width={100}
-            height={100}
-            src={avatar}
-            alt={name}
-            className="w-24 h-24 rounded-full object-cover"
-          />
-        </MotionDiv>
-        <div className="px-4 pb-4">
-          <MotionH3
-            layoutId={`title-${name}`}
-            className="font-medium text-neutral-700 dark:text-neutral-200 text-lg text-center"
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
-            {name}
-          </MotionH3>
-          <MotionP
-            layoutId={`description-${descr}`}
-            className="text-neutral-600 dark:text-neutral-400 text-sm text-center mt-1">
-            {descr}
-          </MotionP>
-          <MotionA
-            layout
-            href={link}
-            target="_blank"
-            className="mt-4 block w-full px-4 py-2 text-sm rounded-full font-bold bg-blue-500 text-white text-center"
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
-            访问
-          </MotionA>
-        </div>
-        {content && (
-          <div className="px-4 pb-4">
-            <MotionDiv
-              layout
-              className="text-neutral-600 dark:text-neutral-400 text-sm max-h-40 overflow-y-auto">
-              {content}
-            </MotionDiv>
-          </div>
-        )}
-      </MotionDiv>
-    </div>
-  );
-};
 
 const LinksPage: React.FC = () => {
-  const [active, setActive] = useState<Link | null>(null);
-
-  useEffect(() => {
-    if (active) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [active]);
 
   return (
     <div className="min-h-screen" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
@@ -164,24 +99,6 @@ const LinksPage: React.FC = () => {
         initial="initial"
         animate="animate"
         variants={stagger}>
-        <AnimatePresence>
-          {active && (
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 h-full w-full z-10"
-            />
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {active && (
-            <ExpandedCard
-              {...active}
-              onClose={() => setActive(null)}
-            />
-          )}
-        </AnimatePresence>
         <MotionDiv
           className="space-y-6"
           variants={stagger}>
@@ -208,7 +125,6 @@ const LinksPage: React.FC = () => {
                   <LinkCard
                     key={linkIndex}
                     {...link}
-                    onClick={() => setActive(link)}
                   />
                 ))}
               </MotionUl>

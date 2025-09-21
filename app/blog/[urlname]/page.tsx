@@ -175,7 +175,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
     }
 
     const metadata = {
-      title: `${blog.title} | Cunoe Blog`,
+      title: `${blog.title} | Harry Blog`,
       description: blog.digest || fallback,
       keywords: [...blog.categories, ...blog.tags].join(', '),
       openGraph: {

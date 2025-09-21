@@ -27,7 +27,7 @@
 
 ```bash
 git clone <your-repo-url>
-cd cunoe-blog-next
+cd website
 ```
 
 ### 2. 安装依赖
