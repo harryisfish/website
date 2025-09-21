@@ -157,7 +157,7 @@ export default function Header() {
               <Mail className="h-5 w-5" />
             </Link>
             <Link
-              href="https://github.com/cunoe"
+              href="https://github.com/harryisfish"
               target="_blank"
               className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
               <Github className="h-5 w-5" />

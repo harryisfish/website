@@ -1,6 +1,8 @@
 import { MotionDiv, MotionH1, MotionH2, MotionP } from '@/components/ui/motion';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Mail, Github, Twitter, Play } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About | Harry',
@@ -40,9 +42,6 @@ export default function About() {
             <MotionH1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               About Me
             </MotionH1>
-            <MotionP className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A passionate full stack engineer dedicated to building innovative solutions with cutting-edge technologies.
-            </MotionP>
           </MotionDiv>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -62,10 +61,25 @@ export default function About() {
                   problems and make a positive impact.
                 </MotionP>
                 <MotionP className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Currently, I&apos;m focused on building MultiPost, a comprehensive social media management 
-                  platform that helps creators and businesses optimize their content strategy across 
-                  multiple platforms. I&apos;m always eager to collaborate on exciting SaaS projects and 
-                  explore new technologies.
+                  Currently, I&apos;m busy working on two exciting projects: {' '}
+                  <Link
+                    href="https://multipost.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline transition-colors duration-200"
+                  >
+                    MultiPost
+                  </Link>
+                  {' '}and{' '}
+                  <Link
+                    href="https://2some.ren"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline transition-colors duration-200"
+                  >
+                    2SOMEren
+                  </Link>
+                  . MultiPost is a comprehensive social media management platform that helps creators and businesses optimize their content strategy across multiple platforms, while 2SOMEren is a marshmallow tool optimized for streaming. I&apos;m always eager to collaborate on exciting SaaS projects and explore new technologies.
                 </MotionP>
               </div>
             </MotionDiv>
@@ -89,26 +103,159 @@ export default function About() {
             </MotionDiv>
           </div>
 
+          {/* Projects Section */}
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="grid md:grid-cols-3 gap-8"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="mb-20"
           >
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
-              <div className="text-4xl mb-4">🚀</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Current Focus</h3>
-              <p className="text-gray-600 dark:text-gray-300">Building MultiPost and exploring AI/Web3 technologies</p>
+            <MotionH2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              My Projects
+            </MotionH2>
+            <MotionP className="text-lg text-gray-600 dark:text-gray-300 mb-8 text-center max-w-2xl mx-auto">
+              Here are some of the projects I&apos;ve been working on. Each one represents a different aspect of my journey in technology and innovation.
+            </MotionP>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link
+                href="https://fameday.one"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">🎉</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  Fameday
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  A platform for celebrating special moments
+                </p>
+              </Link>
+
+              <Link
+                href="https://multipost.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">📱</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  MultiPost
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  Comprehensive social media management platform
+                </p>
+              </Link>
+
+              <Link
+                href="https://2some.ren"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">🍬</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  2SOMEren
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  Marshmallow tool optimized for streaming
+                </p>
+              </Link>
+
+              <Link
+                href="https://2some.one"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">🌟</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  2SOMEone
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  Another innovative platform in the 2SOME ecosystem
+                </p>
+              </Link>
+
+              <Link
+                href="https://saraclick.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">📊</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  SaraClick
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  A focused studio for strategy and stories—plans, pages, and timing in one place
+                </p>
+              </Link>
+
+              <Link
+                href="https://github.com/leaperone/envx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
+              >
+                <div className="text-2xl mb-3">⚙️</div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  EnvX
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  A neat CLI for envs—versioned, tagged, and synced when you need it
+                </p>
+              </Link>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Mission</h3>
-              <p className="text-gray-600 dark:text-gray-300">Creating innovative SaaS solutions that make a difference</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
-              <div className="text-4xl mb-4">🤝</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Collaboration</h3>
-              <p className="text-gray-600 dark:text-gray-300">Always open to exciting projects and partnerships</p>
+          </MotionDiv>
+
+          {/* Social Media & Contact Section */}
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.8 }}
+            className="text-center"
+          >
+            <MotionH2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+              Let&apos;s Connect
+            </MotionH2>
+            <MotionP className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+              I&apos;m always interested in connecting with fellow developers, entrepreneurs, and anyone passionate about technology. 
+              Feel free to reach out!
+            </MotionP>
+            
+            <div className="flex justify-center space-x-6">
+              <Link
+                href="mailto:product.indents-4d@icloud.com"
+                className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
+              >
+                <Mail className="h-6 w-6" />
+              </Link>
+              <Link
+                href="https://github.com/harryisfish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
+              >
+                <Github className="h-6 w-6" />
+              </Link>
+              <Link
+                href="https://twitter.com/harry_is_fish"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
+              >
+                <Twitter className="h-6 w-6" />
+              </Link>
+              <Link
+                href="https://space.bilibili.com/17005773"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2"
+              >
+                <Play className="h-6 w-6" />
+              </Link>
             </div>
           </MotionDiv>
         </div>
