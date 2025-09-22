@@ -10,9 +10,11 @@ import { getAllBlogs } from '@/lib/notion';
 import Loading from '@/components/Loading';
 
 export const metadata: Metadata = {
-  title: 'Harry - Full Stack Engineer',
-  description: 'A full stack engineer passionate about AI, Web3, and creating innovative SaaS solutions. Currently working on MultiPost and always eager to collaborate on exciting projects.',
+  title: '海鱼Harry',
+  description: 'Working on the AI',
 };
+
+export const revalidate = 600; // 每5分钟重新验证一次缓存
 
 export default function Home() {
   return (
