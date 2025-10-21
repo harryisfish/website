@@ -102,6 +102,75 @@ export default function Home() {
                     </Link>
                   </div>
 
+                  {/* My Projects */}
+                  <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      My Projects
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                      <a 
+                        href="https://fameday.one" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                        FameDay.one
+                      </a>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          One-stop China manufacturing supply chain platform with supplier matching, quote management, and quality control
+                        </p>
+                      </div>
+                      <div>
+                      <a 
+                        href="https://multipost.app" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                        MultiPost.app
+                      </a>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          开源社交媒体发布工具，支持多平台批量发布与数据分析
+                        </p>
+                      </div>
+                      <div>
+                      <a 
+                        href="https://2some.ren" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                        2SOME.ren
+                      </a>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          B站和抖音创作者运营工具，涵盖粉丝管理、弹幕互动与数据分析
+                        </p>
+                      </div>
+                      <div>
+                      <a 
+                        href="https://2some.one" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                        2SOME.one
+                      </a>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          AI中转服务平台，为独立开发者提供AI接口代理、OAuth登录、短链接等工具
+                        </p>
+                      </div>
+                      <div>
+                      <a 
+                        href="https://saraclick.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                        SaraClick.com
+                      </a>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          AI-powered social media marketing tool with intelligent content generation and multi-platform publishing
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Quick Stats */}
                 </div>
               </MotionDiv>
