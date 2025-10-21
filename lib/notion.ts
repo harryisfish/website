@@ -156,9 +156,9 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
 
   try {
     while (hasMore) {
-      // 添加超时控制，每次API调用最多等待3秒
+      // 添加超时控制，每次API调用最多等待5秒
       const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Markdown获取超时')), 3000);
+        setTimeout(() => reject(new Error('Markdown获取超时')), 5000);
       });
 
       const blocksPromise = notion.blocks.children.list({
