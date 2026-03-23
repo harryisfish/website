@@ -110,18 +110,6 @@ export default function Home() {
                     <div className="space-y-4">
                       <div>
                       <a 
-                        href="https://fameday.one" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        FameDay.one
-                      </a>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          One-stop China manufacturing supply chain platform with supplier matching, quote management, and quality control
-                        </p>
-                      </div>
-                      <div>
-                      <a 
                         href="https://multipost.app" 
                         target="_blank" 
                         rel="noopener noreferrer"

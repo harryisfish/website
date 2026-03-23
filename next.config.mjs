@@ -15,6 +15,8 @@ const nextConfig = {
       },
     ],
   },
+  // 允许开发环境的跨域请求
+  allowedDevOrigins: ['127.0.0.1', 'localhost'],
 }
 
 const withMDX = createMDX({

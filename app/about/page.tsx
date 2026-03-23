@@ -119,21 +119,6 @@ export default function About() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Link
-                href="https://fameday.one"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
-              >
-                <div className="text-2xl mb-3">🎉</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Fameday
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  A platform for celebrating special moments
-                </p>
-              </Link>
-
-              <Link
                 href="https://multipost.app"
                 target="_blank"
                 rel="noopener noreferrer"
