@@ -79,7 +79,7 @@ export default function About() {
                   >
                     2SOMEone
                   </Link>
-                  . MultiPost is a comprehensive social media management platform that helps creators and businesses optimize their content strategy across multiple platforms, while 2SOMEone is a marshmallow tool optimized for streaming. I&apos;m always eager to collaborate on exciting SaaS projects and explore new technologies.
+                  . MultiPost is a comprehensive social media management platform that helps creators and businesses optimize their content strategy across multiple platforms, while 2SOMEone is a creator operations tool for Bilibili and Douyin. I&apos;m always eager to collaborate on exciting SaaS projects and explore new technologies.
                 </MotionP>
               </div>
             </MotionDiv>
@@ -144,52 +144,22 @@ export default function About() {
                   2SOMEone
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  Marshmallow tool optimized for streaming
+                  Creator operations tool for Bilibili and Douyin
                 </p>
               </Link>
 
               <Link
-                href="https://2some.one"
+                href="https://leaper.one"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
               >
-                <div className="text-2xl mb-3">🌟</div>
+                <div className="text-2xl mb-3">🚀</div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  2SOMEone
+                  LEAPERone
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  Another innovative platform in the 2SOME ecosystem
-                </p>
-              </Link>
-
-              <Link
-                href="https://saraclick.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
-              >
-                <div className="text-2xl mb-3">📊</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  SaraClick
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  A focused studio for strategy and stories—plans, pages, and timing in one place
-                </p>
-              </Link>
-
-              <Link
-                href="https://github.com/leaperone/envx"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
-              >
-                <div className="text-2xl mb-3">⚙️</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  EnvX
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  A neat CLI for envs—versioned, tagged, and synced when you need it
+                  Unified API gateway with AI models, image generation, and more
                 </p>
               </Link>
             </div>

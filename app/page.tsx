@@ -121,7 +121,7 @@ export default function Home() {
                         </p>
                       </div>
                       <div>
-                      <a 
+                      <a
                         href="https://2some.one"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -133,27 +133,15 @@ export default function Home() {
                         </p>
                       </div>
                       <div>
-                      <a 
-                        href="https://2some.one" 
-                        target="_blank" 
+                      <a
+                        href="https://leaper.one"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        2SOME.one
+                        LEAPERone
                       </a>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          AI中转服务平台，为独立开发者提供AI接口代理、OAuth登录、短链接等工具
-                        </p>
-                      </div>
-                      <div>
-                      <a 
-                        href="https://saraclick.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        SaraClick.com
-                      </a>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          AI-powered social media marketing tool with intelligent content generation and multi-platform publishing
+                          统一API网关，集成AI模型、图像生成等多项服务，支持按量付费
                         </p>
                       </div>
                     </div>
