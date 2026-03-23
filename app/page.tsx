@@ -122,11 +122,11 @@ export default function Home() {
                       </div>
                       <div>
                       <a 
-                        href="https://2some.ren" 
-                        target="_blank" 
+                        href="https://2some.one"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        2SOME.ren
+                        2SOME.one
                       </a>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                           B站和抖音创作者运营工具，涵盖粉丝管理、弹幕互动与数据分析

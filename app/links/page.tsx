@@ -184,9 +184,9 @@ const friendLinks: LinkCategory[] = [
     class_desc: 'Take off~',
     link_list: [
       {
-        name: '2SOMEren',
-        link: 'https://2some.ren/',
-        avatar: 'https://2some.ren/favicon.ico',
+        name: '2SOMEone',
+        link: 'https://2some.one/',
+        avatar: 'https://2some.one/favicon.ico',
         descr: 'Marshmallow tool optimized for streaming',
       },
       {

@@ -72,14 +72,14 @@ export default function About() {
                   </Link>
                   {' '}and{' '}
                   <Link
-                    href="https://2some.ren"
+                    href="https://2some.one"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline transition-colors duration-200"
                   >
-                    2SOMEren
+                    2SOMEone
                   </Link>
-                  . MultiPost is a comprehensive social media management platform that helps creators and businesses optimize their content strategy across multiple platforms, while 2SOMEren is a marshmallow tool optimized for streaming. I&apos;m always eager to collaborate on exciting SaaS projects and explore new technologies.
+                  . MultiPost is a comprehensive social media management platform that helps creators and businesses optimize their content strategy across multiple platforms, while 2SOMEone is a marshmallow tool optimized for streaming. I&apos;m always eager to collaborate on exciting SaaS projects and explore new technologies.
                 </MotionP>
               </div>
             </MotionDiv>
@@ -134,14 +134,14 @@ export default function About() {
               </Link>
 
               <Link
-                href="https://2some.ren"
+                href="https://2some.one"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group"
               >
                 <div className="text-2xl mb-3">🍬</div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  2SOMEren
+                  2SOMEone
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
                   Marshmallow tool optimized for streaming
