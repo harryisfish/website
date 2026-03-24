@@ -160,24 +160,6 @@ const friendLinks: LinkCategory[] = [
     ],
   },
   {
-    class_name: 'Websites',
-    class_desc: 'Sites worth a look',
-    link_list: [
-      {
-        name: 'USTC Open Source Software Mirror',
-        link: 'https://mirrors.ustc.edu.cn/',
-        avatar: 'https://mirrors.ustc.edu.cn/static/img/favicon.png',
-        descr: 'Useful open source mirror site',
-      },
-      {
-        name: 'vcb-studio',
-        link: 'https://vcb-s.com/',
-        avatar: 'https://vcb-s.com/wp-content/customRes/favicon@32.png',
-        descr: 'Blu-ray anime resources',
-      },
-    ],
-  },
-  {
     class_name: 'Other Links',
     class_desc: 'Take off~',
     link_list: [
