@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --webpack",
-    "build": "next build --webpack",
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx,.mjs,.cjs",
     "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx,.mjs,.cjs --fix",
@@ -14,7 +14,7 @@
     "stylelint:fix": "stylelint \"**/*.{css,scss,sass,less}\" --fix",
     "type-check": "tsc --noEmit",
     "prepare": "husky install",
-    "vercel-build": "next build --webpack"
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -70,7 +70,6 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@flydotio/dockerfile": "^0.7.10",
-    "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/react": "19.2.14",
