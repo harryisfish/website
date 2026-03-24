@@ -4,7 +4,7 @@ import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog } from '@/lib/not
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const cursor = searchParams.get('cursor');
-  const limit = parseInt(searchParams.get('limit') || '10');
+  const limit = Math.min(Math.max(parseInt(searchParams.get('limit') || '10') || 10, 1), 100);
 
   try {
     const response = await notion.databases.query({

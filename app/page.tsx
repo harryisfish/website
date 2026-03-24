@@ -1,7 +1,7 @@
 import { MotionDiv, MotionH2, MotionP } from '@/components/ui/motion';
 import { LightPoints } from '@/components/ui/light-points';
 import { Button } from '@/components/ui/button';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Suspense } from 'react';
@@ -109,37 +109,37 @@ export default function Home() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                      <a 
-                        href="https://multipost.app" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        MultiPost.app
-                      </a>
+                        <Link
+                          href="https://multipost.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                          MultiPost.app
+                        </Link>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                           开源社交媒体发布工具，支持多平台批量发布与数据分析
                         </p>
                       </div>
                       <div>
-                      <a
-                        href="https://2some.one"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        2SOME.one
-                      </a>
+                        <Link
+                          href="https://2some.one"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                          2SOME.one
+                        </Link>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                           B站和抖音创作者运营工具，涵盖粉丝管理、弹幕互动与数据分析
                         </p>
                       </div>
                       <div>
-                      <a
-                        href="https://leaper.one"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                        LEAPERone
-                      </a>
+                        <Link
+                          href="https://leaper.one"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                          LEAPERone
+                        </Link>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                           统一API网关，集成AI模型、图像生成等多项服务，支持按量付费
                         </p>

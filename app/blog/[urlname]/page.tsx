@@ -2,9 +2,9 @@ import { notFound } from 'next/navigation';
 import NotionContent from '@/components/Markdown/ContentRender';
 import { notion, NOTION_DATABASE_ID, transformNotionPageToBlog, getPageRecordMap, getPageMarkdown } from '@/lib/notion';
 import { MotionDiv } from '@/components/ui/motion';
-import { Suspense } from 'react';
+import { Suspense, cache } from 'react';
 import Loading from '@/components/Loading';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 interface BlogPageProps {
   params: Promise<{ urlname: string }>;
@@ -12,6 +12,21 @@ interface BlogPageProps {
 
 export const revalidate = 86400; // 每24小时重新验证一次缓存
 export const dynamicParams = true; // 允许动态参数
+
+const getBlogByUrlname = cache(async (urlname: string) => {
+  const response = await notion.databases.query({
+    database_id: NOTION_DATABASE_ID,
+    filter: {
+      and: [
+        { property: 'URLName', rich_text: { equals: urlname } },
+        { property: 'draft', checkbox: { equals: false } },
+      ],
+    },
+    page_size: 1,
+  });
+  if (!response.results.length) return null;
+  return transformNotionPageToBlog(response.results[0]);
+});
 
 // 安全提取 URLName 文本
 function extractURLName(page: unknown): string {
@@ -60,32 +75,11 @@ export default async function BlogPage(props: BlogPageProps) {
 
 async function BlogContent({ urlname }: { urlname: string }) {
   try {
-    const response = await notion.databases.query({
-      database_id: NOTION_DATABASE_ID,
-      filter: {
-        and: [
-          {
-            property: 'URLName',
-            rich_text: {
-              equals: urlname,
-            },
-          },
-          {
-            property: 'draft',
-            checkbox: {
-              equals: false,
-            },
-          },
-        ],
-      },
-      page_size: 1,
-    });
+    const blog = await getBlogByUrlname(urlname);
 
-    if (!response.results.length) {
+    if (!blog) {
       return notFound();
     }
-
-    const blog = transformNotionPageToBlog(response.results[0]);
 
     let recordMap;
     try {
@@ -131,34 +125,13 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
   const params = await props.params;
 
   try {
-    const response = await notion.databases.query({
-      database_id: NOTION_DATABASE_ID,
-      filter: {
-        and: [
-          {
-            property: 'URLName',
-            rich_text: {
-              equals: params.urlname,
-            },
-          },
-          {
-            property: 'draft',
-            checkbox: {
-              equals: false,
-            },
-          },
-        ],
-      },
-      page_size: 1,
-    });
+    const blog = await getBlogByUrlname(params.urlname);
 
-    if (!response.results.length) {
+    if (!blog) {
       return {
         title: 'Blog Not Found',
       };
     }
-
-    const blog = transformNotionPageToBlog(response.results[0]);
 
     // 提取前 160 个字符作为描述（若没有 digest）
     let fallback = '';

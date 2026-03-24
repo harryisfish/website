@@ -61,7 +61,7 @@ export default function About() {
                   problems and make a positive impact.
                 </MotionP>
                 <MotionP className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Currently, I&apos;m busy working on two exciting projects: {' '}
+                  Currently, I&apos;m working on several exciting projects, including{' '}
                   <Link
                     href="https://multipost.app"
                     target="_blank"

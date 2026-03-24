@@ -55,8 +55,7 @@ const LinkCard: React.FC<Link> = ({ name, link, avatar, descr }) => (
       <div className="text-center">
         <MotionH3
           layoutId={`title-${name}`}
-            className="font-medium text-neutral-800 dark:text-neutral-200 text-sm"
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
+            className="font-medium text-neutral-800 dark:text-neutral-200 text-sm">
           {name}
         </MotionH3>
         <MotionP
@@ -70,26 +69,26 @@ const LinkCard: React.FC<Link> = ({ name, link, avatar, descr }) => (
 );
 
 
+const FONT_FAMILY = "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif";
+
 const LinksPage: React.FC = () => {
 
   return (
-    <div className="min-h-screen" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
-      <div className="w-full bg-white dark:bg-neutral-950 md:px-10" style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
+    <div className="min-h-screen" style={{ fontFamily: FONT_FAMILY }}>
+      <div className="w-full bg-white dark:bg-neutral-950 md:px-10">
         <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
           <MotionH1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold"
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
+            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
             Digital Connections
           </MotionH1>
           <MotionP
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold"
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}>
+            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
             A constellation of kindred spirits and digital sanctuaries worth exploring.
           </MotionP>
         </div>
@@ -109,7 +108,6 @@ const LinksPage: React.FC = () => {
               variants={fadeInUp}>
               <MotionH3
                 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
-                style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",  }}
                 variants={fadeInUp}>
                 {category.class_name}
               </MotionH3>
@@ -187,7 +185,7 @@ const friendLinks: LinkCategory[] = [
         name: '2SOMEone',
         link: 'https://2some.one/',
         avatar: 'https://2some.one/favicon.ico',
-        descr: 'Marshmallow tool optimized for streaming',
+        descr: 'Creator operations tool for Bilibili and Douyin',
       },
       {
         name: 'MultiPost',
