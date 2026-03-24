@@ -1,116 +1,171 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Link as LinkIcon, Mail, Github, Sun, Moon, Twitter, Home, User, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
+
+  useEffect(() => setMounted(true), []);
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
+  };
+
+  const navLinkClass = (path: string) =>
+    `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+      isActive(path)
+        ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'
+        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
+    }`;
+
+  const iconBtnClass = 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg p-2 transition-all duration-200';
+
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed inset-x-0 top-0 z-50 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14">
           {/* Brand */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group">
             <Image
               src="/favicon.ico"
               alt="Harry Logo"
-              width={32}
-              height={32}
-              className="rounded-full"
+              width={28}
+              height={28}
+              className="rounded-full ring-2 ring-gray-200 dark:ring-gray-700 group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all duration-200"
             />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold">海鱼Harry</span>
-              <span className="text-xs italic text-gray-500">@harryisfish</span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-sm font-bold text-gray-900 dark:text-white">海鱼Harry</span>
+              <span className="text-[10px] text-gray-400 dark:text-gray-500">@harryisfish</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-1">
             <Link
               href="/"
-              className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <Home className="size-4" />
+              className={navLinkClass('/')}>
+              <Home className="size-3.5" />
               Home
             </Link>
             <Link
               href="/about"
-              className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <User className="size-4" />
+              className={navLinkClass('/about')}>
+              <User className="size-3.5" />
               About
             </Link>
             <Link
               href="/links"
-              className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <LinkIcon className="size-4" />
+              className={navLinkClass('/links')}>
+              <LinkIcon className="size-3.5" />
               Links
             </Link>
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden sm:flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-0.5">
             <Link
               href="mailto:product.indents-4d@icloud.com"
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
-              <Mail className="h-5 w-5" />
+              className={iconBtnClass}>
+              <Mail className="size-4" />
             </Link>
             <Link
               href="https://github.com/harryisfish"
               target="_blank"
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
-              <Github className="h-5 w-5" />
+              className={iconBtnClass}>
+              <Github className="size-4" />
             </Link>
             <Link
               href="https://twitter.com/harry_is_fish"
               target="_blank"
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
-              <Twitter className="h-5 w-5" />
+              className={iconBtnClass}>
+              <Twitter className="size-4" />
             </Link>
+            <div className="w-px h-4 bg-gray-200 dark:bg-gray-700 mx-1" />
             <button
               onClick={toggleTheme}
-              className="flex items-center hover:text-gray-900 dark:hover:text-white transition-colors duration-200 p-2">
-              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              className={`${iconBtnClass} relative overflow-hidden`}>
+              {mounted && (theme === 'dark'
+                ? <Sun className="size-4 text-amber-400" />
+                : <Moon className="size-4" />
+              )}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? '关闭菜单' : '打开菜单'}
-            className="sm:hidden p-2">
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex sm:hidden items-center gap-1">
+            <button
+              onClick={toggleTheme}
+              className={iconBtnClass}>
+              {mounted && (theme === 'dark'
+                ? <Sun className="size-4 text-amber-400" />
+                : <Moon className="size-4" />
+              )}
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? '关闭菜单' : '打开菜单'}
+              className={iconBtnClass}>
+              {isMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-          <div className="px-4 py-3 space-y-2">
-            <Link href="/" className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setIsMenuOpen(false)}>
+        <div className="sm:hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-white/5">
+          <div className="px-4 py-3 space-y-1">
+            <Link
+              href="/"
+              className={`${navLinkClass('/')} w-full py-2.5`}
+              onClick={() => setIsMenuOpen(false)}>
               <Home className="size-4" /> Home
             </Link>
-            <Link href="/about" className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/about"
+              className={`${navLinkClass('/about')} w-full py-2.5`}
+              onClick={() => setIsMenuOpen(false)}>
               <User className="size-4" /> About
             </Link>
-            <Link href="/links" className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/links"
+              className={`${navLinkClass('/links')} w-full py-2.5`}
+              onClick={() => setIsMenuOpen(false)}>
               <LinkIcon className="size-4" /> Links
             </Link>
-            <div className="flex items-center gap-2 pt-2 border-t border-gray-200 dark:border-gray-800">
-              <Link href="mailto:product.indents-4d@icloud.com" className="p-2"><Mail className="h-5 w-5" /></Link>
-              <Link href="https://github.com/harryisfish" target="_blank" className="p-2"><Github className="h-5 w-5" /></Link>
-              <Link href="https://twitter.com/harry_is_fish" target="_blank" className="p-2"><Twitter className="h-5 w-5" /></Link>
-              <button onClick={toggleTheme} className="p-2">
-                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </button>
+            <div className="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-white/5">
+              <Link
+                href="mailto:product.indents-4d@icloud.com"
+                className={iconBtnClass}>
+                <Mail className="size-4" />
+              </Link>
+              <Link
+                href="https://github.com/harryisfish"
+                target="_blank"
+                className={iconBtnClass}>
+                <Github className="size-4" />
+              </Link>
+              <Link
+                href="https://twitter.com/harry_is_fish"
+                target="_blank"
+                className={iconBtnClass}>
+                <Twitter className="size-4" />
+              </Link>
             </div>
           </div>
         </div>

@@ -69,12 +69,10 @@ const LinkCard: React.FC<Link> = ({ name, link, avatar, descr }) => (
 );
 
 
-const FONT_FAMILY = "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif";
-
 const LinksPage: React.FC = () => {
 
   return (
-    <div className="min-h-screen" style={{ fontFamily: FONT_FAMILY }}>
+    <div className="min-h-screen">
       <div className="w-full bg-white dark:bg-neutral-950 md:px-10">
         <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
           <MotionH1

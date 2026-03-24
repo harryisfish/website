@@ -27,13 +27,13 @@ export default function RootLayout({
           href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.css"
         />
       </head>
-      <body style={{ fontFamily: 'LXGW Bright', fontWeight: '400' }}>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           disableTransitionOnChange>
           <Header />
-          <main className="pt-16">{children}</main>
+          <main className="pt-14">{children}</main>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-TXG3G5FQ2N" />
       </body>

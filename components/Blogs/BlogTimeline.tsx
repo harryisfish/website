@@ -60,12 +60,11 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
     .sort((a, b) => b - a);
 
   return (
-    <div className="w-full" style={{ fontFamily: "'LXGW Bright', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}>
+    <div className="w-full">
       <div className="bg-white/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
         <div
           className="w-full md:px-10"
-          style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-          ref={containerRef}
+                   ref={containerRef}
         >
           <MotionDiv 
             ref={ref} 
@@ -89,8 +88,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                     </div>
                     <MotionH3 
                       className="hidden md:block text-lg md:pl-16 md:text-3xl font-bold text-neutral-500 dark:text-neutral-500" 
-                      style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-                      variants={fadeInUp}
+                                           variants={fadeInUp}
                     >
                       {year}
                     </MotionH3>
@@ -99,8 +97,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                   <div className="relative pl-20 pr-4 md:pl-2 w-full">
                     <MotionH3 
                       className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500" 
-                      style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-                      variants={fadeInUp}
+                                           variants={fadeInUp}
                     >
                       {year}
                     </MotionH3>
@@ -112,8 +109,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
         >
           <MotionP 
             className="mb-12 text-lg font-bold text-neutral-800 dark:text-neutral-200" 
-            style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-            variants={fadeInUp}
+                       variants={fadeInUp}
           >
             在 {year} 年，我写了 {yearBlogs.length} 篇文章。
           </MotionP>
@@ -133,15 +129,13 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                 <div>
                   <MotionH3 
                     className="text-xl font-bold text-black dark:text-white group-hover:text-neutral-400 dark:group-hover:text-neutral-500 transition-colors" 
-                    style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-                    variants={fadeInUp}
+                                       variants={fadeInUp}
                   >
                     {blog.title}
                   </MotionH3>
                   <MotionP 
                     className="text-sm font-medium text-neutral-500 dark:text-neutral-500" 
-                    style={{ fontFamily: "'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" }}
-                    variants={fadeInUp}
+                                       variants={fadeInUp}
                   >
                     {format(new Date(blog.created_at), 'MMM d, yyyy')}
                   </MotionP>
