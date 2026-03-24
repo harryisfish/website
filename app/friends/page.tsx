@@ -3,152 +3,127 @@
 import React from 'react';
 import Image from 'next/image';
 import { Variants } from 'motion/react';
-import { MotionA, MotionDiv, MotionH1, MotionH3, MotionP, MotionUl } from '@/components/ui/motion';
+import { MotionA, MotionDiv, MotionH2, MotionP } from '@/components/ui/motion';
+import { ExternalLink } from 'lucide-react';
 
-interface Link {
+interface FriendLink {
   name: string;
   link: string;
   avatar: string;
   descr: string;
-  content?: string;
 }
 
-interface LinkCategory {
-  class_name: string;
-  class_desc: string;
-  link_list: Link[];
+interface FriendCategory {
+  title: string;
+  links: FriendLink[];
 }
 
 const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 20 },
 };
 
 const stagger: Variants = {
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.06,
     },
   },
 };
 
-const LinkCard: React.FC<Link> = ({ name, link, avatar, descr }) => (
+const FriendCard: React.FC<FriendLink> = ({ name, link, avatar, descr }) => (
   <MotionA
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="p-3 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors duration-200"
-    variants={fadeInUp}>
-    <div className="flex flex-col w-full">
-      <MotionDiv
-        layoutId={`image-${name}`}
-        className="mb-2">
-        <Image
-          src={avatar}
-          alt={name}
-          width={64}
-          height={64}
-          className="w-16 h-16 rounded-full object-cover mx-auto"
-        />
-      </MotionDiv>
-      <div className="text-center">
-        <MotionH3
-          layoutId={`title-${name}`}
-            className="font-medium text-neutral-800 dark:text-neutral-200 text-sm">
+    className="flex items-center gap-4 p-4 rounded-xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
+    variants={fadeInUp}
+  >
+    <Image
+      src={avatar}
+      alt={name}
+      width={48}
+      height={48}
+      className="w-12 h-12 rounded-full object-cover ring-2 ring-gray-100 dark:ring-gray-700 group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all shrink-0"
+    />
+    <div className="min-w-0 flex-1">
+      <div className="flex items-center gap-1.5">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
           {name}
-        </MotionH3>
-        <MotionP
-          layoutId={`description-${descr}`}
-          className="text-neutral-600 dark:text-neutral-400 text-xs mt-1 line-clamp-2">
-          {descr}
-        </MotionP>
+        </h3>
+        <ExternalLink className="size-3 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
       </div>
+      <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5 line-clamp-1">
+        {descr}
+      </p>
     </div>
   </MotionA>
 );
 
-
-const LinksPage: React.FC = () => {
-
+const FriendsPage: React.FC = () => {
   return (
     <div className="min-h-screen">
-      <div className="w-full bg-white dark:bg-gray-950 md:px-10">
-        <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-          <MotionH1
-            initial={{ opacity: 0, y: -50 }}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900" />
+
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20">
+          {/* Header */}
+          <MotionDiv
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-2xl md:text-5xl mb-6 text-black dark:text-white max-w-4xl font-bold">
-            Digital Connections
-          </MotionH1>
-          <MotionP
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-sm font-semibold">
-            A constellation of kindred spirits and digital sanctuaries worth exploring.
-          </MotionP>
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <MotionH2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+              Friends
+            </MotionH2>
+            <MotionP className="text-gray-500 dark:text-gray-400 text-base">
+              那些人，那些事。A constellation of kindred spirits worth exploring.
+            </MotionP>
+          </MotionDiv>
+
+          {/* Friend Categories */}
+          <MotionDiv
+            initial="initial"
+            animate="animate"
+            variants={stagger}
+            className="space-y-10"
+          >
+            {friendCategories.map((category, index) => (
+              <MotionDiv
+                key={index}
+                variants={fadeInUp}
+              >
+                <h3 className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-4">
+                  {category.title}
+                </h3>
+                <MotionDiv
+                  className="grid sm:grid-cols-2 gap-3"
+                  variants={stagger}
+                >
+                  {category.links.map((friend, friendIndex) => (
+                    <FriendCard key={friendIndex} {...friend} />
+                  ))}
+                </MotionDiv>
+              </MotionDiv>
+            ))}
+          </MotionDiv>
         </div>
       </div>
-      <MotionDiv
-        className="max-w-6xl mx-auto p-4"
-        initial="initial"
-        animate="animate"
-        variants={stagger}>
-        <MotionDiv
-          className="space-y-6"
-          variants={stagger}>
-          {friendLinks.map((category, index) => (
-            <MotionDiv
-              key={index}
-              className="mb-6"
-              variants={fadeInUp}>
-              <MotionH3
-                className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2"
-                variants={fadeInUp}>
-                {category.class_name}
-              </MotionH3>
-              <MotionP
-                className="text-sm text-gray-500 dark:text-gray-400 mb-3"
-                variants={fadeInUp}>
-                {category.class_desc}
-              </MotionP>
-              <MotionUl
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
-                variants={stagger}>
-                {category.link_list.map((link, linkIndex) => (
-                  <LinkCard
-                    key={linkIndex}
-                    {...link}
-                  />
-                ))}
-              </MotionUl>
-            </MotionDiv>
-          ))}
-        </MotionDiv>
-      </MotionDiv>
     </div>
   );
 };
 
-const friendLinks: LinkCategory[] = [
+const friendCategories: FriendCategory[] = [
   {
-    class_name: 'MY MATE',
-    class_desc: 'Close friends and companions',
-    link_list: [
+    title: 'Close Friends',
+    links: [
       {
         name: 'Cunky',
         link: 'https://www.cunoe.com/',
         avatar: 'https://s3.cunoe.com/files/web-icon.png',
         descr: 'Journey of a pigeon exploring the world',
       },
-    ],
-  },
-  {
-    class_name: 'Friend Links',
-    class_desc: 'People and stories',
-    link_list: [
       {
         name: '夜游船',
         link: 'https://www.yeyouchuan.me/',
@@ -157,24 +132,6 @@ const friendLinks: LinkCategory[] = [
       },
     ],
   },
-  {
-    class_name: 'Other Links',
-    class_desc: 'Take off~',
-    link_list: [
-      {
-        name: '2SOMEone',
-        link: 'https://2some.one/',
-        avatar: 'https://2some.one/favicon.ico',
-        descr: 'Creator operations tool for Bilibili and Douyin',
-      },
-      {
-        name: 'MultiPost',
-        link: 'https://multipost.app/',
-        avatar: 'https://multipost.app/icon.png',
-        descr: 'Simplify your social media workflow',
-      },
-    ],
-  },
 ];
 
-export default LinksPage;
+export default FriendsPage;

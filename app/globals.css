@@ -2,6 +2,8 @@
 
 @config "../tailwind.config.ts";
 
+@custom-variant dark (&:is(.dark *));
+
 /* react-notion-x core styles */
 @import 'react-notion-x/src/styles.css';
 @import 'prismjs/themes/prism.css';
