@@ -1,12 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@heroui/styles";
 
 /* react-notion-x core styles */
 @import 'react-notion-x/src/styles.css';
 /* third-party styles (prism for code, katex for math) */
 @import 'prismjs/themes/prism.css';
 @import 'katex/dist/katex.min.css';
+
+/* Load tailwind.config.ts for v3-style config compatibility */
+@config "../tailwind.config.ts";
 
 @layer base {
   :root {
@@ -72,7 +74,7 @@
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* LXGW Bright 字体定义 */
   @font-face {
     font-family: 'LXGW Bright';
@@ -82,7 +84,7 @@
     font-style: normal;
     font-display: swap;
   }
-  
+
   @font-face {
     font-family: 'LXGW Bright Medium';
     src: url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.woff2') format('woff2'),
@@ -91,7 +93,7 @@
     font-style: normal;
     font-display: swap;
   }
-  
+
   /* 粗体样式 */
   .font-bold,
   b,

@@ -4,7 +4,7 @@ export default {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'],
+        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'config', 'theme', 'source'],
       },
     ],
     'no-invalid-position-at-import-rule': null,

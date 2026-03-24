@@ -3,7 +3,6 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Header from '@/components/Header';
 import * as React from 'react';
-import { HeroUIProvider } from '@heroui/react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
@@ -33,10 +32,8 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="light"
           disableTransitionOnChange>
-          <HeroUIProvider>
-            <Header />
-            <main className="pt-16">{children}</main>
-          </HeroUIProvider>
+          <Header />
+          <main className="pt-16">{children}</main>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-TXG3G5FQ2N" />
       </body>
