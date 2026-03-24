@@ -13,7 +13,7 @@ Harry 的个人网站，基于 Next.js 构建，使用 Notion 作为博客内容
 - **Package Manager**: pnpm (lockfile: `pnpm-lock.yaml`)
 - **Deployment**: Vercel (auto-deploy on push to main)
 - **Analytics**: Google Analytics (`@next/third-parties`)
-- **Bundler**: Webpack (Turbopack has `@config` CSS bug with Tailwind v4)
+- **Bundler**: Turbopack (default in Next.js 16)
 
 ## Project Structure
 ```
@@ -37,8 +37,8 @@ proxy.ts            # 请求代理 (Next.js 16 替代 middleware.ts)
 ```
 
 ## Commands
-- `pnpm dev` - 开发服务器 (绑定 0.0.0.0)
-- `pnpm build` - 构建 (使用 webpack)
+- `pnpm dev` - 开发服务器 (绑定 0.0.0.0, Turbopack)
+- `pnpm build` - 构建 (Turbopack)
 - `pnpm lint` / `pnpm lint:fix` - ESLint
 - `pnpm format` / `pnpm format:check` - Prettier
 - `pnpm stylelint` / `pnpm stylelint:fix` - Stylelint
@@ -54,7 +54,7 @@ proxy.ts            # 请求代理 (Next.js 16 替代 middleware.ts)
 - Git 集成: push 到 `main` 分支自动触发部署
 - Vercel 项目名: `website`
 - 生产 URL: `website-harryisfish.vercel.app`
-- 构建命令: `next build --webpack` (standalone output)
+- 构建命令: `next build` (standalone output, Turbopack)
 - 注意: Vercel 会阻止部署含已知安全漏洞的 Next.js 版本
 
 ## Key Dependencies Notes
@@ -63,8 +63,9 @@ proxy.ts            # 请求代理 (Next.js 16 替代 middleware.ts)
 - `eslint-config-next` 固定在 v15 以兼容 ESLint 8 的 legacy 配置格式
 - `eslint-plugin-tailwindcss` 已移除（与 Tailwind CSS v4 不兼容）
 - HeroUI v3 不再需要 `HeroUIProvider`，使用 CSS 变量和 `@heroui/styles`
-- Tailwind CSS v4 使用 `@import "tailwindcss"` 和 `@tailwindcss/postcss`
+- **不要添加 postcss.config.mjs** — Turbopack 在 pnpm symlink 下无法 spawn PostCSS 工作进程；Tailwind v4 的 `@import` 由 Turbopack 内置 CSS pipeline 原生处理
 
 ## Known Issues / History
+- 2026-03-24: 修复 Turbopack 崩溃，根因是 postcss.config.mjs 存在时 Turbopack spawn 子进程失败，移除后用内置 CSS pipeline
 - 2026-03-24: 升级到 Next.js 16.2.1 + Tailwind CSS v4 + HeroUI v3
 - 2026-03-24: Next.js 从 15.2.4 升级到 15.5.14，修复 CVE-2025-66478 安全漏洞
