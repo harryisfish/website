@@ -19,7 +19,7 @@ export default function BlogPage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}>
       <div>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-20">
           <Suspense fallback={<Loading />}>
             <BlogList />
           </Suspense>

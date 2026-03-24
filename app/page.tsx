@@ -22,7 +22,7 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}>
       <div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
           {/* Hero */}
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
