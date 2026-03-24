@@ -20,16 +20,16 @@ async function getPages(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: 'https://harryis.fish/links',
+      url: 'https://harryis.fish/blog',
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://harryis.fish/about',
+      url: 'https://harryis.fish/friends',
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.5,
     },
   ];
 }

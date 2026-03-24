@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Link as LinkIcon, Mail, Github, Sun, Moon, Twitter, Home, User, Menu, X } from 'lucide-react';
+import { Mail, Github, Sun, Moon, Twitter, Home, Notebook, Users, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function Header() {
@@ -63,16 +63,16 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="/about"
-              className={navLinkClass('/about')}>
-              <User className="size-3.5" />
-              About
+              href="/blog"
+              className={navLinkClass('/blog')}>
+              <Notebook className="size-3.5" />
+              Blog
             </Link>
             <Link
-              href="/links"
-              className={navLinkClass('/links')}>
-              <LinkIcon className="size-3.5" />
-              Links
+              href="/friends"
+              className={navLinkClass('/friends')}>
+              <Users className="size-3.5" />
+              Friends
             </Link>
           </div>
 
@@ -137,16 +137,16 @@ export default function Header() {
               <Home className="size-4" /> Home
             </Link>
             <Link
-              href="/about"
-              className={`${navLinkClass('/about')} w-full py-2.5`}
+              href="/blog"
+              className={`${navLinkClass('/blog')} w-full py-2.5`}
               onClick={() => setIsMenuOpen(false)}>
-              <User className="size-4" /> About
+              <Notebook className="size-4" /> Blog
             </Link>
             <Link
-              href="/links"
-              className={`${navLinkClass('/links')} w-full py-2.5`}
+              href="/friends"
+              className={`${navLinkClass('/friends')} w-full py-2.5`}
               onClick={() => setIsMenuOpen(false)}>
-              <LinkIcon className="size-4" /> Links
+              <Users className="size-4" /> Friends
             </Link>
             <div className="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-white/5">
               <Link
