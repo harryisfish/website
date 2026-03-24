@@ -33,7 +33,7 @@ export default function RootLayout({
           defaultTheme="light"
           disableTransitionOnChange>
           <Header />
-          <main className="pt-14">{children}</main>
+          <main className="pt-14 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900">{children}</main>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-TXG3G5FQ2N" />
       </body>

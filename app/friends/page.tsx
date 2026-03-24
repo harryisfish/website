@@ -62,11 +62,9 @@ const FriendCard: React.FC<FriendLink> = ({ name, link, avatar, descr }) => (
 
 const FriendsPage: React.FC = () => {
   return (
-    <div className="min-h-screen">
-      <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900" />
-
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20">
+    <div>
+      <div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-16 pb-20">
           {/* Header */}
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}

@@ -18,10 +18,8 @@ export default function BlogPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}>
-      <div className="relative min-h-screen">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900" />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
           <Suspense fallback={<Loading />}>
             <BlogList />
           </Suspense>

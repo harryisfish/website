@@ -21,22 +21,8 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}>
-      <div className="relative min-h-screen">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900">
-          <div
-            className="absolute inset-0 opacity-30 dark:opacity-10"
-            style={{
-              backgroundImage: 'url(/background.svg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+      <div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Hero */}
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
