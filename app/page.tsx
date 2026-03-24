@@ -54,7 +54,7 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 className="sticky top-8">
-                <div className="bg-white/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-800">
                   {/* Profile Image */}
                   <div className="flex justify-center mb-6">
                     <div className="relative">

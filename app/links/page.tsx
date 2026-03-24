@@ -73,7 +73,7 @@ const LinksPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="w-full bg-white dark:bg-neutral-950 md:px-10">
+      <div className="w-full bg-white dark:bg-gray-950 md:px-10">
         <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
           <MotionH1
             initial={{ opacity: 0, y: -50 }}

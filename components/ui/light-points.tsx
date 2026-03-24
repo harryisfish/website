@@ -28,7 +28,7 @@ export const LightPoints = ({
   return (
     <div
       className={cn(
-        "relative bg-white dark:bg-black w-full group",
+        "relative bg-transparent dark:bg-transparent w-full group",
         className
       )}
       onMouseMove={handleMouseMove}

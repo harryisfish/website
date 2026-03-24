@@ -61,7 +61,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
 
   return (
     <div className="w-full">
-      <div className="bg-white/80 dark:bg-background/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-800">
         <div
           className="w-full md:px-10"
                    ref={containerRef}
@@ -87,7 +87,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                       <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
                     </div>
                     <MotionH3 
-                      className="hidden md:block text-lg md:pl-16 md:text-3xl font-bold text-neutral-500 dark:text-neutral-500" 
+                      className="hidden md:block text-lg md:pl-16 md:text-3xl font-bold text-neutral-400 dark:text-neutral-500" 
                                            variants={fadeInUp}
                     >
                       {year}
@@ -96,7 +96,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
 
                   <div className="relative pl-20 pr-4 md:pl-2 w-full">
                     <MotionH3 
-                      className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500" 
+                      className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-400 dark:text-neutral-500" 
                                            variants={fadeInUp}
                     >
                       {year}
@@ -134,7 +134,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                     {blog.title}
                   </MotionH3>
                   <MotionP 
-                    className="text-sm font-medium text-neutral-500 dark:text-neutral-500" 
+                    className="text-sm font-medium text-neutral-400 dark:text-neutral-500" 
                                        variants={fadeInUp}
                   >
                     {format(new Date(blog.created_at), 'MMM d, yyyy')}
