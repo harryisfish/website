@@ -1,13 +1,11 @@
-@import "@heroui/styles";
+@import "tailwindcss";
+
+@config "../tailwind.config.ts";
 
 /* react-notion-x core styles */
 @import 'react-notion-x/src/styles.css';
-/* third-party styles (prism for code, katex for math) */
 @import 'prismjs/themes/prism.css';
 @import 'katex/dist/katex.min.css';
-
-/* Load tailwind.config.ts for v3-style config compatibility */
-@config "../tailwind.config.ts";
 
 @layer base {
   :root {
@@ -74,7 +72,6 @@
     @apply bg-background text-foreground;
   }
 
-  /* LXGW Bright 字体定义 */
   @font-face {
     font-family: 'LXGW Bright';
     src: url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.woff2') format('woff2'),
@@ -93,10 +90,8 @@
     font-display: swap;
   }
 
-  /* 粗体样式 */
   .font-bold,
-  b,
-  strong,
+  b, strong,
   h1, h2, h3, h4, h5, h6 {
     font-family: 'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
