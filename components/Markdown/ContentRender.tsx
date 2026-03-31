@@ -2,12 +2,18 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { NotionRenderer } from 'react-notion-x';
 import { format } from 'date-fns';
 import ImageBlock from './ImageBlock';
 import { CodeBlock } from '../ui/code-block';
+
+// react-notion-x 第三方组件（懒加载）
+const Equation = dynamic(() =>
+  import('react-notion-x/build/third-party/equation').then((m) => m.Equation),
+);
 
 interface Blog {
   id: string;
@@ -142,6 +148,7 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap, blog }) => {
           nextImage: ImageBlock,
           nextLink: Link,
           Code: CodeBlock,
+          Equation,
         }}
         fullPage={true}
         darkMode={isDark}
