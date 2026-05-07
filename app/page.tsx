@@ -9,8 +9,8 @@ import { Mail, Github, Twitter, Play, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
 
 export const metadata: Metadata = {
-  title: '海鱼Harry - Full Stack Engineer',
-  description: 'Harry 的个人网站。Full Stack Engineer，专注于 AI、Web3 和现代 Web 开发。',
+  title: '海鱼Harry · 全栈工程师',
+  description: 'Harry 的个人网站，全栈工程师，专注于 AI、Web3 与现代 Web 开发。',
 };
 
 export const revalidate = 600;
@@ -41,18 +41,19 @@ export default function Home() {
               />
             </div>
             <MotionH1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-              Hi, I&apos;m <span className="text-blue-600 dark:text-blue-400">Harry</span>
+              你好，我是 <span className="text-blue-600 dark:text-blue-400">Harry</span>
             </MotionH1>
             <MotionP className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-4">
-              Full Stack Engineer
+              知我罪我
             </MotionP>
             <MotionP className="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-              I&apos;m a full stack engineer passionate about AI, Web3, and modern web development.
-              Currently working on{' '}
+              AI 三秒能写完一切的时代，我决定继续做手能摸到的东西。
+              在做{' '}
               <Link href="https://multipost.app" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">MultiPost</Link>
-              {' '}and{' '}
-              <Link href="https://2some.one" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">2SOMEone</Link>.
-              I believe in the power of technology to solve real-world problems.
+              {' '}——一次发遍全网；
+              <Link href="https://2some.one" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">2SOMEone</Link>
+              {' '}——给 B 站和抖音的创作者省点时间。
+              写代码、写到一半改主意、再改一遍。下一个还没想清楚，但大概率不会停。
             </MotionP>
             {/* Social Icons */}
             <div className="flex items-center gap-3 mt-6">
@@ -79,7 +80,7 @@ export default function Home() {
             className="mb-16"
           >
             <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Projects
+              项目
             </MotionH2>
             <div className="grid sm:grid-cols-3 gap-4">
               <Link
@@ -121,13 +122,13 @@ export default function Home() {
           >
             <div className="flex items-center justify-between mb-6">
               <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Recent Posts
+                最新文章
               </MotionH2>
               <Link
                 href="/blog"
                 className="flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 hover:underline"
               >
-                View all <ArrowRight className="size-3.5" />
+                查看全部 <ArrowRight className="size-3.5" />
               </Link>
             </div>
             <Suspense fallback={<Loading />}>
@@ -157,7 +158,7 @@ async function RecentPosts() {
               {blog.title}
             </span>
             <span className="text-sm text-gray-400 dark:text-gray-500 shrink-0">
-              {format(new Date(blog.created_at), 'MMM d, yyyy')}
+              {format(new Date(blog.created_at), 'yyyy年MM月dd日')}
             </span>
           </Link>
         ))}

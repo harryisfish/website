@@ -129,7 +129,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
 
     if (!blog) {
       return {
-        title: 'Blog Not Found',
+        title: '文章未找到',
       };
     }
 
@@ -148,7 +148,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
     }
 
     const metadata = {
-      title: `${blog.title} | Harry Blog`,
+      title: `${blog.title} | 海鱼Harry`,
       description: blog.digest || fallback,
       keywords: [...blog.categories, ...blog.tags].join(', '),
       openGraph: {
@@ -169,7 +169,7 @@ export async function generateMetadata(props: BlogPageProps): Promise<Metadata> 
       timestamp: new Date().toISOString()
     });
     return {
-      title: 'Blog Not Found',
+      title: '文章未找到',
     };
   }
 }

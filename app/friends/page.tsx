@@ -73,10 +73,10 @@ const FriendsPage: React.FC = () => {
             className="mb-12"
           >
             <MotionH2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-              Friends
+              友链
             </MotionH2>
             <MotionP className="text-gray-500 dark:text-gray-400 text-base">
-              那些人，那些事。A constellation of kindred spirits worth exploring.
+              那些人，那些事 —— 一群志同道合的朋友，值得相识相知。
             </MotionP>
           </MotionDiv>
 
@@ -114,19 +114,19 @@ const FriendsPage: React.FC = () => {
 
 const friendCategories: FriendCategory[] = [
   {
-    title: 'Close Friends',
+    title: '挚友',
     links: [
       {
         name: 'Cunky',
         link: 'https://www.cunoe.com/',
         avatar: 'https://s3.cunoe.com/files/web-icon.png',
-        descr: 'Journey of a pigeon exploring the world',
+        descr: '一只探索世界的鸽子的旅程',
       },
       {
         name: '夜游船',
         link: 'https://www.yeyouchuan.me/',
         avatar: 'https://tc-new.z.wiki/autoupload/f/coF0XJNJZ7Q6uYCWoMduOpmesdO83n0jJRcmVXjsIsc/20250919/5xz8/1185X1026/21EDDBB7C852D4C1904F5ADE07130D96.jpg/webp',
-        descr: 'ACG and music enthusiast, sci-fi reader, and creative soul',
+        descr: 'ACG 与音乐爱好者，科幻读者，富有创造力的灵魂',
       },
     ],
   },

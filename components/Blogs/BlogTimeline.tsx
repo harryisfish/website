@@ -137,7 +137,7 @@ export function BlogTimeline({ blogs }: BlogTimelineProps) {
                     className="text-sm font-medium text-neutral-400 dark:text-neutral-500" 
                                        variants={fadeInUp}
                   >
-                    {format(new Date(blog.created_at), 'MMM d, yyyy')}
+                    {format(new Date(blog.created_at), 'yyyy年MM月dd日')}
                   </MotionP>
                 </div>
               </MotionA>

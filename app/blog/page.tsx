@@ -6,8 +6,8 @@ import { getAllBlogs } from '@/lib/notion';
 import Loading from '@/components/Loading';
 
 export const metadata: Metadata = {
-  title: 'Blog | Harry',
-  description: 'Harry 的博客 - 关于技术、AI、Web3 和生活的思考',
+  title: '博客 | 海鱼Harry',
+  description: 'Harry 的博客 — 关于技术、AI、Web3 与生活的思考',
 };
 
 export const revalidate = 600;

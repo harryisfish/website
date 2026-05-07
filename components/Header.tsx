@@ -60,19 +60,19 @@ export default function Header() {
               href="/"
               className={navLinkClass('/')}>
               <Home className="size-3.5" />
-              Home
+              首页
             </Link>
             <Link
               href="/blog"
               className={navLinkClass('/blog')}>
               <Notebook className="size-3.5" />
-              Blog
+              博客
             </Link>
             <Link
               href="/friends"
               className={navLinkClass('/friends')}>
               <Users className="size-3.5" />
-              Friends
+              友链
             </Link>
           </div>
 
@@ -134,19 +134,19 @@ export default function Header() {
               href="/"
               className={`${navLinkClass('/')} w-full py-2.5`}
               onClick={() => setIsMenuOpen(false)}>
-              <Home className="size-4" /> Home
+              <Home className="size-4" /> 首页
             </Link>
             <Link
               href="/blog"
               className={`${navLinkClass('/blog')} w-full py-2.5`}
               onClick={() => setIsMenuOpen(false)}>
-              <Notebook className="size-4" /> Blog
+              <Notebook className="size-4" /> 博客
             </Link>
             <Link
               href="/friends"
               className={`${navLinkClass('/friends')} w-full py-2.5`}
               onClick={() => setIsMenuOpen(false)}>
-              <Users className="size-4" /> Friends
+              <Users className="size-4" /> 友链
             </Link>
             <div className="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-white/5">
               <Link
