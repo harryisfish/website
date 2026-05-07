@@ -239,6 +239,25 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
   }
 }
 
+// notion-client 返回的 recordMap 出现了双层嵌套（block[id].value.value 才是真块），
+// react-notion-x 期望 block[id].value 是真块，这里做扁平化兜底。
+function normalizeRecordMap(rm: any): any {
+  if (!rm || typeof rm !== 'object') return rm;
+  const tables = ['block', 'collection', 'collection_view', 'notion_user', 'space'];
+  for (const t of tables) {
+    const table = rm[t];
+    if (!table || typeof table !== 'object') continue;
+    for (const id of Object.keys(table)) {
+      const entry = table[id];
+      const inner = entry?.value;
+      if (inner && typeof inner === 'object' && inner.value && inner.role) {
+        table[id] = { value: inner.value, role: inner.role };
+      }
+    }
+  }
+  return rm;
+}
+
 // 使用 notion-client 获取完整的 recordMap，用于 react-notion-x 渲染
 export async function getPageRecordMap(pageId: string) {
   try {
@@ -257,8 +276,8 @@ export async function getPageRecordMap(pageId: string) {
     });
 
     const recordMapPromise = notionApi.getPage(cleanId);
-    
-    const recordMap = await Promise.race([recordMapPromise, timeoutPromise]);
+
+    const recordMap = normalizeRecordMap(await Promise.race([recordMapPromise, timeoutPromise]));
 
     // 缓存结果
     setCachedData(cacheKey, recordMap);

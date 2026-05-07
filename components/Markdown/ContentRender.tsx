@@ -153,6 +153,7 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap, blog }) => {
         fullPage={true}
         darkMode={isDark}
         forceCustomImages
+        hideBlockId
         className=""
       />
     </div>
