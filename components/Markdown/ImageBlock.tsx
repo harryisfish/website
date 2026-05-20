@@ -12,6 +12,8 @@ export default function ImageBlock({ src, alt, title }: { src: string; alt: stri
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const { theme } = useTheme();
+  const imageAlt = alt || title || '文章图片';
+  const imageTitle = title || alt || undefined;
 
   const isSvg = src.toLowerCase().includes('.svg') || src.toLowerCase().includes('svg');
 
@@ -62,18 +64,28 @@ export default function ImageBlock({ src, alt, title }: { src: string; alt: stri
 
   return (
     <>
-      <div className="relative w-full">
+      <div className="relative w-full min-h-64">
         {isLoading && <Placeholder />}
         {hasError && <ErrorPlaceholder />}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          alt={alt}
-          title={title}
-          className={`w-full cursor-pointer transition-opacity duration-300 rounded-lg ${
+          alt={imageAlt}
+          title={imageTitle}
+          loading="lazy"
+          decoding="async"
+          className={`w-full h-auto cursor-pointer transition-opacity duration-300 rounded-lg ${
             isLoading || hasError ? 'opacity-0 absolute' : 'opacity-100'
           }`}
+          role="button"
+          tabIndex={0}
           onClick={() => setVisible(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              setVisible(true);
+            }
+          }}
           onLoad={handleImageLoad}
           onError={handleImageError}
         />
@@ -82,7 +94,7 @@ export default function ImageBlock({ src, alt, title }: { src: string; alt: stri
         <Viewer
           visible={visible}
           onClose={() => setVisible(false)}
-          images={[{ src, alt, downloadUrl: src }]}
+          images={[{ src, alt: imageAlt, downloadUrl: src }]}
         />
       )}
     </>

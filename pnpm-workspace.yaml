@@ -6,3 +6,15 @@ allowBuilds:
   core-js-pure: true
   react-grab: true
   sharp: true
+  unrs-resolver: false
+
+overrides:
+  '@babel/runtime': 7.26.10
+  '@types/react': 19.2.14
+  '@types/react-dom': 19.2.3
+  mdast-util-to-hast: 13.2.1
+  nanoid: 3.3.8
+  postcss: 8.5.10
+  prismjs: 1.30.0
+  tar-fs: 2.1.4
+  webpack: 5.104.1

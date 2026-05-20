@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# planly task files
+.plans/
+
 # npm lockfile (project uses pnpm)
 package-lock.json
 

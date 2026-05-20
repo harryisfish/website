@@ -1,23 +1,15 @@
 /* eslint-disable prefer-const */
-"use client";
-import { cn } from "@/lib/utils";
-import { useMotionValue, useMotionTemplate } from "motion/react";
-import React from "react";
-import { MotionDiv } from "./motion";
+'use client';
+import { cn } from '@/lib/utils';
+import { useMotionValue, useMotionTemplate } from 'motion/react';
+import React from 'react';
+import { MotionDiv } from './motion';
 
-export const LightPoints = ({
-  className,
-}: {
-  className?: string;
-}) => {
+export const LightPoints = ({ className }: { className?: string }) => {
   let mouseX = useMotionValue(0);
   let mouseY = useMotionValue(0);
 
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: React.MouseEvent<HTMLDivElement>) {
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
     if (!currentTarget) return;
     let { left, top } = currentTarget.getBoundingClientRect();
 
@@ -27,12 +19,8 @@ export const LightPoints = ({
 
   return (
     <div
-      className={cn(
-        "relative bg-transparent dark:bg-transparent w-full group",
-        className
-      )}
-      onMouseMove={handleMouseMove}
-    >
+      className={cn('relative bg-transparent dark:bg-transparent w-full group', className)}
+      onMouseMove={handleMouseMove}>
       <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800 pointer-events-none" />
       <MotionDiv
         className="pointer-events-none bg-dot-thick-indigo-500 dark:bg-dot-thick-indigo-500 absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"

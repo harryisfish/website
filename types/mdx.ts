@@ -1,8 +1,8 @@
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkEmoji from "remark-emoji";
-import remarkGFM from "remark-gfm";
-import remarkToc from "remark-toc";
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import remarkEmoji from 'remark-emoji';
+import remarkGFM from 'remark-gfm';
+import remarkToc from 'remark-toc';
 
 export const mdxOptions = {
   remarkPlugins: [
@@ -12,7 +12,7 @@ export const mdxOptions = {
       {
         ordered: true,
         tight: true,
-        heading: "TOC",
+        heading: 'TOC',
         maxDepth: 3,
       },
     ],
@@ -24,7 +24,7 @@ export const mdxOptions = {
     [
       rehypePrettyCode,
       {
-        theme: "one-dark-pro",
+        theme: 'one-dark-pro',
         // theme: {
         // 	dark: 'one-dark-pro',
         // 	light: 'one-dark-pro'
@@ -33,5 +33,5 @@ export const mdxOptions = {
       },
     ],
   ],
-  format: "mdx",
+  format: 'mdx',
 };

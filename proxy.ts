@@ -29,10 +29,5 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/changelog',
-    '/changelog/:path*',
-    '/about',
-    '/links',
-  ],
+  matcher: ['/changelog', '/changelog/:path*', '/about', '/links'],
 };

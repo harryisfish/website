@@ -167,7 +167,7 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
         page_size: 100,
       });
 
-      const res = await Promise.race([blocksPromise, timeoutPromise]) as any;
+      const res = (await Promise.race([blocksPromise, timeoutPromise])) as any;
 
       for (const block of res.results as any[]) {
         const type = block.type as string;
@@ -219,7 +219,7 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
     }
 
     const markdown = lines.join('\n\n');
-    
+
     // 缓存结果
     setCachedData(cacheKey, markdown);
 
@@ -229,12 +229,12 @@ export async function getPageMarkdown(pageId: string): Promise<string> {
       error: error instanceof Error ? error.message : String(error),
       pageId,
     });
-    
+
     // 如果是超时错误，返回已获取的部分内容
     if (error instanceof Error && error.message.includes('超时')) {
       return lines.join('\n\n');
     }
-    
+
     throw error;
   }
 }
@@ -289,7 +289,7 @@ export async function getPageRecordMap(pageId: string) {
       pageId,
       cleanId: pageId.replace(/-/g, ''),
     });
-    
+
     // 如果是超时错误，返回一个空的recordMap而不是抛出错误
     if (error instanceof Error && error.message.includes('超时')) {
       return {
@@ -301,7 +301,7 @@ export async function getPageRecordMap(pageId: string) {
         preview_images: {},
       };
     }
-    
+
     throw error;
   }
 }

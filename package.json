@@ -22,8 +22,8 @@
     "@heroui/styles": "^3.0.1",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "16.2.1",
-    "@next/third-parties": "16.2.1",
+    "@next/mdx": "16.2.6",
+    "@next/third-parties": "16.2.6",
     "@notionhq/client": "^3.0.0",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-select": "^2.1.1",
@@ -42,7 +42,7 @@
     "lucide-react": "^0.439.0",
     "mini-svg-data-uri": "^1.4.4",
     "motion": "^12.6.2",
-    "next": "16.2.1",
+    "next": "16.2.6",
     "next-themes": "^0.3.0",
     "notion-client": "6.16.0",
     "notion-types": "6.16.0",
@@ -54,7 +54,6 @@
     "react-intersection-observer": "^9.16.0",
     "react-loader-spinner": "^6.1.6",
     "react-markdown": "^9.0.1",
-    "react-masonry-component2": "^1.0.10",
     "react-notion-x": "^7.4.3",
     "react-syntax-highlighter": "^15.5.0",
     "react-viewer": "^3.2.2",
@@ -84,7 +83,7 @@
     "eslint-config-next": "15.5.14",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
-    "postcss": "^8",
+    "postcss": "^8.5.10",
     "prettier": "^3.6.2",
     "react-grab": "^0.1.28",
     "stylelint": "^16.23.1",
@@ -92,12 +91,6 @@
     "tailwindcss": "^4.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.14",
-      "@types/react-dom": "19.2.3"
-    }
   },
   "packageManager": "pnpm@11.0.7+sha512.724a7b5d2319cdd7009d65e15a2c29aae9d3902b50585ca163d38a7737eb85bc4e72196879ff59768a71e81fe32aa71e8b70f088b2e24b9e4a2850d87e4607b5"
 }

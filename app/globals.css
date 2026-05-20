@@ -1,13 +1,13 @@
-@import "tailwindcss";
+@import url('tailwindcss');
 
 @config "../tailwind.config.ts";
 
 @custom-variant dark (&:is(.dark *));
 
 /* react-notion-x core styles */
-@import 'react-notion-x/src/styles.css';
-@import 'prismjs/themes/prism.css';
-@import 'katex/dist/katex.min.css';
+@import url('react-notion-x/src/styles.css');
+@import url('prismjs/themes/prism.css');
+@import url('katex/dist/katex.min.css');
 
 @layer base {
   :root {
@@ -70,17 +70,33 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
 
-    font-family: 'LXGW Bright', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      'LXGW Bright',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      sans-serif;
     font-weight: 400;
   }
 
   @font-face {
     font-family: 'LXGW Bright';
-    src: url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.woff2') format('woff2'),
-         url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.woff') format('woff');
+    src:
+      url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.woff2')
+        format('woff2'),
+      url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.woff')
+        format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -88,17 +104,38 @@
 
   @font-face {
     font-family: 'LXGW Bright Medium';
-    src: url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.woff2') format('woff2'),
-         url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.woff') format('woff');
+    src:
+      url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.woff2')
+        format('woff2'),
+      url('https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Medium/result.woff')
+        format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
 
   .font-bold,
-  b, strong,
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'LXGW Bright Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  b,
+  strong,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:
+      'LXGW Bright Medium',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      sans-serif;
     font-weight: 400;
   }
 }

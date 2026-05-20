@@ -1,4 +1,4 @@
-FROM node:20.18.1-alpine3.20 AS base
+FROM node:22.13.1-alpine3.21 AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN npm install -g pnpm
@@ -17,10 +17,13 @@ WORKDIR /app
 FROM base AS builder
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 RUN --mount=type=cache,id=pnpm-cunoe-blog-next,target=/pnpm/store pnpm install --frozen-lockfile
-RUN cp '.env.local.example' '.env.local'
-RUN pnpm run build
+RUN --mount=type=secret,id=notion_token,required=true \
+    --mount=type=secret,id=notion_database_id,required=true \
+    NOTION_TOKEN="$(cat /run/secrets/notion_token)" \
+    NOTION_DATABASE_ID="$(cat /run/secrets/notion_database_id)" \
+    pnpm run build
 
-FROM node:20.18.1-alpine3.20 AS final
+FROM node:22.13.1-alpine3.21 AS final
 ENV TZ=Asia/Shanghai
 WORKDIR /app
 

@@ -1,9 +1,11 @@
 # Project: 海鱼Harry个人网站
 
 ## Overview
+
 Harry 的个人网站，基于 Next.js 构建，使用 Notion 作为博客内容源，部署在 Vercel 上。
 
 ## Tech Stack
+
 - **Framework**: Next.js 16.2.1 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS v4 + Radix UI
@@ -18,6 +20,7 @@ Harry 的个人网站，基于 Next.js 构建，使用 Notion 作为博客内容
 - **Dev Tool**: react-grab (仅 dev 环境, ⌘C 选中元素复制组件信息)
 
 ## Project Structure
+
 ```
 app/
   page.tsx          # 首页 (Profile: Hero + Projects + Recent Posts)
@@ -41,17 +44,19 @@ proxy.ts            # 请求代理: /about→/, /links→/friends, /changelog→
 ```
 
 ## Routes
-| 路由 | 说明 |
-|------|------|
-| `/` | Profile 首页 (头像、简介、项目卡片、最近博客、社交链接) |
-| `/blog` | 博客列表 (年份分组时间线) |
-| `/blog/[urlname]` | 博客详情 (Notion 内容渲染) |
-| `/friends` | 友链页面 |
-| `/about` | 重定向到 `/` |
-| `/links` | 重定向到 `/friends` |
-| `/changelog/*` | 重定向到 `/blog/*` |
+
+| 路由              | 说明                                                    |
+| ----------------- | ------------------------------------------------------- |
+| `/`               | Profile 首页 (头像、简介、项目卡片、最近博客、社交链接) |
+| `/blog`           | 博客列表 (年份分组时间线)                               |
+| `/blog/[urlname]` | 博客详情 (Notion 内容渲染)                              |
+| `/friends`        | 友链页面                                                |
+| `/about`          | 重定向到 `/`                                            |
+| `/links`          | 重定向到 `/friends`                                     |
+| `/changelog/*`    | 重定向到 `/blog/*`                                      |
 
 ## Commands
+
 - `pnpm dev` - 开发服务器 (绑定 0.0.0.0, webpack)
 - `pnpm build` - 构建 (webpack)
 - `pnpm lint` / `pnpm lint:fix` - ESLint
@@ -60,11 +65,13 @@ proxy.ts            # 请求代理: /about→/, /links→/friends, /changelog→
 - `pnpm type-check` - TypeScript 类型检查
 
 ## Git Hooks (Husky + lint-staged)
+
 - Pre-commit: 对暂存文件运行 eslint (JS/TS) 和 stylelint (CSS)
 - Commit message: commitlint (conventional commits)
 - 首次 clone 需要 `pnpm install` 安装依赖以启用 hooks
 
 ## Deployment
+
 - 平台: Vercel
 - Git 集成: push 到 `main` 分支自动触发部署
 - Vercel 项目名: `website`
@@ -73,12 +80,14 @@ proxy.ts            # 请求代理: /about→/, /links→/friends, /changelog→
 - 注意: Vercel 会阻止部署含已知安全漏洞的 Next.js 版本
 
 ## Key Dependencies Notes
+
 - `npm install` 会因 peer dependency 冲突失败，需使用 `pnpm install`
 - `eslint-config-next` 固定在 v15 以兼容 ESLint 8 的 legacy 配置格式
 - Tailwind CSS v4 需要 `postcss.config.mjs` + `@tailwindcss/postcss`
 - `.npmrc` 设置了 `shamefully-hoist=true`
 
 ## Theming
+
 - 使用 `next-themes` 管理 dark/light 切换，`attribute="class"`
 - Tailwind v4 需要 `@custom-variant dark (&:is(.dark *))` 在 globals.css 中声明
 - CSS 变量定义在 `globals.css` 的 `:root` / `.dark` 中
@@ -87,11 +96,13 @@ proxy.ts            # 请求代理: /about→/, /links→/friends, /changelog→
 - 字体统一在 `globals.css` 中声明，组件不应内联 `fontFamily`
 
 ## Turbopack 兼容性问题
+
 - Turbopack 在 pnpm symlink 结构下无法 spawn PostCSS 工作子进程
 - 当前方案：dev/build 均使用 `--webpack` flag
 - Vercel 部署可能不受影响（Linux 容器环境）
 
 ## Known Issues / History
+
 - 2026-03-24: 网站重构 — 首页改为 Profile 模式，新增 /blog 列表页，/links 改为 /friends
 - 2026-03-24: 修复 dark mode (Tailwind v4 需要 @custom-variant)
 - 2026-03-24: 安装 react-grab 开发工具

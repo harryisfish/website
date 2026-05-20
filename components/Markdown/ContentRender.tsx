@@ -11,9 +11,7 @@ import ImageBlock from './ImageBlock';
 import { CodeBlock } from '../ui/code-block';
 
 // react-notion-x 第三方组件（懒加载）
-const Equation = dynamic(() =>
-  import('react-notion-x/build/third-party/equation').then((m) => m.Equation),
-);
+const Equation = dynamic(() => import('react-notion-x/build/third-party/equation').then((m) => m.Equation));
 
 interface Blog {
   id: string;
@@ -126,7 +124,12 @@ const NotionContent: React.FC<NotionContentProps> = ({ recordMap, blog }) => {
         .notion-page,
         .notion-page-content,
         .notion-text,
-        .notion-h1, .notion-h2, .notion-h3, .notion-h4, .notion-h5, .notion-h6,
+        .notion-h1,
+        .notion-h2,
+        .notion-h3,
+        .notion-h4,
+        .notion-h5,
+        .notion-h6,
         .notion-p,
         .notion-list,
         .notion-quote,

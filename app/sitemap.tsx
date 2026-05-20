@@ -1,10 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { getAllBlogs, type NotionBlog } from '@/lib/notion';
 
+const SITE_URL = 'https://www.harryis.fish';
+
 async function getBlogs(): Promise<MetadataRoute.Sitemap> {
   const blogs: NotionBlog[] = await getAllBlogs();
   return blogs.map((blog: NotionBlog) => ({
-    url: `https://harryis.fish/blog/${blog.urlname}`,
+    url: `${SITE_URL}/blog/${blog.urlname}`,
     lastModified: new Date(blog.updated_at),
     changeFrequency: 'weekly',
     priority: 0.5,
@@ -14,19 +16,19 @@ async function getBlogs(): Promise<MetadataRoute.Sitemap> {
 async function getPages(): Promise<MetadataRoute.Sitemap> {
   return [
     {
-      url: 'https://harryis.fish',
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://harryis.fish/blog',
+      url: `${SITE_URL}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://harryis.fish/friends',
+      url: `${SITE_URL}/friends`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,

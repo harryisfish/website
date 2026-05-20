@@ -7,7 +7,7 @@ import { IconCheck, IconCopy } from '@tabler/icons-react';
 import { useTheme } from 'next-themes';
 
 // Notion 相关类型定义
-type Decoration = [string] | [string, any[]];
+type Decoration = [string] | [string, unknown[]];
 type NotionCodeBlock = {
   id: string;
   type: 'code';
@@ -32,7 +32,7 @@ type NotionCodeBlock = {
   space_id: string;
   version: number;
   crdt_format_version?: number;
-  crdt_data?: any;
+  crdt_data?: unknown;
 };
 
 type CodeBlockProps = {
@@ -165,6 +165,7 @@ export const CodeBlock = ({
       {/* 复制按钮 - 绝对定位在右上角 */}
       <button
         onClick={copyToClipboard}
+        aria-label={copied ? '已复制代码' : '复制代码'}
         className={`absolute top-4 right-4 flex items-center gap-1 text-xs transition-colors font-sans z-10 ${
           isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-gray-500 hover:text-gray-700'
         }`}>

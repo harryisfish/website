@@ -31,7 +31,8 @@ export default function Header() {
         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
     }`;
 
-  const iconBtnClass = 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg p-2 transition-all duration-200';
+  const iconBtnClass =
+    'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-lg p-2 transition-all duration-200';
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-white/70 dark:bg-gray-950/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-white/5">
@@ -80,29 +81,32 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-0.5">
             <Link
               href="mailto:product.indents-4d@icloud.com"
+              aria-label="发送邮件给 Harry"
               className={iconBtnClass}>
               <Mail className="size-4" />
             </Link>
             <Link
               href="https://github.com/harryisfish"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="访问 Harry 的 GitHub"
               className={iconBtnClass}>
               <Github className="size-4" />
             </Link>
             <Link
               href="https://twitter.com/harry_is_fish"
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="访问 Harry 的 X 主页"
               className={iconBtnClass}>
               <Twitter className="size-4" />
             </Link>
             <div className="w-px h-4 bg-gray-200 dark:bg-gray-700 mx-1" />
             <button
               onClick={toggleTheme}
+              aria-label={theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'}
               className={`${iconBtnClass} relative overflow-hidden`}>
-              {mounted && (theme === 'dark'
-                ? <Sun className="size-4 text-amber-400" />
-                : <Moon className="size-4" />
-              )}
+              {mounted && (theme === 'dark' ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4" />)}
             </button>
           </div>
 
@@ -110,11 +114,9 @@ export default function Header() {
           <div className="flex sm:hidden items-center gap-1">
             <button
               onClick={toggleTheme}
+              aria-label={theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'}
               className={iconBtnClass}>
-              {mounted && (theme === 'dark'
-                ? <Sun className="size-4 text-amber-400" />
-                : <Moon className="size-4" />
-              )}
+              {mounted && (theme === 'dark' ? <Sun className="size-4 text-amber-400" /> : <Moon className="size-4" />)}
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -151,18 +153,23 @@ export default function Header() {
             <div className="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-white/5">
               <Link
                 href="mailto:product.indents-4d@icloud.com"
+                aria-label="发送邮件给 Harry"
                 className={iconBtnClass}>
                 <Mail className="size-4" />
               </Link>
               <Link
                 href="https://github.com/harryisfish"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="访问 Harry 的 GitHub"
                 className={iconBtnClass}>
                 <Github className="size-4" />
               </Link>
               <Link
                 href="https://twitter.com/harry_is_fish"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="访问 Harry 的 X 主页"
                 className={iconBtnClass}>
                 <Twitter className="size-4" />
               </Link>

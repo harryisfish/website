@@ -11,6 +11,31 @@ import { format } from 'date-fns';
 export const metadata: Metadata = {
   title: '海鱼Harry · 全栈工程师',
   description: 'Harry 的个人网站，全栈工程师，专注于 AI、Web3 与现代 Web 开发。',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: '海鱼Harry · 全栈工程师',
+    description: 'Harry 的个人网站，全栈工程师，专注于 AI、Web3 与现代 Web 开发。',
+    url: '/',
+    siteName: '海鱼Harry',
+    locale: 'zh_CN',
+    type: 'website',
+    images: [
+      {
+        url: '/harry.png',
+        width: 140,
+        height: 140,
+        alt: '海鱼Harry',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: '海鱼Harry · 全栈工程师',
+    description: 'Harry 的个人网站，全栈工程师，专注于 AI、Web3 与现代 Web 开发。',
+    images: ['/harry.png'],
+  },
 };
 
 export const revalidate = 600;
@@ -28,8 +53,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="flex flex-col items-center text-center pt-20 pb-16"
-          >
+            className="flex flex-col items-center text-center pt-20 pb-16">
             <div className="relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-2xl opacity-20 scale-150"></div>
               <Image
@@ -43,30 +67,56 @@ export default function Home() {
             <MotionH1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
               你好，我是 <span className="text-blue-600 dark:text-blue-400">Harry</span>
             </MotionH1>
-            <MotionP className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-4">
-              知我罪我
-            </MotionP>
+            <MotionP className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-4">知我罪我</MotionP>
             <MotionP className="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
-              AI 三秒能写完一切的时代，我决定继续做手能摸到的东西。
-              在做{' '}
-              <Link href="https://multipost.app" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">MultiPost</Link>
-              {' '}——一次发遍全网；
-              <Link href="https://2some.one" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">2SOMEone</Link>
-              {' '}——给 B 站和抖音的创作者省点时间。
-              写代码、写到一半改主意、再改一遍。下一个还没想清楚，但大概率不会停。
+              AI 三秒能写完一切的时代，我决定继续做手能摸到的东西。 在做{' '}
+              <Link
+                href="https://multipost.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline">
+                MultiPost
+              </Link>{' '}
+              ——一次发遍全网；
+              <Link
+                href="https://2some.one"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline">
+                2SOMEone
+              </Link>{' '}
+              ——给 B 站和抖音的创作者省点时间。 写代码、写到一半改主意、再改一遍。下一个还没想清楚，但大概率不会停。
             </MotionP>
             {/* Social Icons */}
             <div className="flex items-center gap-3 mt-6">
-              <Link href="mailto:product.indents-4d@icloud.com" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
+              <Link
+                href="mailto:product.indents-4d@icloud.com"
+                aria-label="发送邮件给 Harry"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
                 <Mail className="size-5" />
               </Link>
-              <Link href="https://github.com/harryisfish" target="_blank" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
+              <Link
+                href="https://github.com/harryisfish"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="访问 Harry 的 GitHub"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
                 <Github className="size-5" />
               </Link>
-              <Link href="https://twitter.com/harry_is_fish" target="_blank" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
+              <Link
+                href="https://twitter.com/harry_is_fish"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="访问 Harry 的 X 主页"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
                 <Twitter className="size-5" />
               </Link>
-              <Link href="https://space.bilibili.com/17005773" target="_blank" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
+              <Link
+                href="https://space.bilibili.com/17005773"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="访问 Harry 的 Bilibili 主页"
+                className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2">
                 <Play className="size-5" />
               </Link>
             </div>
@@ -77,38 +127,47 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="mb-16"
-          >
-            <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              项目
-            </MotionH2>
+            className="mb-16">
+            <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">项目</MotionH2>
             <div className="grid sm:grid-cols-3 gap-4">
               <Link
                 href="https://multipost.app"
                 target="_blank"
-                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
+                rel="noopener noreferrer"
+                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                 <div className="text-2xl mb-2">📱</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">MultiPost</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">开源社交媒体发布工具，支持多平台批量发布与数据分析</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  MultiPost
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  开源社交媒体发布工具，支持多平台批量发布与数据分析
+                </p>
               </Link>
               <Link
                 href="https://2some.one"
                 target="_blank"
-                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
+                rel="noopener noreferrer"
+                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                 <div className="text-2xl mb-2">🍬</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">2SOMEone</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">B站和抖音创作者运营工具，涵盖粉丝管理、弹幕互动与数据分析</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  2SOMEone
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  B站和抖音创作者运营工具，涵盖粉丝管理、弹幕互动与数据分析
+                </p>
               </Link>
               <Link
                 href="https://leaper.one"
                 target="_blank"
-                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
+                rel="noopener noreferrer"
+                className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-xl p-5 border border-gray-100 dark:border-gray-800 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                 <div className="text-2xl mb-2">🚀</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">LEAPERone</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">统一API网关，集成AI模型、图像生成等多项服务，支持按量付费</p>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  LEAPERone
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  统一API网关，集成AI模型、图像生成等多项服务，支持按量付费
+                </p>
               </Link>
             </div>
           </MotionDiv>
@@ -118,16 +177,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="mb-16"
-          >
+            className="mb-16">
             <div className="flex items-center justify-between mb-6">
-              <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                最新文章
-              </MotionH2>
+              <MotionH2 className="text-2xl font-bold text-gray-900 dark:text-white">最新文章</MotionH2>
               <Link
                 href="/blog"
-                className="flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 hover:underline"
-              >
+                className="flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400 hover:underline">
                 查看全部 <ArrowRight className="size-3.5" />
               </Link>
             </div>
@@ -152,8 +207,7 @@ async function RecentPosts() {
           <Link
             key={blog.id}
             href={`/blog/${blog.urlname}`}
-            className="flex items-baseline justify-between gap-4 py-3 px-4 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-100 dark:border-gray-800 hover:bg-white dark:hover:bg-gray-900 hover:shadow-md transition-all duration-200 group"
-          >
+            className="flex items-baseline justify-between gap-4 py-3 px-4 rounded-lg bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-100 dark:border-gray-800 hover:bg-white dark:hover:bg-gray-900 hover:shadow-md transition-all duration-200 group">
             <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
               {blog.title}
             </span>
