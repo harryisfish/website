@@ -1,13 +1,13 @@
-@import url('tailwindcss');
+@import 'tailwindcss';
 
 @config "../tailwind.config.ts";
 
 @custom-variant dark (&:is(.dark *));
 
 /* react-notion-x core styles */
-@import url('react-notion-x/src/styles.css');
-@import url('prismjs/themes/prism.css');
-@import url('katex/dist/katex.min.css');
+@import 'react-notion-x/src/styles.css';
+@import 'prismjs/themes/prism.css';
+@import 'katex/dist/katex.min.css';
 
 @layer base {
   :root {

@@ -20,5 +20,6 @@ export default {
       },
     ],
     'no-invalid-position-at-import-rule': null,
+    'import-notation': null,
   },
 };
