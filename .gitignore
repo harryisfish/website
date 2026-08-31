@@ -40,3 +40,9 @@ package-lock.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local planning artifacts
+/.planning/
+
+# Local Git worktrees
+/.worktrees/
